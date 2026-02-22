@@ -230,7 +230,10 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
                          slippage_pips: float,
                          max_spread_pips: float = MAX_SPREAD_PIPS,
                          entry_delay: int = 0,
-                         friday_exit_hour: int = -1) -> List[dict]:
+                         friday_exit_hour: int = -1,
+                         min_hold_bars: int = 0,
+                         timed_only: bool = False,
+                         regime_exit_window_bars: int = 0) -> List[dict]:
     """
     Generate trades for one pair using per-slot configs from walk-forward.
 
@@ -240,6 +243,10 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
                  retail execution latency).
     friday_exit_hour: if >= 0, force-close any trade still open at this UTC hour
                       on Friday (avoids weekend gap risk). -1 = disabled.
+    min_hold_bars: minimum M5 bars before regime exit is allowed (0 = no minimum).
+    timed_only: if True, ignore regime exits entirely — only exit via timed exit.
+    regime_exit_window_bars: only allow regime exits within first X bars of trade;
+                             after the window, only timed exit applies (0 = no limit).
 
     Returns list of trade dicts with entry/exit times, PnL, etc.
     """
@@ -309,18 +316,29 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
 
             # ── Find regime exit with confirmation ──
             regime_exit_bar = None
-            off_run = 0
-            max_bar = min(entry_bar + te, n - 1)  # timed exit cap
 
-            for b in range(entry_bar + 1, max_bar + 1):
-                if state[b] != d:
-                    off_run += 1
-                else:
-                    off_run = 0
+            if not timed_only:
+                off_run = 0
+                max_bar = min(entry_bar + te, n - 1)  # timed exit cap
 
-                if off_run > xc:
-                    regime_exit_bar = b
-                    break
+                # If regime_exit_window set, restrict scan range
+                if regime_exit_window_bars > 0:
+                    max_bar = min(entry_bar + regime_exit_window_bars, max_bar)
+
+                for b in range(entry_bar + 1, max_bar + 1):
+                    if state[b] != d:
+                        off_run += 1
+                    else:
+                        off_run = 0
+
+                    if off_run > xc:
+                        regime_exit_bar = b
+                        break
+
+                # If min_hold set, ignore regime exits that are too early
+                if regime_exit_bar is not None and min_hold_bars > 0:
+                    if (regime_exit_bar - entry_bar) < min_hold_bars:
+                        regime_exit_bar = None
 
             # ── Determine actual exit bar ──
             timed_exit_bar = min(entry_bar + te, n - 1)
@@ -745,6 +763,16 @@ def main():
                         help='Force-close trades at this UTC hour on Friday to avoid '
                              'weekend gap risk (e.g. 20 = exit by 20:00 UTC Friday, '
                              'default: disabled)')
+    parser.add_argument('--min-hold', type=int, default=0, metavar='MINUTES',
+                        help='Minimum hold time in minutes before regime exit is allowed '
+                             '(e.g. 30 = ignore regime-off for first 30 min, default: 0)')
+    parser.add_argument('--timed-only', action='store_true',
+                        help='Ignore regime exits entirely — only exit via timed exit')
+    parser.add_argument('--regime-exit-window', type=int, default=0, metavar='MINUTES',
+                        help='Only allow regime exits within first X minutes of trade; '
+                             'after that window, only timed exit applies '
+                             '(e.g. 30 = regime exit only if regime off within 30 min, '
+                             'default: 0 = no window limit)')
     args = parser.parse_args()
 
     data_dir = args.data_dir
@@ -754,6 +782,9 @@ def main():
     max_spread = args.max_spread
     entry_delay = args.entry_delay
     friday_exit = args.friday_exit
+    min_hold_bars = args.min_hold // 5 if args.min_hold > 0 else 0
+    timed_only = args.timed_only
+    regime_exit_window_bars = args.regime_exit_window // 5 if args.regime_exit_window > 0 else 0
 
     t_start = time_mod.time()
 
@@ -799,6 +830,12 @@ def main():
     log.info(f"  Entry delay:   {entry_delay} bars ({entry_delay*5}min)")
     log.info(f"  Friday exit:   {'OFF' if friday_exit < 0 else f'{friday_exit:02d}:00 UTC'}")
     log.info(f"  Max spread:    {max_spread} pips")
+    if min_hold_bars > 0:
+        log.info(f"  Min hold:      {args.min_hold}min ({min_hold_bars} bars) before regime exit")
+    if timed_only:
+        log.info(f"  Exit mode:     TIMED ONLY (regime exits disabled)")
+    if regime_exit_window_bars > 0:
+        log.info(f"  Regime window: {args.regime_exit_window}min ({regime_exit_window_bars} bars)")
     log.info(f"  Windows:       {N_WINDOWS} (30-min UTC slots)")
     log.info(f"  Numba:         {'YES' if HAS_NUMBA else 'NO'}")
 
@@ -831,7 +868,10 @@ def main():
                                        test_years, slippage,
                                        max_spread_pips=max_spread,
                                        entry_delay=entry_delay,
-                                       friday_exit_hour=friday_exit)
+                                       friday_exit_hour=friday_exit,
+                                       min_hold_bars=min_hold_bars,
+                                       timed_only=timed_only,
+                                       regime_exit_window_bars=regime_exit_window_bars)
         all_trades.extend(trades)
 
         elapsed = time_mod.time() - t0
