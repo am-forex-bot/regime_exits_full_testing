@@ -72,6 +72,7 @@ DEFAULT_UNIT_SIZE = 10000    # micro lot in units
 DEFAULT_ACCOUNT = 10000.0    # starting balance
 DEFAULT_MAX_POS = 15         # max concurrent positions
 DEFAULT_SLIPPAGE = 0.3       # pips per side
+DEFAULT_ENTRY_DELAY = 0      # extra M5 bars delay on entry (0 = instant)
 
 
 # ======================================================================
@@ -226,12 +227,15 @@ def discover_pairs(data_dir):
 def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
                          slot_configs: dict, test_years: list,
                          slippage_pips: float,
-                         max_spread_pips: float = MAX_SPREAD_PIPS) -> List[dict]:
+                         max_spread_pips: float = MAX_SPREAD_PIPS,
+                         entry_delay: int = 0) -> List[dict]:
     """
     Generate trades for one pair using per-slot configs from walk-forward.
 
     slot_configs: {(test_year, dow, window): {ec, xc, te_bars, train_years}}
     Skips entries where spread > max_spread_pips.
+    entry_delay: extra M5 bars to wait after signal before entering (simulates
+                 retail execution latency).
 
     Returns list of trade dicts with entry/exit times, PnL, etc.
     """
@@ -273,8 +277,8 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
 
             d = int(state[i])
 
-            # ── Entry confirmation ──
-            entry_bar = i + ec
+            # ── Entry confirmation + execution delay ──
+            entry_bar = i + ec + entry_delay
             if entry_bar >= n:
                 continue
 
@@ -512,10 +516,11 @@ def simulate_portfolio(all_trades: List[dict], max_positions: int,
 # OUTPUT
 # ======================================================================
 
-def save_results(results, output_dir, max_positions, slippage):
+def save_results(results, output_dir, max_positions, slippage, entry_delay=0):
     ts = time_mod.strftime('%Y%m%d_%H%M%S')
     os.makedirs(output_dir, exist_ok=True)
-    tag = f"maxpos{max_positions}_slip{slippage}"
+    delay_tag = f"_delay{entry_delay}" if entry_delay > 0 else ""
+    tag = f"maxpos{max_positions}_slip{slippage}{delay_tag}"
 
     # Equity curve
     eq_df = pd.DataFrame(results['equity_curve'])
@@ -557,10 +562,11 @@ def save_results(results, output_dir, max_positions, slippage):
     return eq_path, exec_path, yr_path
 
 
-def print_results(results, max_positions, slippage):
+def print_results(results, max_positions, slippage, entry_delay=0):
     print("\n" + "=" * 100)
     print(f"REGIME v2 — LIVE SIMULATION RESULTS")
-    print(f"Max positions: {max_positions} | Slippage: {slippage} pips/side")
+    delay_str = f" | Entry delay: {entry_delay} bars ({entry_delay*5}min)" if entry_delay > 0 else ""
+    print(f"Max positions: {max_positions} | Slippage: {slippage} pips/side{delay_str}")
     print("=" * 100)
 
     ex = results['executed']
@@ -698,6 +704,9 @@ def main():
                         help='Comma-separated test years to simulate (default: all from slots CSV)')
     parser.add_argument('--max-spread', type=float, default=MAX_SPREAD_PIPS,
                         help='Max spread in pips to allow entry (default: 5.0)')
+    parser.add_argument('--entry-delay', type=int, default=DEFAULT_ENTRY_DELAY,
+                        help='Extra M5 bars delay on entry to simulate execution latency '
+                             '(1 = 5min late, 2 = 10min late, default: 0)')
     args = parser.parse_args()
 
     data_dir = args.data_dir
@@ -705,6 +714,7 @@ def main():
     max_pos = args.max_positions
     slippage = args.slippage
     max_spread = args.max_spread
+    entry_delay = args.entry_delay
 
     t_start = time_mod.time()
 
@@ -747,6 +757,7 @@ def main():
     log.info(f"\nSimulation config:")
     log.info(f"  Max positions: {max_pos}")
     log.info(f"  Slippage:      {slippage} pips/side")
+    log.info(f"  Entry delay:   {entry_delay} bars ({entry_delay*5}min)")
     log.info(f"  Max spread:    {max_spread} pips")
     log.info(f"  Windows:       {N_WINDOWS} (30-min UTC slots)")
     log.info(f"  Numba:         {'YES' if HAS_NUMBA else 'NO'}")
@@ -778,7 +789,8 @@ def main():
 
         trades = generate_pair_trades(pname, m5, state, slot_configs,
                                        test_years, slippage,
-                                       max_spread_pips=max_spread)
+                                       max_spread_pips=max_spread,
+                                       entry_delay=entry_delay)
         all_trades.extend(trades)
 
         elapsed = time_mod.time() - t0
@@ -796,8 +808,8 @@ def main():
         sys.exit(1)
 
     # ── Output ──
-    save_results(results, output_dir, max_pos, slippage)
-    print_results(results, max_pos, slippage)
+    save_results(results, output_dir, max_pos, slippage, entry_delay)
+    print_results(results, max_pos, slippage, entry_delay)
 
     elapsed = time_mod.time() - t_start
     log.info(f"\nTotal runtime: {elapsed:.1f}s ({elapsed/60:.1f}min)")
