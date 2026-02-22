@@ -50,7 +50,7 @@ log = logging.getLogger(__name__)
 # ======================================================================
 
 MTF_WEIGHTS = {'M1': 0.05, 'M5': 0.20, 'M15': 0.30, 'H1': 0.25, 'H4': 0.20}
-N_WINDOWS = 12             # 2-hour blocks (was 48 × 30-min)
+N_WINDOWS = 48             # 30-min UTC windows
 MAX_SPREAD_PIPS = 5.0      # skip entries with spread > this
 DOW_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 
@@ -259,7 +259,7 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
                 spread_rejected += 1
                 continue
             year = ts.year
-            window = ts.hour // 2   # 2-hour blocks (0-11)
+            window = ts.hour * 2 + (1 if ts.minute >= 30 else 0)
 
             # Check if we have a config for this slot in this test year
             key = (year, dow, window)
@@ -350,7 +350,7 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
                 'dow': dow,
                 'dow_name': DOW_NAMES[dow],
                 'window': window,
-                'window_utc': f"{window*2:02d}:00-{window*2+2:02d}:00",
+                'window_utc': f"{window//2:02d}:{(window%2)*30:02d}",
                 'exit_type': 'regime' if (regime_exit_bar is not None and
                                            regime_exit_bar <= timed_exit_bar) else 'timed',
             })
@@ -748,7 +748,7 @@ def main():
     log.info(f"  Max positions: {max_pos}")
     log.info(f"  Slippage:      {slippage} pips/side")
     log.info(f"  Max spread:    {max_spread} pips")
-    log.info(f"  Windows:       {N_WINDOWS} (2-hour blocks)")
+    log.info(f"  Windows:       {N_WINDOWS} (30-min UTC slots)")
     log.info(f"  Numba:         {'YES' if HAS_NUMBA else 'NO'}")
 
     # ── Discover and load pairs ──

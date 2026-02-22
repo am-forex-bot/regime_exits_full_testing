@@ -10,11 +10,11 @@ Grid dimensions:
   • Timed exit        (hard exit after N M5 bars regardless of regime)
 
 No SL. No TP. Entry on regime transition, exit on counter-transition or timer.
-Walk-forward validated by (dow × 2-hour UTC window) slots.
+Walk-forward validated by (dow × 30-min UTC window) slots.
 Bid/ask pricing throughout.
 
 Statistical robustness:
-  • Reduced parameter space (12 windows × 3 EC × 3 XC × ~30 TE ≈ 3,240/slot)
+  • Reduced parameter space (3 EC × 3 XC × ~28 TE = 252 combos/slot)
   • Bonferroni-corrected significance test on OOS results
   • Min 50 training trades, 20 test trades per slot
   • Spread filter: skip entries where spread > max_spread_pips
@@ -66,7 +66,7 @@ EXIT_CONFIRM_VALUES  = [0, 2, 6]     # 0, 10, 30 min (reduced from 0-12)
 MAX_HOLD_BARS = 576        # 48h of M5 bars
 MIN_TRAIN_TRADES = 50      # min trades in training (was 15)
 MIN_TEST_TRADES  = 20      # min trades in test (was 3)
-N_WINDOWS = 12             # 2-hour blocks (was 48 × 30-min)
+N_WINDOWS = 48             # 30-min UTC windows
 MAX_SPREAD_PIPS = 5.0      # skip entries with spread > this
 DOW_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 
@@ -243,7 +243,7 @@ def extract_events(state, m5_index, bid_c, ask_c,
             events.append({
                 'bar': i, 'dir': int(state[i]),
                 'year': ts.year, 'dow': ts.dayofweek,
-                'window': ts.hour // 2,   # 2-hour blocks (0-11)
+                'window': ts.hour * 2 + (1 if ts.minute >= 30 else 0),
             })
 
     if not events: return None
@@ -763,7 +763,7 @@ def main():
     log.info(f"Entry confirm:     {ENTRY_CONFIRM_VALUES} bars")
     log.info(f"Exit confirm:      {EXIT_CONFIRM_VALUES} bars")
     log.info(f"Timed exit values: {len(timed_bars)} ({timed_bars[0]*5}min to {timed_bars[-1]*5/60:.0f}h)")
-    log.info(f"Windows:           {N_WINDOWS} (2-hour blocks)")
+    log.info(f"Windows:           {N_WINDOWS} (30-min UTC slots)")
     log.info(f"Max spread:        {max_spread} pips")
     log.info(f"Min train trades:  {MIN_TRAIN_TRADES}")
     log.info(f"Min test trades:   {MIN_TEST_TRADES}")
@@ -929,7 +929,7 @@ def main():
                     'train_years': str([yl[i] for i in range(r['test_year_idx'])]),
                     'test_year': yl[r['test_year_idx']],
                     'dow': d, 'dow_name': DOW_NAMES[d],
-                    'window': w, 'window_utc': f"{w*2:02d}:00-{w*2+2:02d}:00",
+                    'window': w, 'window_utc': f"{w//2:02d}:{(w%2)*30:02d}",
                     'entry_thresh': et, 'exit_thresh': xt,
                     'entry_confirm_min': int(entry_confirms[bi[0]]) * 5,
                     'exit_confirm_min': int(exit_confirms[bi[1]]) * 5,
