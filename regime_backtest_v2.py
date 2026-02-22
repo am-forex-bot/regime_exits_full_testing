@@ -63,7 +63,7 @@ DEFAULT_EXIT_THRESHOLDS  = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
 
 ENTRY_CONFIRM_VALUES = [0, 2, 6]     # 0, 10, 30 min (reduced from 0-12)
 EXIT_CONFIRM_VALUES  = [0, 2, 6]     # 0, 10, 30 min (reduced from 0-12)
-MAX_HOLD_BARS = 576        # 48h of M5 bars
+MAX_HOLD_BARS = 1440       # 120h (5 days) of M5 bars
 MIN_TRAIN_TRADES = 50      # min trades in training (was 15)
 MIN_TEST_TRADES  = 20      # min trades in test (was 3)
 N_WINDOWS = 48             # 30-min UTC windows
@@ -79,12 +79,13 @@ ALL_PAIRS = ['EUR_USD', 'GBP_USD', 'USD_JPY', 'EUR_JPY', 'GBP_JPY',
 def make_timed_exit_grid(fine=False):
     if fine:
         return np.arange(1, MAX_HOLD_BARS + 1, dtype=np.int32)
-    # Reduced grid: ~30 values instead of ~120
+    # Reduced grid: ~35 values covering 30m to 120h
     bars = set()
     for b in range(6, 49, 6):                    bars.add(b)   # 30m-4h every 30m (8 vals)
     for b in range(60, 145, 12):                  bars.add(b)   # 5h-12h every 1h  (8 vals)
     for b in range(168, 289, 24):                 bars.add(b)   # 14h-24h every 2h (6 vals)
-    for b in range(336, MAX_HOLD_BARS + 1, 48):   bars.add(b)   # 28h-48h every 4h (6 vals)
+    for b in range(336, 577, 48):                 bars.add(b)   # 28h-48h every 4h (6 vals)
+    for b in range(720, MAX_HOLD_BARS + 1, 144):  bars.add(b)   # 60h-120h every 12h (5 vals)
     bars.add(MAX_HOLD_BARS)
     return np.array(sorted(bars), dtype=np.int32)
 
