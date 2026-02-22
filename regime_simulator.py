@@ -73,6 +73,7 @@ DEFAULT_ACCOUNT = 10000.0    # starting balance
 DEFAULT_MAX_POS = 15         # max concurrent positions
 DEFAULT_SLIPPAGE = 0.3       # pips per side
 DEFAULT_ENTRY_DELAY = 0      # extra M5 bars delay on entry (0 = instant)
+FRIDAY_EXIT_HOUR = 20        # default Friday exit hour (UTC) when --friday-exit enabled
 
 
 # ======================================================================
@@ -228,7 +229,8 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
                          slot_configs: dict, test_years: list,
                          slippage_pips: float,
                          max_spread_pips: float = MAX_SPREAD_PIPS,
-                         entry_delay: int = 0) -> List[dict]:
+                         entry_delay: int = 0,
+                         friday_exit_hour: int = -1) -> List[dict]:
     """
     Generate trades for one pair using per-slot configs from walk-forward.
 
@@ -236,6 +238,8 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
     Skips entries where spread > max_spread_pips.
     entry_delay: extra M5 bars to wait after signal before entering (simulates
                  retail execution latency).
+    friday_exit_hour: if >= 0, force-close any trade still open at this UTC hour
+                      on Friday (avoids weekend gap risk). -1 = disabled.
 
     Returns list of trade dicts with entry/exit times, PnL, etc.
     """
@@ -329,6 +333,22 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
             if exit_bar <= entry_bar:
                 exit_bar = min(entry_bar + 1, n - 1)
 
+            exit_type = 'regime' if (regime_exit_bar is not None and
+                                      regime_exit_bar <= timed_exit_bar) else 'timed'
+
+            # ── Friday exit: force close before weekend gap ──
+            if friday_exit_hour >= 0:
+                # Scan from entry to exit to find if we'd cross Friday cutoff
+                fri_bar = None
+                for b in range(entry_bar, exit_bar + 1):
+                    bts = m5.index[b]
+                    if bts.dayofweek == 4 and bts.hour >= friday_exit_hour:
+                        fri_bar = b
+                        break
+                if fri_bar is not None and fri_bar > entry_bar and fri_bar < exit_bar:
+                    exit_bar = fri_bar
+                    exit_type = 'friday'
+
             # Exit price (with slippage)
             if d == 1:
                 exit_price = float(bid_c[exit_bar]) - slippage_pips / pip_mult
@@ -355,8 +375,7 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
                 'dow_name': DOW_NAMES[dow],
                 'window': window,
                 'window_utc': f"{window//2:02d}:{(window%2)*30:02d}",
-                'exit_type': 'regime' if (regime_exit_bar is not None and
-                                           regime_exit_bar <= timed_exit_bar) else 'timed',
+                'exit_type': exit_type,
             })
 
     return trades
@@ -486,8 +505,10 @@ def simulate_portfolio(all_trades: List[dict], max_positions: int,
     # ── Exit type breakdown ──
     regime_exits = sum(1 for t in executed if t['exit_type'] == 'regime')
     timed_exits = sum(1 for t in executed if t['exit_type'] == 'timed')
+    friday_exits = sum(1 for t in executed if t['exit_type'] == 'friday')
     regime_pnl = sum(t['pnl_pips'] for t in executed if t['exit_type'] == 'regime')
     timed_pnl = sum(t['pnl_pips'] for t in executed if t['exit_type'] == 'timed')
+    friday_pnl = sum(t['pnl_pips'] for t in executed if t['exit_type'] == 'friday')
 
     # ── Hold time stats ──
     hold_bars = [t['hold_bars'] for t in executed]
@@ -506,8 +527,10 @@ def simulate_portfolio(all_trades: List[dict], max_positions: int,
         'total_pnl': cum_pnl,
         'regime_exits': regime_exits,
         'timed_exits': timed_exits,
+        'friday_exits': friday_exits,
         'regime_pnl': regime_pnl,
         'timed_pnl': timed_pnl,
+        'friday_pnl': friday_pnl,
         'hold_bars': hold_bars,
     }
 
@@ -516,11 +539,12 @@ def simulate_portfolio(all_trades: List[dict], max_positions: int,
 # OUTPUT
 # ======================================================================
 
-def save_results(results, output_dir, max_positions, slippage, entry_delay=0):
+def save_results(results, output_dir, max_positions, slippage, entry_delay=0, friday_exit=-1):
     ts = time_mod.strftime('%Y%m%d_%H%M%S')
     os.makedirs(output_dir, exist_ok=True)
     delay_tag = f"_delay{entry_delay}" if entry_delay > 0 else ""
-    tag = f"maxpos{max_positions}_slip{slippage}{delay_tag}"
+    fri_tag = f"_friexit{friday_exit}" if friday_exit >= 0 else ""
+    tag = f"maxpos{max_positions}_slip{slippage}{delay_tag}{fri_tag}"
 
     # Equity curve
     eq_df = pd.DataFrame(results['equity_curve'])
@@ -562,11 +586,16 @@ def save_results(results, output_dir, max_positions, slippage, entry_delay=0):
     return eq_path, exec_path, yr_path
 
 
-def print_results(results, max_positions, slippage, entry_delay=0):
+def print_results(results, max_positions, slippage, entry_delay=0, friday_exit=-1):
     print("\n" + "=" * 100)
     print(f"REGIME v2 — LIVE SIMULATION RESULTS")
-    delay_str = f" | Entry delay: {entry_delay} bars ({entry_delay*5}min)" if entry_delay > 0 else ""
-    print(f"Max positions: {max_positions} | Slippage: {slippage} pips/side{delay_str}")
+    extras = []
+    if entry_delay > 0:
+        extras.append(f"Entry delay: {entry_delay} bars ({entry_delay*5}min)")
+    if friday_exit >= 0:
+        extras.append(f"Friday exit: {friday_exit:02d}:00 UTC")
+    extra_str = (" | " + " | ".join(extras)) if extras else ""
+    print(f"Max positions: {max_positions} | Slippage: {slippage} pips/side{extra_str}")
     print("=" * 100)
 
     ex = results['executed']
@@ -596,12 +625,17 @@ def print_results(results, max_positions, slippage, entry_delay=0):
     print(f"  Avg concurrent:      {results['avg_concurrent']:.1f}")
 
     print(f"\n── EXIT TYPE BREAKDOWN ──")
-    re = results['regime_exits']; te = results['timed_exits']
-    total_ex = re + te
-    print(f"  Regime exits:        {re:,} ({re/total_ex*100:.1f}%) | {results['regime_pnl']:+,.1f} pips "
-          f"({results['regime_pnl']/re:+.3f} avg)" if re > 0 else "")
-    print(f"  Timed exits:         {te:,} ({te/total_ex*100:.1f}%) | {results['timed_pnl']:+,.1f} pips "
-          f"({results['timed_pnl']/te:+.3f} avg)" if te > 0 else "")
+    re = results['regime_exits']; te = results['timed_exits']; fe = results['friday_exits']
+    total_ex = re + te + fe
+    if re > 0:
+        print(f"  Regime exits:        {re:,} ({re/total_ex*100:.1f}%) | {results['regime_pnl']:+,.1f} pips "
+              f"({results['regime_pnl']/re:+.3f} avg)")
+    if te > 0:
+        print(f"  Timed exits:         {te:,} ({te/total_ex*100:.1f}%) | {results['timed_pnl']:+,.1f} pips "
+              f"({results['timed_pnl']/te:+.3f} avg)")
+    if fe > 0:
+        print(f"  Friday exits:        {fe:,} ({fe/total_ex*100:.1f}%) | {results['friday_pnl']:+,.1f} pips "
+              f"({results['friday_pnl']/fe:+.3f} avg)")
 
     print(f"\n── HOLD TIME ──")
     hb = np.array(results['hold_bars'])
@@ -707,6 +741,10 @@ def main():
     parser.add_argument('--entry-delay', type=int, default=DEFAULT_ENTRY_DELAY,
                         help='Extra M5 bars delay on entry to simulate execution latency '
                              '(1 = 5min late, 2 = 10min late, default: 0)')
+    parser.add_argument('--friday-exit', type=int, default=-1, metavar='HOUR',
+                        help='Force-close trades at this UTC hour on Friday to avoid '
+                             'weekend gap risk (e.g. 20 = exit by 20:00 UTC Friday, '
+                             'default: disabled)')
     args = parser.parse_args()
 
     data_dir = args.data_dir
@@ -715,6 +753,7 @@ def main():
     slippage = args.slippage
     max_spread = args.max_spread
     entry_delay = args.entry_delay
+    friday_exit = args.friday_exit
 
     t_start = time_mod.time()
 
@@ -758,6 +797,7 @@ def main():
     log.info(f"  Max positions: {max_pos}")
     log.info(f"  Slippage:      {slippage} pips/side")
     log.info(f"  Entry delay:   {entry_delay} bars ({entry_delay*5}min)")
+    log.info(f"  Friday exit:   {'OFF' if friday_exit < 0 else f'{friday_exit:02d}:00 UTC'}")
     log.info(f"  Max spread:    {max_spread} pips")
     log.info(f"  Windows:       {N_WINDOWS} (30-min UTC slots)")
     log.info(f"  Numba:         {'YES' if HAS_NUMBA else 'NO'}")
@@ -790,7 +830,8 @@ def main():
         trades = generate_pair_trades(pname, m5, state, slot_configs,
                                        test_years, slippage,
                                        max_spread_pips=max_spread,
-                                       entry_delay=entry_delay)
+                                       entry_delay=entry_delay,
+                                       friday_exit_hour=friday_exit)
         all_trades.extend(trades)
 
         elapsed = time_mod.time() - t0
@@ -808,8 +849,8 @@ def main():
         sys.exit(1)
 
     # ── Output ──
-    save_results(results, output_dir, max_pos, slippage, entry_delay)
-    print_results(results, max_pos, slippage, entry_delay)
+    save_results(results, output_dir, max_pos, slippage, entry_delay, friday_exit)
+    print_results(results, max_pos, slippage, entry_delay, friday_exit)
 
     elapsed = time_mod.time() - t_start
     log.info(f"\nTotal runtime: {elapsed:.1f}s ({elapsed/60:.1f}min)")
