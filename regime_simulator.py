@@ -5,6 +5,7 @@ Regime v2 — Live Simulator
 Replays regime transition trades with:
   • Margin-constrained position limits
   • Configurable slippage per side
+  • Spread filter (skip entries where spread > max_spread_pips)
   • Concurrent position tracking per bar
   • Equity curve + drawdown
   • Per-pair and per-slot breakdown
@@ -49,7 +50,8 @@ log = logging.getLogger(__name__)
 # ======================================================================
 
 MTF_WEIGHTS = {'M1': 0.05, 'M5': 0.20, 'M15': 0.30, 'H1': 0.25, 'H4': 0.20}
-N_WINDOWS = 48
+N_WINDOWS = 12             # 2-hour blocks (was 48 × 30-min)
+MAX_SPREAD_PIPS = 5.0      # skip entries with spread > this
 DOW_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 
 ALL_PAIRS = ['EUR_USD', 'GBP_USD', 'USD_JPY', 'EUR_JPY', 'GBP_JPY',
@@ -223,11 +225,13 @@ def discover_pairs(data_dir):
 
 def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
                          slot_configs: dict, test_years: list,
-                         slippage_pips: float) -> List[dict]:
+                         slippage_pips: float,
+                         max_spread_pips: float = MAX_SPREAD_PIPS) -> List[dict]:
     """
     Generate trades for one pair using per-slot configs from walk-forward.
 
     slot_configs: {(test_year, dow, window): {ec, xc, te_bars, train_years}}
+    Skips entries where spread > max_spread_pips.
 
     Returns list of trade dicts with entry/exit times, PnL, etc.
     """
@@ -240,6 +244,7 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
     ask_c = m5['ask_close'].values.astype(np.float64) if has_ba else m5['close'].values.astype(np.float64)
 
     trades = []
+    spread_rejected = 0
 
     # Find ON transitions
     for i in range(1, n):
@@ -248,8 +253,13 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
             dow = ts.dayofweek
             if dow >= 5:
                 continue
+            # ── Spread filter ──
+            spread = (ask_c[i] - bid_c[i]) * pip_mult
+            if spread > max_spread_pips:
+                spread_rejected += 1
+                continue
             year = ts.year
-            window = ts.hour * 2 + (1 if ts.minute >= 30 else 0)
+            window = ts.hour // 2   # 2-hour blocks (0-11)
 
             # Check if we have a config for this slot in this test year
             key = (year, dow, window)
@@ -275,6 +285,12 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
                     still_on = False
                     break
             if not still_on:
+                continue
+
+            # ── Spread filter at entry bar ──
+            entry_spread = (ask_c[entry_bar] - bid_c[entry_bar]) * pip_mult
+            if entry_spread > max_spread_pips:
+                spread_rejected += 1
                 continue
 
             # Entry price (with slippage)
@@ -334,7 +350,7 @@ def generate_pair_trades(pair: str, m5: pd.DataFrame, state: np.ndarray,
                 'dow': dow,
                 'dow_name': DOW_NAMES[dow],
                 'window': window,
-                'window_utc': f"{window//2:02d}:{(window%2)*30:02d}",
+                'window_utc': f"{window*2:02d}:00-{window*2+2:02d}:00",
                 'exit_type': 'regime' if (regime_exit_bar is not None and
                                            regime_exit_bar <= timed_exit_bar) else 'timed',
             })
@@ -680,12 +696,15 @@ def main():
     parser.add_argument('--units', type=int, default=DEFAULT_UNIT_SIZE)
     parser.add_argument('--test-years', type=str, default=None,
                         help='Comma-separated test years to simulate (default: all from slots CSV)')
+    parser.add_argument('--max-spread', type=float, default=MAX_SPREAD_PIPS,
+                        help='Max spread in pips to allow entry (default: 5.0)')
     args = parser.parse_args()
 
     data_dir = args.data_dir
     output_dir = args.output_dir or data_dir
     max_pos = args.max_positions
     slippage = args.slippage
+    max_spread = args.max_spread
 
     t_start = time_mod.time()
 
@@ -728,6 +747,8 @@ def main():
     log.info(f"\nSimulation config:")
     log.info(f"  Max positions: {max_pos}")
     log.info(f"  Slippage:      {slippage} pips/side")
+    log.info(f"  Max spread:    {max_spread} pips")
+    log.info(f"  Windows:       {N_WINDOWS} (2-hour blocks)")
     log.info(f"  Numba:         {'YES' if HAS_NUMBA else 'NO'}")
 
     # ── Discover and load pairs ──
@@ -756,7 +777,8 @@ def main():
         state = regime_hysteresis(bias, et, xt)
 
         trades = generate_pair_trades(pname, m5, state, slot_configs,
-                                       test_years, slippage)
+                                       test_years, slippage,
+                                       max_spread_pips=max_spread)
         all_trades.extend(trades)
 
         elapsed = time_mod.time() - t0

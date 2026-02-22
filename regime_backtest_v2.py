@@ -10,8 +10,14 @@ Grid dimensions:
   • Timed exit        (hard exit after N M5 bars regardless of regime)
 
 No SL. No TP. Entry on regime transition, exit on counter-transition or timer.
-Walk-forward validated by (dow × 30-min UTC window) slots.
+Walk-forward validated by (dow × 2-hour UTC window) slots.
 Bid/ask pricing throughout.
+
+Statistical robustness:
+  • Reduced parameter space (12 windows × 3 EC × 3 XC × ~30 TE ≈ 3,240/slot)
+  • Bonferroni-corrected significance test on OOS results
+  • Min 50 training trades, 20 test trades per slot
+  • Spread filter: skip entries where spread > max_spread_pips
 
 Usage:
   python regime_backtest_v2.py --data-dir "C:\\path\\to\\parquets"
@@ -28,6 +34,7 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
+from scipy import stats as scipy_stats
 
 try:
     from numba import njit
@@ -54,11 +61,13 @@ MTF_WEIGHTS = {'M1': 0.05, 'M5': 0.20, 'M15': 0.30, 'H1': 0.25, 'H4': 0.20}
 DEFAULT_ENTRY_THRESHOLDS = [0.2, 0.3, 0.4, 0.5, 0.6, 0.7]
 DEFAULT_EXIT_THRESHOLDS  = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
 
-MAX_ENTRY_CONFIRM = 12     # 0-60 min in M5 bars
-MAX_EXIT_CONFIRM  = 12
+ENTRY_CONFIRM_VALUES = [0, 2, 6]     # 0, 10, 30 min (reduced from 0-12)
+EXIT_CONFIRM_VALUES  = [0, 2, 6]     # 0, 10, 30 min (reduced from 0-12)
 MAX_HOLD_BARS = 576        # 48h of M5 bars
-MIN_TRADES = 15
-N_WINDOWS = 48
+MIN_TRAIN_TRADES = 50      # min trades in training (was 15)
+MIN_TEST_TRADES  = 20      # min trades in test (was 3)
+N_WINDOWS = 12             # 2-hour blocks (was 48 × 30-min)
+MAX_SPREAD_PIPS = 5.0      # skip entries with spread > this
 DOW_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
 
 ALL_PAIRS = ['EUR_USD', 'GBP_USD', 'USD_JPY', 'EUR_JPY', 'GBP_JPY',
@@ -70,11 +79,12 @@ ALL_PAIRS = ['EUR_USD', 'GBP_USD', 'USD_JPY', 'EUR_JPY', 'GBP_JPY',
 def make_timed_exit_grid(fine=False):
     if fine:
         return np.arange(1, MAX_HOLD_BARS + 1, dtype=np.int32)
+    # Reduced grid: ~30 values instead of ~120
     bars = set()
-    for b in range(1, 49):                      bars.add(b)   # 5m-4h every 5m
-    for b in range(51, 97, 3):                   bars.add(b)   # 4h15-8h every 15m
-    for b in range(102, 289, 6):                 bars.add(b)   # 8h30-24h every 30m
-    for b in range(300, MAX_HOLD_BARS + 1, 12):  bars.add(b)   # 25h-48h every 1h
+    for b in range(6, 49, 6):                    bars.add(b)   # 30m-4h every 30m (8 vals)
+    for b in range(60, 145, 12):                  bars.add(b)   # 5h-12h every 1h  (8 vals)
+    for b in range(168, 289, 24):                 bars.add(b)   # 14h-24h every 2h (6 vals)
+    for b in range(336, MAX_HOLD_BARS + 1, 48):   bars.add(b)   # 28h-48h every 4h (6 vals)
     bars.add(MAX_HOLD_BARS)
     return np.array(sorted(bars), dtype=np.int32)
 
@@ -213,8 +223,10 @@ else:
 # ======================================================================
 
 def extract_events(state, m5_index, bid_c, ask_c,
-                   pair_idx, pip_mult, max_ec, max_xc, max_hold):
-    """Find regime ON transitions and precompute per-event arrays."""
+                   pair_idx, pip_mult, max_ec, max_xc, max_hold,
+                   max_spread_pips=MAX_SPREAD_PIPS):
+    """Find regime ON transitions and precompute per-event arrays.
+    Skips entries where spread > max_spread_pips."""
     n = len(state)
     m5_ns = m5_index.asi8
 
@@ -224,10 +236,14 @@ def extract_events(state, m5_index, bid_c, ask_c,
         if state[i-1] == 0 and state[i] != 0:
             ts = m5_index[i]
             if ts.dayofweek >= 5: continue
+            # ── Spread filter ──
+            spread = (ask_c[i] - bid_c[i]) * pip_mult
+            if spread > max_spread_pips:
+                continue
             events.append({
                 'bar': i, 'dir': int(state[i]),
                 'year': ts.year, 'dow': ts.dayofweek,
-                'window': ts.hour * 2 + (1 if ts.minute >= 30 else 0),
+                'window': ts.hour // 2,   # 2-hour blocks (0-11)
             })
 
     if not events: return None
@@ -303,7 +319,9 @@ def extract_events(state, m5_index, bid_c, ask_c,
 def _sweep_py(ev, ep, xp, xb, dirs, pms, yidx,
               ecs, xcs, tbs, mh, ny):
     ne = len(dirs); nec = len(ecs); nxc = len(xcs); nte = len(tbs)
-    sums = np.zeros((ny, nec, nxc, nte)); counts = np.zeros((ny, nec, nxc, nte), dtype=np.int32)
+    sums = np.zeros((ny, nec, nxc, nte))
+    sumsq = np.zeros((ny, nec, nxc, nte))
+    counts = np.zeros((ny, nec, nxc, nte), dtype=np.int32)
     for e in range(ne):
         d=dirs[e]; pm=pms[e]; yr=yidx[e]
         for eci in range(nec):
@@ -318,15 +336,18 @@ def _sweep_py(ev, ep, xp, xb, dirs, pms, yidx,
                     if eb > mh: eb = mh
                     pnl = d * (xp[e, eb] - epr) * pm
                     sums[yr, eci, xci, tei] += pnl
+                    sumsq[yr, eci, xci, tei] += pnl * pnl
                     counts[yr, eci, xci, tei] += 1
-    return sums, counts
+    return sums, sumsq, counts
 
 if HAS_NUMBA:
     @njit(cache=True)
     def sweep_slot(ev, ep, xp, xb, dirs, pms, yidx,
                    ecs, xcs, tbs, mh, ny):
         ne = len(dirs); nec = len(ecs); nxc = len(xcs); nte = len(tbs)
-        sums = np.zeros((ny, nec, nxc, nte)); counts = np.zeros((ny, nec, nxc, nte), dtype=np.int32)
+        sums = np.zeros((ny, nec, nxc, nte))
+        sumsq = np.zeros((ny, nec, nxc, nte))
+        counts = np.zeros((ny, nec, nxc, nte), dtype=np.int32)
         for e in range(ne):
             d=dirs[e]; pm=pms[e]; yr=yidx[e]
             for eci in range(nec):
@@ -341,8 +362,9 @@ if HAS_NUMBA:
                         if eb > mh: eb = mh
                         pnl = d * (xp[e, eb] - epr) * pm
                         sums[yr, eci, xci, tei] += pnl
+                        sumsq[yr, eci, xci, tei] += pnl * pnl
                         counts[yr, eci, xci, tei] += 1
-        return sums, counts
+        return sums, sumsq, counts
 else:
     sweep_slot = _sweep_py
 
@@ -351,11 +373,30 @@ else:
 # VECTORISED WALK-FORWARD (all combos at once per slot)
 # ======================================================================
 
-def walk_forward_all_combos(slot_sums_dict, slot_counts_dict, n_years, min_trades):
+def _bonferroni_significant(train_avg, train_std, train_n, n_combos_tested,
+                            alpha=0.05):
+    """Check if training performance is significant after Bonferroni correction.
+    Uses a one-sided t-test: H0 mean <= 0, H1 mean > 0.
+    Adjusted alpha = alpha / n_combos_tested."""
+    if train_n < 2 or train_std <= 0 or train_avg <= 0:
+        return False
+    t_stat = train_avg / (train_std / np.sqrt(train_n))
+    p_value = 1.0 - scipy_stats.t.cdf(t_stat, df=train_n - 1)
+    adjusted_alpha = alpha / max(n_combos_tested, 1)
+    return p_value < adjusted_alpha
+
+
+def walk_forward_all_combos(slot_sums_dict, slot_counts_dict,
+                            slot_sumsq_dict, n_years,
+                            min_train_trades, min_test_trades):
     """
     Vectorised walk-forward across ALL combos simultaneously.
     Returns (total_pips, total_trades) matrices of shape (n_ec, n_xc, n_te).
     Also returns per-slot best combo results for portfolio simulation.
+
+    Applies Bonferroni-corrected significance testing:
+    - A combo must pass a one-sided t-test (H0: mean<=0) at
+      alpha / n_combos_tested to be selected.
     """
     if not slot_sums_dict:
         return None, None, {}, {}
@@ -363,6 +404,7 @@ def walk_forward_all_combos(slot_sums_dict, slot_counts_dict, n_years, min_trade
     # Get combo shape from first slot
     first_key = next(iter(slot_sums_dict))
     combo_shape = slot_sums_dict[first_key].shape[1:]  # (n_ec, n_xc, n_te)
+    n_combos = int(np.prod(combo_shape))
 
     # Global combo-level accumulators
     total_pips = np.zeros(combo_shape, dtype=np.float64)
@@ -372,12 +414,18 @@ def walk_forward_all_combos(slot_sums_dict, slot_counts_dict, n_years, min_trade
     slot_best_results = {}    # (dow, window) → list of fold dicts
     slot_best_configs = {}    # (test_year_idx, dow, window) → combo config
 
+    # Total number of hypotheses = n_slots × n_combos
+    n_slots = len(slot_sums_dict)
+    n_hypotheses = n_slots * n_combos
+
     for (d, w), sums in slot_sums_dict.items():
         counts = slot_counts_dict[(d, w)]
+        sumsq = slot_sumsq_dict[(d, w)]
         # sums: (n_years, n_ec, n_xc, n_te)
 
         cum_sums = np.cumsum(sums, axis=0)
         cum_counts = np.cumsum(counts, axis=0)
+        cum_sumsq = np.cumsum(sumsq, axis=0)
 
         fold_results = []
 
@@ -385,44 +433,74 @@ def walk_forward_all_combos(slot_sums_dict, slot_counts_dict, n_years, min_trade
             # Training: cumulative to year ti-1
             tr_s = cum_sums[ti - 1]
             tr_c = cum_counts[ti - 1]
+            tr_sq = cum_sumsq[ti - 1]
 
-            valid_train = tr_c >= min_trades
+            valid_train = tr_c >= min_train_trades
             tr_avg = np.where(valid_train, tr_s / np.maximum(tr_c, 1), -1e10)
-            prof_train = tr_avg > 0
+            # Compute training variance for t-test
+            tr_var = np.where(
+                tr_c >= 2,
+                (tr_sq - tr_s**2 / np.maximum(tr_c, 1)) / np.maximum(tr_c - 1, 1),
+                0.0
+            )
+            tr_std = np.sqrt(np.maximum(tr_var, 0.0))
 
             # Test year ti
             te_s = sums[ti]
             te_c = counts[ti]
-            valid_test = te_c >= 3
+            valid_test = te_c >= min_test_trades
             te_avg = np.where(valid_test, te_s / np.maximum(te_c, 1), -1e10)
-            oos_prof = prof_train & valid_test & (te_avg > 0)
+
+            # ── Bonferroni-corrected significance for global accumulator ──
+            # For each combo: must be significant after correcting for all hypotheses
+            adjusted_alpha = 0.05 / max(n_hypotheses, 1)
+
+            t_stat = np.where(
+                valid_train & (tr_std > 0),
+                tr_avg / (tr_std / np.sqrt(np.maximum(tr_c, 1).astype(np.float64))),
+                0.0
+            )
+            p_value = np.where(
+                t_stat > 0,
+                1.0 - scipy_stats.t.cdf(t_stat, df=np.maximum(tr_c - 1, 1)),
+                1.0
+            )
+            sig_train = (p_value < adjusted_alpha) & valid_train
+            oos_prof = sig_train & valid_test & (te_avg > 0)
 
             # ── Global combo accumulator ──
             total_pips += np.where(oos_prof, te_s, 0.0)
             total_trades += np.where(oos_prof, te_c, 0)
 
             # ── Per-slot best combo (for portfolio) ──
-            if not valid_train.any():
+            # Also requires Bonferroni significance
+            if not sig_train.any():
                 continue
-            best_idx = np.unravel_index(tr_avg.argmax(), combo_shape)
+            # Among significant combos, pick the one with best train avg
+            masked_avg = np.where(sig_train, tr_avg, -1e10)
+            best_idx = np.unravel_index(masked_avg.argmax(), combo_shape)
             best_train_avg = float(tr_avg[best_idx])
             if best_train_avg <= 0:
                 continue
             test_n = int(te_c[best_idx])
-            if test_n < 3:
+            if test_n < min_test_trades:
                 continue
             test_total = float(te_s[best_idx])
             test_avg = test_total / test_n
+            best_train_n = int(tr_c[best_idx])
+            best_train_std = float(tr_std[best_idx])
 
             fold_results.append({
                 'test_year_idx': ti,
                 'best_combo': best_idx,
-                'train_n': int(tr_c[best_idx]),
+                'train_n': best_train_n,
                 'train_avg': round(best_train_avg, 4),
+                'train_std': round(best_train_std, 4),
                 'test_n': test_n,
                 'test_total': round(test_total, 2),
                 'test_avg': round(test_avg, 4),
                 'oos_profitable': test_avg > 0,
+                'bonferroni_alpha': adjusted_alpha,
             })
 
             if test_avg > 0:
@@ -645,8 +723,8 @@ def main():
                         help='Full 5-min resolution timed exit (576 values)')
     parser.add_argument('--entry-thresholds', type=str, default=None)
     parser.add_argument('--exit-thresholds', type=str, default=None)
-    parser.add_argument('--max-entry-confirm', type=int, default=MAX_ENTRY_CONFIRM)
-    parser.add_argument('--max-exit-confirm', type=int, default=MAX_EXIT_CONFIRM)
+    parser.add_argument('--max-spread', type=float, default=MAX_SPREAD_PIPS,
+                        help='Max spread in pips to allow entry (default: 5.0)')
     args = parser.parse_args()
 
     data_dir = args.data_dir
@@ -665,9 +743,11 @@ def main():
     else:
         exit_thresholds = DEFAULT_EXIT_THRESHOLDS
 
-    max_ec = args.max_entry_confirm; max_xc = args.max_exit_confirm
-    entry_confirms = np.arange(max_ec + 1, dtype=np.int32)
-    exit_confirms = np.arange(max_xc + 1, dtype=np.int32)
+    entry_confirms = np.array(ENTRY_CONFIRM_VALUES, dtype=np.int32)
+    exit_confirms = np.array(EXIT_CONFIRM_VALUES, dtype=np.int32)
+    max_ec = int(entry_confirms.max())
+    max_xc = int(exit_confirms.max())
+    max_spread = args.max_spread
     timed_bars = make_timed_exit_grid(fine=args.fine_grid)
 
     threshold_pairs = [(et, xt) for et in entry_thresholds
@@ -680,10 +760,15 @@ def main():
     log.info(f"Data dir:          {data_dir}")
     log.info(f"Output dir:        {output_dir}")
     log.info(f"Threshold pairs:   {len(threshold_pairs)} (exit ≤ entry)")
-    log.info(f"Entry confirm:     0-{max_ec} bars (0-{max_ec*5}min)")
-    log.info(f"Exit confirm:      0-{max_xc} bars (0-{max_xc*5}min)")
+    log.info(f"Entry confirm:     {ENTRY_CONFIRM_VALUES} bars")
+    log.info(f"Exit confirm:      {EXIT_CONFIRM_VALUES} bars")
     log.info(f"Timed exit values: {len(timed_bars)} ({timed_bars[0]*5}min to {timed_bars[-1]*5/60:.0f}h)")
+    log.info(f"Windows:           {N_WINDOWS} (2-hour blocks)")
+    log.info(f"Max spread:        {max_spread} pips")
+    log.info(f"Min train trades:  {MIN_TRAIN_TRADES}")
+    log.info(f"Min test trades:   {MIN_TEST_TRADES}")
     log.info(f"Combos/threshold:  {n_combos:,}  |  Total: {total:,}")
+    log.info(f"Bonferroni:        YES (alpha=0.05 / n_hypotheses)")
     log.info(f"Numba:             {'YES' if HAS_NUMBA else 'NO (slow)'}")
     log.info(f"TA-Lib:            {'YES' if HAS_TALIB else 'NO (numpy fallback)'}")
 
@@ -741,7 +826,8 @@ def main():
             ev = extract_events(state, pair_m5[pname].index, bc, ac,
                                 pair_to_idx[pname],
                                 100.0 if 'JPY' in pname else 10000.0,
-                                max_ec, max_xc, MAX_HOLD_BARS)
+                                max_ec, max_xc, MAX_HOLD_BARS,
+                                max_spread_pips=max_spread)
             if ev is None: continue
             total_ev += ev['n_events']
             for k in all_ev: all_ev[k].append(ev[k])
@@ -759,23 +845,25 @@ def main():
         if ny < 2: continue
 
         # Sweep per slot
-        slot_sums = {}; slot_counts = {}; ns = 0
+        slot_sums = {}; slot_counts = {}; slot_sumsq = {}; ns = 0
         for d in range(5):
             for w in range(N_WINDOWS):
                 mask = (all_ev['dows'] == d) & (all_ev['windows'] == w)
-                if mask.sum() < MIN_TRADES: continue
+                if mask.sum() < MIN_TRAIN_TRADES: continue
                 idx = np.where(mask)[0]
-                s, c = sweep_slot(
+                s, sq, c = sweep_slot(
                     all_ev['entry_valid'][idx], all_ev['entry_prices'][idx],
                     all_ev['exit_prices'][idx], all_ev['exit_bar_xc'][idx],
                     all_ev['directions'][idx], all_ev['pip_mults'][idx],
                     yidx[idx], entry_confirms, exit_confirms, timed_bars,
                     MAX_HOLD_BARS, ny)
-                slot_sums[(d,w)] = s; slot_counts[(d,w)] = c; ns += 1
+                slot_sums[(d,w)] = s; slot_counts[(d,w)] = c
+                slot_sumsq[(d,w)] = sq; ns += 1
 
-        # Vectorised walk-forward
+        # Vectorised walk-forward with Bonferroni correction
         tp_mat, tt_mat, slot_results, slot_configs = walk_forward_all_combos(
-            slot_sums, slot_counts, ny, MIN_TRADES)
+            slot_sums, slot_counts, slot_sumsq, ny,
+            MIN_TRAIN_TRADES, MIN_TEST_TRADES)
 
         if tp_mat is None:
             log.info(f"    No results"); continue
@@ -841,7 +929,7 @@ def main():
                     'train_years': str([yl[i] for i in range(r['test_year_idx'])]),
                     'test_year': yl[r['test_year_idx']],
                     'dow': d, 'dow_name': DOW_NAMES[d],
-                    'window': w, 'window_utc': f"{w//2:02d}:{(w%2)*30:02d}",
+                    'window': w, 'window_utc': f"{w*2:02d}:00-{w*2+2:02d}:00",
                     'entry_thresh': et, 'exit_thresh': xt,
                     'entry_confirm_min': int(entry_confirms[bi[0]]) * 5,
                     'exit_confirm_min': int(exit_confirms[bi[1]]) * 5,
