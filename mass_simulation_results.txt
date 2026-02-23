@@ -1,0 +1,3861 @@
+============================================
+ ROUND 1: BASELINE (0.3 slip, 0 delay)
+============================================
+[1/32] Baseline - Timed only
+22:58:59 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+22:58:59 |   616 profitable slots from 625 total
+22:58:59 |   Thresholds: ET=0.4, XT=0.2
+22:58:59 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+22:58:59 |   616 slot configs loaded
+22:58:59 |
+Simulation config:
+22:58:59 |   Max positions: 15
+22:58:59 |   Slippage:      0.3 pips/side
+22:58:59 |   Entry delay:   0 bars (0min)
+22:58:59 |   Friday exit:   OFF
+22:58:59 |   Max spread:    5.0 pips
+22:58:59 |   Exit mode:     TIMED ONLY (regime exits disabled)
+22:58:59 |   Windows:       48 (30-min UTC slots)
+22:58:59 |   Numba:         YES
+22:58:59 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+23:00:05 |   AUD_CAD: 4,357 trades (66.5s)
+23:01:32 |   AUD_JPY: 4,186 trades (86.6s)
+23:02:38 |   AUD_NZD: 4,070 trades (66.0s)
+23:03:49 |   AUD_USD: 4,359 trades (70.7s)
+23:05:17 |   CAD_JPY: 4,216 trades (88.0s)
+23:06:59 |   CHF_JPY: 4,080 trades (101.9s)
+23:08:28 |   EUR_AUD: 4,241 trades (88.9s)
+23:09:48 |   EUR_GBP: 4,598 trades (80.2s)
+23:11:32 |   EUR_JPY: 4,162 trades (104.1s)
+23:12:46 |   EUR_USD: 4,461 trades (73.1s)
+23:13:57 |   GBP_AUD: 3,737 trades (71.6s)
+23:14:45 |   GBP_JPY: 4,212 trades (48.2s)
+23:15:25 |   GBP_USD: 4,461 trades (39.3s)
+23:15:59 |   NZD_CAD: 4,224 trades (34.7s)
+23:16:44 |   NZD_JPY: 4,097 trades (44.6s)
+23:17:18 |   NZD_USD: 4,295 trades (33.6s)
+23:17:58 |   USD_CAD: 4,467 trades (40.8s)
+23:18:35 |   USD_CHF: 4,378 trades (36.4s)
+23:19:30 |   USD_JPY: 4,061 trades (54.7s)
+23:19:30 |
+Total trades generated: 80,662
+23:19:30 |
+Running portfolio simulation...
+23:19:31 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_20260222_231931.csv (17,568 rows)
+23:19:32 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_20260222_231931.csv (17,568 rows)
+23:19:32 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_20260222_231931.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            17,568 (21.8%)
+  Rejected (margin):   7,420 (9.2%)
+  Rejected (pair busy):55,674 (69.0%)
+
+── PERFORMANCE ──
+  Total P&L:           +65,906.7 pips
+  Avg per trade:       +3.752 pips
+  Win rate:            53.3%
+  Profit factor:       1.201
+  Max drawdown:        3,736.5 pips
+  Avg win:             +42.2 pips
+  Avg loss:            -40.1 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.4
+
+── EXIT TYPE BREAKDOWN ──
+  Timed exits:         17,568 (100.0%) | +65,906.7 pips (+3.752 avg)
+
+── HOLD TIME ──
+  Mean:                240 bars (20.0h)
+  Median:              216 bars (18.0h)
+  P25:                 120 bars (10.0h)
+  P75:                 336 bars (28.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,208 trades |  +13,543.8 pips |  +4.222 avg | 55.0% WR | PF 1.376 | DD 914
+  2022:  3,973 trades |  +24,136.1 pips |  +6.075 avg | 54.5% WR | PF 1.303 | DD 1,501
+  2023:  3,637 trades |   +7,279.3 pips |  +2.001 avg | 51.8% WR | PF 1.092 | DD 3,060
+  2024:  3,268 trades |  +13,667.4 pips |  +4.182 avg | 54.1% WR | PF 1.217 | DD 2,844
+  2025:  3,280 trades |   +6,683.8 pips |  +2.038 avg | 51.0% WR | PF 1.099 | DD 3,667
+  2026:    202 trades |     +596.3 pips |  +2.952 avg | 50.5% WR | PF 1.161 | DD 839
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY:   910 trades |  +10,367.0 pips | +11.392 avg | 56.0% WR
+   GBP_AUD:   884 trades |   +8,882.7 pips | +10.048 avg | 55.7% WR
+   EUR_JPY:   935 trades |   +7,577.8 pips |  +8.105 avg | 54.1% WR
+   EUR_AUD:   942 trades |   +5,218.6 pips |  +5.540 avg | 53.9% WR
+   NZD_JPY:   898 trades |   +4,995.2 pips |  +5.563 avg | 56.0% WR
+   CAD_JPY:   903 trades |   +4,013.2 pips |  +4.444 avg | 56.0% WR
+   AUD_JPY:   920 trades |   +3,835.3 pips |  +4.169 avg | 54.8% WR
+   GBP_USD:   946 trades |   +3,562.9 pips |  +3.766 avg | 52.5% WR
+   AUD_USD:   951 trades |   +3,061.6 pips |  +3.219 avg | 57.2% WR
+   EUR_USD:   970 trades |   +2,938.2 pips |  +3.029 avg | 52.1% WR
+   CHF_JPY:   929 trades |   +2,732.5 pips |  +2.941 avg | 51.3% WR
+   USD_JPY:   900 trades |   +2,244.5 pips |  +2.494 avg | 52.8% WR
+   USD_CHF:   933 trades |   +2,019.5 pips |  +2.165 avg | 49.7% WR
+   USD_CAD:   953 trades |   +1,557.5 pips |  +1.634 avg | 53.4% WR
+   NZD_CAD:   901 trades |   +1,488.5 pips |  +1.652 avg | 52.2% WR
+   NZD_USD:   898 trades |   +1,242.8 pips |  +1.384 avg | 54.0% WR
+   AUD_NZD:   902 trades |     +178.8 pips |  +0.198 avg | 51.1% WR
+   AUD_CAD:   942 trades |     +141.9 pips |  +0.151 avg | 49.7% WR
+   EUR_GBP:   951 trades |     -151.8 pips |  -0.160 avg | 49.8% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  6,823 trades |  +25,209.4 pips |  +3.695 avg | 52.8% WR | DD 2,317
+  Max  8 pos: 10,628 trades |  +42,909.1 pips |  +4.037 avg | 53.3% WR | DD 4,156
+  Max 10 pos: 12,956 trades |  +55,450.3 pips |  +4.280 avg | 53.2% WR | DD 3,478
+  Max 12 pos: 15,070 trades |  +52,121.4 pips |  +3.459 avg | 53.1% WR | DD 6,292
+  Max 15 pos: 17,568 trades |  +65,906.7 pips |  +3.752 avg | 53.3% WR | DD 3,667
+  Max 20 pos: 19,169 trades |  +76,705.0 pips |  +4.002 avg | 53.2% WR | DD 3,940
+
+====================================================================================================
+23:19:33 |
+Total runtime: 1234.0s (20.6min)
+[2/32] Baseline - Timed only + Friday exit
+23:19:42 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+23:19:42 |   616 profitable slots from 625 total
+23:19:42 |   Thresholds: ET=0.4, XT=0.2
+23:19:42 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+23:19:42 |   616 slot configs loaded
+23:19:42 |
+Simulation config:
+23:19:42 |   Max positions: 15
+23:19:42 |   Slippage:      0.3 pips/side
+23:19:42 |   Entry delay:   0 bars (0min)
+23:19:42 |   Friday exit:   20:00 UTC
+23:19:42 |   Max spread:    5.0 pips
+23:19:42 |   Exit mode:     TIMED ONLY (regime exits disabled)
+23:19:42 |   Windows:       48 (30-min UTC slots)
+23:19:42 |   Numba:         YES
+23:19:42 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+23:20:27 |   AUD_CAD: 4,357 trades (45.4s)
+23:21:25 |   AUD_JPY: 4,186 trades (57.2s)
+23:22:15 |   AUD_NZD: 4,070 trades (50.1s)
+23:22:52 |   AUD_USD: 4,359 trades (37.3s)
+23:23:42 |   CAD_JPY: 4,216 trades (49.8s)
+23:24:36 |   CHF_JPY: 4,080 trades (54.2s)
+23:25:31 |   EUR_AUD: 4,241 trades (54.5s)
+23:26:13 |   EUR_GBP: 4,598 trades (42.1s)
+23:26:59 |   EUR_JPY: 4,162 trades (46.4s)
+23:27:46 |   EUR_USD: 4,461 trades (47.2s)
+23:28:51 |   GBP_AUD: 3,737 trades (64.3s)
+23:29:56 |   GBP_JPY: 4,212 trades (65.0s)
+23:30:54 |   GBP_USD: 4,461 trades (58.4s)
+23:31:37 |   NZD_CAD: 4,224 trades (43.0s)
+23:32:30 |   NZD_JPY: 4,097 trades (53.2s)
+23:33:09 |   NZD_USD: 4,295 trades (38.8s)
+23:33:50 |   USD_CAD: 4,467 trades (41.2s)
+23:34:30 |   USD_CHF: 4,378 trades (39.8s)
+23:35:17 |   USD_JPY: 4,061 trades (46.7s)
+23:35:17 |
+Total trades generated: 80,662
+23:35:17 |
+Running portfolio simulation...
+23:35:18 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_friexit20_20260222_233518.csv (18,077 rows)
+23:35:18 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_friexit20_20260222_233518.csv (18,077 rows)
+23:35:18 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_friexit20_20260222_233518.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            18,077 (22.4%)
+  Rejected (margin):   7,392 (9.2%)
+  Rejected (pair busy):55,193 (68.4%)
+
+── PERFORMANCE ──
+  Total P&L:           +66,675.4 pips
+  Avg per trade:       +3.688 pips
+  Win rate:            53.4%
+  Profit factor:       1.203
+  Max drawdown:        5,829.3 pips
+  Avg win:             +40.9 pips
+  Avg loss:            -39.0 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.9
+
+── EXIT TYPE BREAKDOWN ──
+  Timed exits:         16,442 (91.0%) | +59,181.6 pips (+3.599 avg)
+  Friday exits:        1,635 (9.0%) | +7,493.8 pips (+4.583 avg)
+
+── HOLD TIME ──
+  Mean:                227 bars (18.9h)
+  Median:              192 bars (16.0h)
+  P25:                 120 bars (10.0h)
+  P75:                 336 bars (28.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,223 trades |  +14,125.8 pips |  +4.383 avg | 55.2% WR | PF 1.397 | DD 1,020
+  2022:  4,048 trades |  +24,559.9 pips |  +6.067 avg | 55.0% WR | PF 1.311 | DD 1,536
+  2023:  3,770 trades |  +11,876.0 pips |  +3.150 avg | 52.6% WR | PF 1.156 | DD 2,402
+  2024:  3,434 trades |  +12,959.5 pips |  +3.774 avg | 53.0% WR | PF 1.201 | DD 2,741
+  2025:  3,395 trades |   +2,010.4 pips |  +0.592 avg | 50.8% WR | PF 1.029 | DD 6,004
+  2026:    207 trades |   +1,143.8 pips |  +5.526 avg | 51.2% WR | PF 1.334 | DD 837
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY:   937 trades |   +8,892.0 pips |  +9.490 avg | 55.5% WR
+   GBP_AUD:   902 trades |   +7,479.9 pips |  +8.293 avg | 54.5% WR
+   EUR_JPY:   957 trades |   +7,057.7 pips |  +7.375 avg | 55.1% WR
+   NZD_JPY:   915 trades |   +5,490.4 pips |  +6.000 avg | 56.4% WR
+   EUR_AUD:   971 trades |   +5,190.9 pips |  +5.346 avg | 54.5% WR
+   CAD_JPY:   932 trades |   +5,176.2 pips |  +5.554 avg | 56.5% WR
+   AUD_JPY:   972 trades |   +4,769.7 pips |  +4.907 avg | 55.1% WR
+   GBP_USD:   962 trades |   +4,567.9 pips |  +4.748 avg | 53.0% WR
+   CHF_JPY:   959 trades |   +4,536.0 pips |  +4.730 avg | 51.4% WR
+   EUR_USD:   998 trades |   +3,034.8 pips |  +3.041 avg | 52.5% WR
+   USD_JPY:   914 trades |   +2,419.3 pips |  +2.647 avg | 53.3% WR
+   AUD_USD:   988 trades |   +1,926.4 pips |  +1.950 avg | 54.9% WR
+   USD_CHF:   947 trades |   +1,565.5 pips |  +1.653 avg | 49.5% WR
+   NZD_USD:   935 trades |   +1,476.4 pips |  +1.579 avg | 54.9% WR
+   USD_CAD:   977 trades |   +1,123.5 pips |  +1.150 avg | 52.0% WR
+   EUR_GBP:   975 trades |     +991.2 pips |  +1.017 avg | 52.6% WR
+   AUD_NZD:   928 trades |     +744.5 pips |  +0.802 avg | 51.8% WR
+   NZD_CAD:   942 trades |     +512.6 pips |  +0.544 avg | 50.4% WR
+   AUD_CAD:   966 trades |     -279.5 pips |  -0.289 avg | 50.0% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  6,956 trades |  +20,844.7 pips |  +2.997 avg | 52.5% WR | DD 2,291
+  Max  8 pos: 10,947 trades |  +38,414.3 pips |  +3.509 avg | 52.9% WR | DD 2,716
+  Max 10 pos: 13,396 trades |  +45,352.0 pips |  +3.385 avg | 53.1% WR | DD 6,078
+  Max 12 pos: 15,583 trades |  +54,725.9 pips |  +3.512 avg | 53.3% WR | DD 6,712
+  Max 15 pos: 18,077 trades |  +66,675.4 pips |  +3.688 avg | 53.4% WR | DD 6,004
+  Max 20 pos: 19,733 trades |  +77,263.5 pips |  +3.915 avg | 53.3% WR | DD 3,472
+
+====================================================================================================
+23:35:19 |
+Total runtime: 937.4s (15.6min)
+[3/32] Baseline - Min hold 15
+23:35:27 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+23:35:27 |   616 profitable slots from 625 total
+23:35:27 |   Thresholds: ET=0.4, XT=0.2
+23:35:27 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+23:35:27 |   616 slot configs loaded
+23:35:27 |
+Simulation config:
+23:35:27 |   Max positions: 15
+23:35:27 |   Slippage:      0.3 pips/side
+23:35:27 |   Entry delay:   0 bars (0min)
+23:35:27 |   Friday exit:   OFF
+23:35:27 |   Max spread:    5.0 pips
+23:35:27 |   Min hold:      15min (3 bars) before regime exit
+23:35:27 |   Windows:       48 (30-min UTC slots)
+23:35:27 |   Numba:         YES
+23:35:27 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+23:36:05 |   AUD_CAD: 4,357 trades (37.7s)
+23:37:03 |   AUD_JPY: 4,186 trades (58.3s)
+23:37:50 |   AUD_NZD: 4,070 trades (46.8s)
+23:38:26 |   AUD_USD: 4,359 trades (35.9s)
+23:39:26 |   CAD_JPY: 4,216 trades (60.3s)
+23:40:22 |   CHF_JPY: 4,080 trades (56.2s)
+23:41:09 |   EUR_AUD: 4,241 trades (46.7s)
+23:41:46 |   EUR_GBP: 4,598 trades (37.1s)
+23:42:31 |   EUR_JPY: 4,162 trades (44.6s)
+23:43:26 |   EUR_USD: 4,461 trades (55.4s)
+23:44:30 |   GBP_AUD: 3,737 trades (64.0s)
+23:45:40 |   GBP_JPY: 4,212 trades (69.3s)
+23:46:37 |   GBP_USD: 4,461 trades (57.2s)
+23:47:28 |   NZD_CAD: 4,224 trades (50.7s)
+23:48:30 |   NZD_JPY: 4,097 trades (62.6s)
+23:49:13 |   NZD_USD: 4,295 trades (42.5s)
+23:49:59 |   USD_CAD: 4,467 trades (46.1s)
+23:50:37 |   USD_CHF: 4,378 trades (37.9s)
+23:51:30 |   USD_JPY: 4,061 trades (53.0s)
+23:51:30 |
+Total trades generated: 80,662
+23:51:30 |
+Running portfolio simulation...
+23:51:33 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_20260222_235132.csv (58,133 rows)
+23:51:35 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_20260222_235132.csv (58,133 rows)
+23:51:35 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_20260222_235132.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            58,133 (72.1%)
+  Rejected (margin):   3,670 (4.5%)
+  Rejected (pair busy):18,859 (23.4%)
+
+── PERFORMANCE ──
+  Total P&L:           +406,289.0 pips
+  Avg per trade:       +6.989 pips
+  Win rate:            49.8%
+  Profit factor:       2.495
+  Max drawdown:        700.2 pips
+  Avg win:             +23.4 pips
+  Avg loss:            -9.4 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.3
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        50,936 (87.6%) | +315,544.3 pips (+6.195 avg)
+  Timed exits:         7,197 (12.4%) | +90,744.7 pips (+12.609 avg)
+
+── HOLD TIME ──
+  Mean:                54 bars (4.5h)
+  Median:              23 bars (1.9h)
+  P25:                 9 bars (0.8h)
+  P75:                 60 bars (5.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  5,190 trades |  +29,629.9 pips |  +5.709 avg | 52.8% WR | PF 2.581 | DD 348
+  2022: 11,440 trades | +108,068.1 pips |  +9.447 avg | 52.7% WR | PF 2.866 | DD 522
+  2023: 13,718 trades | +101,848.0 pips |  +7.424 avg | 50.3% WR | PF 2.580 | DD 666
+  2024: 13,636 trades |  +82,276.3 pips |  +6.034 avg | 47.2% WR | PF 2.285 | DD 501
+  2025: 13,769 trades |  +81,083.6 pips |  +5.889 avg | 48.3% WR | PF 2.252 | DD 645
+  2026:    380 trades |   +3,383.1 pips |  +8.903 avg | 52.6% WR | PF 2.872 | DD 252
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY: 3,025 trades |  +37,117.3 pips | +12.270 avg | 51.4% WR
+   EUR_JPY: 3,063 trades |  +35,334.6 pips | +11.536 avg | 54.2% WR
+   USD_JPY: 2,922 trades |  +34,919.5 pips | +11.951 avg | 53.6% WR
+   EUR_AUD: 2,979 trades |  +31,510.4 pips | +10.578 avg | 54.3% WR
+   GBP_AUD: 2,729 trades |  +31,093.5 pips | +11.394 avg | 52.5% WR
+   CHF_JPY: 3,088 trades |  +28,182.7 pips |  +9.127 avg | 50.7% WR
+   AUD_JPY: 3,098 trades |  +26,677.7 pips |  +8.611 avg | 53.0% WR
+   CAD_JPY: 3,025 trades |  +25,067.4 pips |  +8.287 avg | 51.3% WR
+   GBP_USD: 3,128 trades |  +24,390.9 pips |  +7.798 avg | 51.4% WR
+   NZD_JPY: 2,977 trades |  +19,048.0 pips |  +6.398 avg | 48.8% WR
+   EUR_USD: 3,192 trades |  +18,434.8 pips |  +5.775 avg | 50.0% WR
+   USD_CAD: 3,198 trades |  +16,496.4 pips |  +5.158 avg | 48.9% WR
+   AUD_USD: 3,201 trades |  +16,095.2 pips |  +5.028 avg | 50.7% WR
+   USD_CHF: 3,113 trades |  +15,469.3 pips |  +4.969 avg | 50.1% WR
+   NZD_USD: 3,077 trades |  +12,954.3 pips |  +4.210 avg | 48.5% WR
+   AUD_CAD: 3,170 trades |  +12,729.1 pips |  +4.015 avg | 48.5% WR
+   NZD_CAD: 3,011 trades |   +9,519.5 pips |  +3.162 avg | 45.3% WR
+   EUR_GBP: 3,173 trades |   +7,366.7 pips |  +2.322 avg | 42.5% WR
+   AUD_NZD: 2,964 trades |   +3,881.7 pips |  +1.310 avg | 41.1% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 26,227 trades | +184,459.2 pips |  +7.033 avg | 49.7% WR | DD 523
+  Max  8 pos: 39,019 trades | +274,787.5 pips |  +7.042 avg | 49.9% WR | DD 818
+  Max 10 pos: 46,177 trades | +325,985.6 pips |  +7.059 avg | 49.8% WR | DD 738
+  Max 12 pos: 51,869 trades | +366,718.4 pips |  +7.070 avg | 49.9% WR | DD 716
+  Max 15 pos: 58,133 trades | +406,289.0 pips |  +6.989 avg | 49.8% WR | DD 666
+  Max 20 pos: 60,830 trades | +426,442.0 pips |  +7.010 avg | 49.8% WR | DD 696
+
+====================================================================================================
+23:51:36 |
+Total runtime: 969.1s (16.2min)
+[4/32] Baseline - Min hold 15 + Friday exit
+23:51:48 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+23:51:48 |   616 profitable slots from 625 total
+23:51:48 |   Thresholds: ET=0.4, XT=0.2
+23:51:48 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+23:51:48 |   616 slot configs loaded
+23:51:48 |
+Simulation config:
+23:51:48 |   Max positions: 15
+23:51:48 |   Slippage:      0.3 pips/side
+23:51:48 |   Entry delay:   0 bars (0min)
+23:51:48 |   Friday exit:   20:00 UTC
+23:51:48 |   Max spread:    5.0 pips
+23:51:48 |   Min hold:      15min (3 bars) before regime exit
+23:51:48 |   Windows:       48 (30-min UTC slots)
+23:51:48 |   Numba:         YES
+23:51:48 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+23:52:37 |   AUD_CAD: 4,357 trades (48.9s)
+23:53:39 |   AUD_JPY: 4,186 trades (62.2s)
+23:54:31 |   AUD_NZD: 4,070 trades (52.3s)
+23:55:14 |   AUD_USD: 4,359 trades (42.3s)
+23:56:08 |   CAD_JPY: 4,216 trades (54.2s)
+23:57:07 |   CHF_JPY: 4,080 trades (58.7s)
+23:57:57 |   EUR_AUD: 4,241 trades (50.7s)
+23:58:40 |   EUR_GBP: 4,598 trades (42.4s)
+23:59:31 |   EUR_JPY: 4,162 trades (51.2s)
+00:00:24 |   EUR_USD: 4,461 trades (52.9s)
+00:01:24 |   GBP_AUD: 3,737 trades (59.9s)
+00:02:25 |   GBP_JPY: 4,212 trades (61.0s)
+00:03:16 |   GBP_USD: 4,461 trades (51.6s)
+00:04:04 |   NZD_CAD: 4,224 trades (47.3s)
+00:05:02 |   NZD_JPY: 4,097 trades (58.5s)
+00:05:53 |   NZD_USD: 4,295 trades (50.3s)
+00:06:40 |   USD_CAD: 4,467 trades (47.6s)
+00:07:18 |   USD_CHF: 4,378 trades (38.0s)
+00:08:12 |   USD_JPY: 4,061 trades (53.4s)
+00:08:12 |
+Total trades generated: 80,662
+00:08:12 |
+Running portfolio simulation...
+00:08:14 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_friexit20_20260223_000813.csv (58,816 rows)
+00:08:16 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_friexit20_20260223_000813.csv (58,816 rows)
+00:08:16 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_friexit20_20260223_000813.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            58,816 (72.9%)
+  Rejected (margin):   3,667 (4.5%)
+  Rejected (pair busy):18,179 (22.5%)
+
+── PERFORMANCE ──
+  Total P&L:           +411,173.8 pips
+  Avg per trade:       +6.991 pips
+  Win rate:            49.8%
+  Profit factor:       2.510
+  Max drawdown:        794.0 pips
+  Avg win:             +23.3 pips
+  Avg loss:            -9.3 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.2
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        51,143 (87.0%) | +298,066.4 pips (+5.828 avg)
+  Timed exits:         6,624 (11.3%) | +90,947.4 pips (+13.730 avg)
+  Friday exits:        1,049 (1.8%) | +22,160.0 pips (+21.125 avg)
+
+── HOLD TIME ──
+  Mean:                52 bars (4.3h)
+  Median:              23 bars (1.9h)
+  P25:                 9 bars (0.8h)
+  P75:                 60 bars (5.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  5,194 trades |  +29,491.2 pips |  +5.678 avg | 52.8% WR | PF 2.565 | DD 348
+  2022: 11,528 trades | +108,780.0 pips |  +9.436 avg | 52.7% WR | PF 2.875 | DD 527
+  2023: 13,900 trades | +104,300.0 pips |  +7.504 avg | 50.3% WR | PF 2.616 | DD 713
+  2024: 13,823 trades |  +82,965.5 pips |  +6.002 avg | 47.3% WR | PF 2.288 | DD 580
+  2025: 13,991 trades |  +82,160.9 pips |  +5.872 avg | 48.4% WR | PF 2.269 | DD 670
+  2026:    380 trades |   +3,476.2 pips |  +9.148 avg | 52.6% WR | PF 2.939 | DD 249
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY: 3,069 trades |  +36,962.7 pips | +12.044 avg | 51.2% WR
+   EUR_JPY: 3,085 trades |  +36,439.3 pips | +11.812 avg | 54.4% WR
+   USD_JPY: 2,948 trades |  +35,012.3 pips | +11.877 avg | 53.5% WR
+   EUR_AUD: 3,016 trades |  +32,050.5 pips | +10.627 avg | 54.4% WR
+   GBP_AUD: 2,745 trades |  +31,536.4 pips | +11.489 avg | 52.6% WR
+   CHF_JPY: 3,118 trades |  +28,778.5 pips |  +9.230 avg | 50.9% WR
+   AUD_JPY: 3,163 trades |  +26,749.7 pips |  +8.457 avg | 52.8% WR
+   GBP_USD: 3,168 trades |  +24,878.4 pips |  +7.853 avg | 51.5% WR
+   CAD_JPY: 3,046 trades |  +24,796.4 pips |  +8.141 avg | 51.3% WR
+   NZD_JPY: 3,010 trades |  +19,465.8 pips |  +6.467 avg | 48.8% WR
+   EUR_USD: 3,244 trades |  +18,624.5 pips |  +5.741 avg | 49.8% WR
+   USD_CAD: 3,221 trades |  +17,207.4 pips |  +5.342 avg | 49.0% WR
+   AUD_USD: 3,232 trades |  +16,192.9 pips |  +5.010 avg | 50.6% WR
+   USD_CHF: 3,141 trades |  +15,640.3 pips |  +4.979 avg | 50.3% WR
+   NZD_USD: 3,132 trades |  +13,094.6 pips |  +4.181 avg | 48.3% WR
+   AUD_CAD: 3,212 trades |  +12,764.1 pips |  +3.974 avg | 48.4% WR
+   NZD_CAD: 3,044 trades |   +9,518.0 pips |  +3.127 avg | 45.2% WR
+   EUR_GBP: 3,227 trades |   +7,503.2 pips |  +2.325 avg | 42.8% WR
+   AUD_NZD: 2,995 trades |   +3,958.8 pips |  +1.322 avg | 41.4% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 26,542 trades | +186,147.2 pips |  +7.013 avg | 49.7% WR | DD 633
+  Max  8 pos: 39,479 trades | +276,872.5 pips |  +7.013 avg | 49.9% WR | DD 728
+  Max 10 pos: 46,720 trades | +328,872.1 pips |  +7.039 avg | 49.9% WR | DD 698
+  Max 12 pos: 52,480 trades | +371,338.9 pips |  +7.076 avg | 50.0% WR | DD 741
+  Max 15 pos: 58,816 trades | +411,173.8 pips |  +6.991 avg | 49.8% WR | DD 713
+  Max 20 pos: 61,557 trades | +431,911.9 pips |  +7.016 avg | 49.8% WR | DD 713
+
+====================================================================================================
+00:08:18 |
+Total runtime: 989.8s (16.5min)
+[5/32] Baseline - Min hold 30
+00:08:27 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+00:08:27 |   616 profitable slots from 625 total
+00:08:27 |   Thresholds: ET=0.4, XT=0.2
+00:08:27 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+00:08:28 |   616 slot configs loaded
+00:08:28 |
+Simulation config:
+00:08:28 |   Max positions: 15
+00:08:28 |   Slippage:      0.3 pips/side
+00:08:28 |   Entry delay:   0 bars (0min)
+00:08:28 |   Friday exit:   OFF
+00:08:28 |   Max spread:    5.0 pips
+00:08:28 |   Min hold:      30min (6 bars) before regime exit
+00:08:28 |   Windows:       48 (30-min UTC slots)
+00:08:28 |   Numba:         YES
+00:08:28 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+00:09:17 |   AUD_CAD: 4,357 trades (49.2s)
+00:10:10 |   AUD_JPY: 4,186 trades (53.2s)
+00:10:59 |   AUD_NZD: 4,070 trades (49.2s)
+00:11:39 |   AUD_USD: 4,359 trades (39.3s)
+00:12:33 |   CAD_JPY: 4,216 trades (54.5s)
+00:13:31 |   CHF_JPY: 4,080 trades (57.5s)
+00:14:25 |   EUR_AUD: 4,241 trades (54.4s)
+00:15:06 |   EUR_GBP: 4,598 trades (41.2s)
+00:15:53 |   EUR_JPY: 4,162 trades (47.2s)
+00:16:41 |   EUR_USD: 4,461 trades (47.9s)
+00:17:49 |   GBP_AUD: 3,737 trades (67.2s)
+00:18:49 |   GBP_JPY: 4,212 trades (60.7s)
+00:19:39 |   GBP_USD: 4,461 trades (49.2s)
+00:20:24 |   NZD_CAD: 4,224 trades (45.4s)
+00:21:22 |   NZD_JPY: 4,097 trades (58.3s)
+00:22:03 |   NZD_USD: 4,295 trades (40.3s)
+00:22:48 |   USD_CAD: 4,467 trades (45.3s)
+00:23:24 |   USD_CHF: 4,378 trades (36.1s)
+00:24:15 |   USD_JPY: 4,061 trades (50.8s)
+00:24:15 |
+Total trades generated: 80,662
+00:24:15 |
+Running portfolio simulation...
+00:24:17 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_20260223_002416.csv (39,895 rows)
+00:24:18 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_20260223_002416.csv (39,895 rows)
+00:24:18 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_20260223_002416.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            39,895 (49.5%)
+  Rejected (margin):   4,998 (6.2%)
+  Rejected (pair busy):35,769 (44.3%)
+
+── PERFORMANCE ──
+  Total P&L:           +281,383.1 pips
+  Avg per trade:       +7.053 pips
+  Win rate:            55.5%
+  Profit factor:       1.979
+  Max drawdown:        1,475.9 pips
+  Avg win:             +25.7 pips
+  Avg loss:            -16.3 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.0
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        28,985 (72.7%) | +248,898.0 pips (+8.587 avg)
+  Timed exits:         10,910 (27.3%) | +32,485.1 pips (+2.978 avg)
+
+── HOLD TIME ──
+  Mean:                89 bars (7.4h)
+  Median:              39 bars (3.2h)
+  P25:                 15 bars (1.2h)
+  P75:                 111 bars (9.2h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  4,653 trades |  +28,620.8 pips |  +6.151 avg | 57.7% WR | PF 2.282 | DD 377
+  2022:  8,498 trades |  +83,606.9 pips |  +9.838 avg | 57.9% WR | PF 2.342 | DD 692
+  2023:  9,061 trades |  +67,805.6 pips |  +7.483 avg | 56.0% WR | PF 1.992 | DD 1,085
+  2024:  8,593 trades |  +53,495.3 pips |  +6.225 avg | 53.5% WR | PF 1.844 | DD 1,333
+  2025:  8,740 trades |  +44,188.1 pips |  +5.056 avg | 53.4% WR | PF 1.641 | DD 1,529
+  2026:    350 trades |   +3,666.4 pips | +10.475 avg | 57.7% WR | PF 2.666 | DD 329
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY: 1,982 trades |  +23,696.2 pips | +11.956 avg | 55.9% WR
+   GBP_AUD: 1,844 trades |  +23,053.0 pips | +12.502 avg | 60.1% WR
+   EUR_JPY: 2,098 trades |  +21,878.6 pips | +10.428 avg | 59.3% WR
+   CHF_JPY: 2,087 trades |  +21,186.1 pips | +10.151 avg | 54.9% WR
+   USD_JPY: 2,019 trades |  +21,022.6 pips | +10.412 avg | 58.2% WR
+   EUR_AUD: 2,047 trades |  +20,669.5 pips | +10.097 avg | 58.7% WR
+   AUD_JPY: 2,181 trades |  +20,535.7 pips |  +9.416 avg | 59.2% WR
+   GBP_USD: 2,197 trades |  +17,744.0 pips |  +8.076 avg | 56.6% WR
+   CAD_JPY: 2,077 trades |  +17,075.9 pips |  +8.221 avg | 57.0% WR
+   NZD_JPY: 2,035 trades |  +15,368.4 pips |  +7.552 avg | 56.9% WR
+   EUR_USD: 2,155 trades |  +11,638.4 pips |  +5.401 avg | 56.1% WR
+   AUD_USD: 2,174 trades |  +11,592.0 pips |  +5.332 avg | 56.4% WR
+   USD_CHF: 2,171 trades |  +11,586.5 pips |  +5.337 avg | 54.4% WR
+   USD_CAD: 2,163 trades |  +10,935.1 pips |  +5.056 avg | 55.4% WR
+   NZD_USD: 2,077 trades |  +10,081.2 pips |  +4.854 avg | 56.4% WR
+   AUD_CAD: 2,246 trades |   +7,902.9 pips |  +3.519 avg | 52.8% WR
+   NZD_CAD: 2,080 trades |   +5,919.0 pips |  +2.846 avg | 50.7% WR
+   EUR_GBP: 2,214 trades |   +5,888.3 pips |  +2.660 avg | 49.4% WR
+   AUD_NZD: 2,048 trades |   +3,609.7 pips |  +1.763 avg | 47.3% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 17,262 trades | +123,690.5 pips |  +7.165 avg | 55.5% WR | DD 877
+  Max  8 pos: 26,121 trades | +188,050.8 pips |  +7.199 avg | 55.2% WR | DD 1,657
+  Max 10 pos: 31,327 trades | +218,982.4 pips |  +6.990 avg | 55.4% WR | DD 2,380
+  Max 12 pos: 35,325 trades | +250,923.8 pips |  +7.103 avg | 55.6% WR | DD 2,237
+  Max 15 pos: 39,895 trades | +281,383.1 pips |  +7.053 avg | 55.5% WR | DD 1,529
+  Max 20 pos: 42,311 trades | +298,764.6 pips |  +7.061 avg | 55.6% WR | DD 1,528
+
+====================================================================================================
+00:24:20 |
+Total runtime: 952.2s (15.9min)
+[6/32] Baseline - Min hold 30 + Friday exit
+00:24:30 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+00:24:30 |   616 profitable slots from 625 total
+00:24:30 |   Thresholds: ET=0.4, XT=0.2
+00:24:30 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+00:24:30 |   616 slot configs loaded
+00:24:30 |
+Simulation config:
+00:24:30 |   Max positions: 15
+00:24:30 |   Slippage:      0.3 pips/side
+00:24:30 |   Entry delay:   0 bars (0min)
+00:24:30 |   Friday exit:   20:00 UTC
+00:24:30 |   Max spread:    5.0 pips
+00:24:30 |   Min hold:      30min (6 bars) before regime exit
+00:24:30 |   Windows:       48 (30-min UTC slots)
+00:24:30 |   Numba:         YES
+00:24:30 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+00:25:21 |   AUD_CAD: 4,357 trades (50.5s)
+00:26:21 |   AUD_JPY: 4,186 trades (60.2s)
+00:27:12 |   AUD_NZD: 4,070 trades (51.4s)
+00:27:54 |   AUD_USD: 4,359 trades (42.1s)
+00:28:47 |   CAD_JPY: 4,216 trades (52.7s)
+00:29:45 |   CHF_JPY: 4,080 trades (58.2s)
+00:30:39 |   EUR_AUD: 4,241 trades (53.2s)
+00:31:22 |   EUR_GBP: 4,598 trades (43.6s)
+00:32:12 |   EUR_JPY: 4,162 trades (49.6s)
+00:33:02 |   EUR_USD: 4,461 trades (50.2s)
+00:34:08 |   GBP_AUD: 3,737 trades (65.9s)
+00:35:04 |   GBP_JPY: 4,212 trades (56.4s)
+00:35:55 |   GBP_USD: 4,461 trades (51.0s)
+00:36:44 |   NZD_CAD: 4,224 trades (48.6s)
+00:37:41 |   NZD_JPY: 4,097 trades (57.4s)
+00:38:25 |   NZD_USD: 4,295 trades (43.7s)
+00:39:13 |   USD_CAD: 4,467 trades (47.6s)
+00:39:52 |   USD_CHF: 4,378 trades (39.1s)
+00:40:45 |   USD_JPY: 4,061 trades (53.1s)
+00:40:45 |
+Total trades generated: 80,662
+00:40:45 |
+Running portfolio simulation...
+00:40:48 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_friexit20_20260223_004048.csv (40,857 rows)
+00:40:49 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_friexit20_20260223_004048.csv (40,857 rows)
+00:40:50 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_friexit20_20260223_004048.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            40,857 (50.7%)
+  Rejected (margin):   5,036 (6.2%)
+  Rejected (pair busy):34,769 (43.1%)
+
+── PERFORMANCE ──
+  Total P&L:           +289,201.8 pips
+  Avg per trade:       +7.078 pips
+  Win rate:            55.5%
+  Profit factor:       2.009
+  Max drawdown:        1,438.0 pips
+  Avg win:             +25.4 pips
+  Avg loss:            -15.9 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.8
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        29,494 (72.2%) | +241,498.7 pips (+8.188 avg)
+  Timed exits:         10,036 (24.6%) | +35,096.2 pips (+3.497 avg)
+  Friday exits:        1,327 (3.2%) | +12,606.9 pips (+9.500 avg)
+
+── HOLD TIME ──
+  Mean:                85 bars (7.1h)
+  Median:              38 bars (3.2h)
+  P25:                 15 bars (1.2h)
+  P75:                 108 bars (9.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  4,672 trades |  +28,973.7 pips |  +6.202 avg | 57.9% WR | PF 2.300 | DD 377
+  2022:  8,641 trades |  +84,078.9 pips |  +9.730 avg | 57.8% WR | PF 2.338 | DD 653
+  2023:  9,300 trades |  +70,610.0 pips |  +7.592 avg | 56.1% WR | PF 2.038 | DD 1,030
+  2024:  8,872 trades |  +55,746.0 pips |  +6.283 avg | 53.5% WR | PF 1.880 | DD 1,333
+  2025:  9,022 trades |  +46,104.6 pips |  +5.110 avg | 53.5% WR | PF 1.678 | DD 1,293
+  2026:    350 trades |   +3,688.6 pips | +10.539 avg | 58.0% WR | PF 2.723 | DD 298
+  Losing years: 0
+
+── PER PAIR ──
+   EUR_JPY: 2,163 trades |  +24,794.9 pips | +11.463 avg | 59.5% WR
+   GBP_JPY: 2,040 trades |  +23,436.5 pips | +11.488 avg | 55.7% WR
+   GBP_AUD: 1,889 trades |  +22,824.3 pips | +12.083 avg | 59.7% WR
+   CHF_JPY: 2,125 trades |  +22,209.3 pips | +10.451 avg | 55.3% WR
+   USD_JPY: 2,052 trades |  +22,138.7 pips | +10.789 avg | 58.3% WR
+   EUR_AUD: 2,095 trades |  +22,092.6 pips | +10.545 avg | 58.9% WR
+   AUD_JPY: 2,208 trades |  +20,753.7 pips |  +9.399 avg | 59.3% WR
+   GBP_USD: 2,253 trades |  +18,384.7 pips |  +8.160 avg | 56.7% WR
+   CAD_JPY: 2,112 trades |  +17,360.7 pips |  +8.220 avg | 57.2% WR
+   NZD_JPY: 2,074 trades |  +15,378.7 pips |  +7.415 avg | 56.3% WR
+   EUR_USD: 2,212 trades |  +11,777.0 pips |  +5.324 avg | 55.9% WR
+   USD_CHF: 2,198 trades |  +11,662.0 pips |  +5.306 avg | 54.4% WR
+   USD_CAD: 2,210 trades |  +11,561.3 pips |  +5.231 avg | 55.1% WR
+   AUD_USD: 2,235 trades |  +10,757.3 pips |  +4.813 avg | 56.0% WR
+   NZD_USD: 2,163 trades |  +10,114.8 pips |  +4.676 avg | 56.3% WR
+   AUD_CAD: 2,326 trades |   +8,333.1 pips |  +3.583 avg | 53.1% WR
+   NZD_CAD: 2,142 trades |   +5,997.4 pips |  +2.800 avg | 50.9% WR
+   EUR_GBP: 2,250 trades |   +5,935.0 pips |  +2.638 avg | 49.8% WR
+   AUD_NZD: 2,110 trades |   +3,689.8 pips |  +1.749 avg | 47.7% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 17,757 trades | +126,887.2 pips |  +7.146 avg | 55.7% WR | DD 877
+  Max  8 pos: 26,710 trades | +189,597.0 pips |  +7.098 avg | 55.3% WR | DD 1,552
+  Max 10 pos: 31,850 trades | +223,630.6 pips |  +7.021 avg | 55.4% WR | DD 2,381
+  Max 12 pos: 36,112 trades | +256,257.2 pips |  +7.096 avg | 55.6% WR | DD 1,877
+  Max 15 pos: 40,857 trades | +289,201.8 pips |  +7.078 avg | 55.5% WR | DD 1,333
+  Max 20 pos: 43,230 trades | +303,531.1 pips |  +7.021 avg | 55.6% WR | DD 1,440
+
+====================================================================================================
+00:40:51 |
+Total runtime: 980.7s (16.3min)
+[7/32] Baseline - Min hold 60
+00:41:01 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+00:41:01 |   616 profitable slots from 625 total
+00:41:01 |   Thresholds: ET=0.4, XT=0.2
+00:41:01 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+00:41:01 |   616 slot configs loaded
+00:41:01 |
+Simulation config:
+00:41:01 |   Max positions: 15
+00:41:01 |   Slippage:      0.3 pips/side
+00:41:01 |   Entry delay:   0 bars (0min)
+00:41:01 |   Friday exit:   OFF
+00:41:01 |   Max spread:    5.0 pips
+00:41:01 |   Min hold:      60min (12 bars) before regime exit
+00:41:01 |   Windows:       48 (30-min UTC slots)
+00:41:01 |   Numba:         YES
+00:41:01 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+00:41:49 |   AUD_CAD: 4,357 trades (48.3s)
+00:42:44 |   AUD_JPY: 4,186 trades (54.4s)
+00:43:35 |   AUD_NZD: 4,070 trades (51.7s)
+00:44:14 |   AUD_USD: 4,359 trades (39.0s)
+00:45:06 |   CAD_JPY: 4,216 trades (51.5s)
+00:46:02 |   CHF_JPY: 4,080 trades (56.3s)
+00:46:54 |   EUR_AUD: 4,241 trades (51.8s)
+00:47:35 |   EUR_GBP: 4,598 trades (41.5s)
+00:48:28 |   EUR_JPY: 4,162 trades (52.3s)
+00:49:16 |   EUR_USD: 4,461 trades (48.7s)
+00:50:22 |   GBP_AUD: 3,737 trades (65.7s)
+00:51:19 |   GBP_JPY: 4,212 trades (57.1s)
+00:52:07 |   GBP_USD: 4,461 trades (48.2s)
+00:52:52 |   NZD_CAD: 4,224 trades (45.0s)
+00:53:47 |   NZD_JPY: 4,097 trades (54.4s)
+00:54:28 |   NZD_USD: 4,295 trades (41.0s)
+00:55:12 |   USD_CAD: 4,467 trades (44.4s)
+00:55:48 |   USD_CHF: 4,378 trades (35.9s)
+00:56:45 |   USD_JPY: 4,061 trades (56.9s)
+00:56:45 |
+Total trades generated: 80,662
+00:56:45 |
+Running portfolio simulation...
+00:56:46 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_20260223_005646.csv (30,000 rows)
+00:56:47 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_20260223_005646.csv (30,000 rows)
+00:56:47 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_20260223_005646.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            30,000 (37.2%)
+  Rejected (margin):   5,979 (7.4%)
+  Rejected (pair busy):44,683 (55.4%)
+
+── PERFORMANCE ──
+  Total P&L:           +197,870.9 pips
+  Avg per trade:       +6.596 pips
+  Win rate:            60.1%
+  Profit factor:       1.645
+  Max drawdown:        1,974.5 pips
+  Avg win:             +28.0 pips
+  Avg loss:            -25.8 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.2
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        16,808 (56.0%) | +207,169.4 pips (+12.326 avg)
+  Timed exits:         13,192 (44.0%) | -9,298.5 pips (-0.705 avg)
+
+── HOLD TIME ──
+  Mean:                127 bars (10.6h)
+  Median:              72 bars (6.0h)
+  P25:                 28 bars (2.3h)
+  P75:                 192 bars (16.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  4,167 trades |  +22,400.4 pips |  +5.376 avg | 61.0% WR | PF 1.804 | DD 436
+  2022:  6,473 trades |  +57,447.5 pips |  +8.875 avg | 61.8% WR | PF 1.795 | DD 1,356
+  2023:  6,621 trades |  +46,721.1 pips |  +7.057 avg | 60.4% WR | PF 1.643 | DD 1,207
+  2024:  6,175 trades |  +39,851.7 pips |  +6.454 avg | 59.5% WR | PF 1.630 | DD 1,458
+  2025:  6,243 trades |  +28,589.3 pips |  +4.579 avg | 58.2% WR | PF 1.422 | DD 1,936
+  2026:    321 trades |   +2,860.9 pips |  +8.912 avg | 61.4% WR | PF 1.989 | DD 334
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY: 1,512 trades |  +18,119.6 pips | +11.984 avg | 61.8% WR
+   EUR_AUD: 1,577 trades |  +17,878.0 pips | +11.337 avg | 64.8% WR
+   EUR_JPY: 1,548 trades |  +15,875.6 pips | +10.256 avg | 62.7% WR
+   GBP_AUD: 1,407 trades |  +14,523.2 pips | +10.322 avg | 63.4% WR
+   CHF_JPY: 1,559 trades |  +13,767.7 pips |  +8.831 avg | 58.9% WR
+   AUD_JPY: 1,615 trades |  +13,536.3 pips |  +8.382 avg | 64.0% WR
+   CAD_JPY: 1,595 trades |  +13,152.4 pips |  +8.246 avg | 61.7% WR
+   GBP_USD: 1,628 trades |  +13,019.1 pips |  +7.997 avg | 61.9% WR
+   USD_JPY: 1,522 trades |  +12,822.2 pips |  +8.425 avg | 61.6% WR
+   NZD_JPY: 1,577 trades |  +11,533.8 pips |  +7.314 avg | 59.0% WR
+   AUD_USD: 1,631 trades |   +9,416.2 pips |  +5.773 avg | 63.4% WR
+   EUR_USD: 1,646 trades |   +8,441.2 pips |  +5.128 avg | 60.1% WR
+   USD_CAD: 1,605 trades |   +8,065.5 pips |  +5.025 avg | 61.1% WR
+   USD_CHF: 1,596 trades |   +7,871.2 pips |  +4.932 avg | 60.1% WR
+   NZD_USD: 1,571 trades |   +6,145.7 pips |  +3.912 avg | 59.1% WR
+   EUR_GBP: 1,647 trades |   +4,153.7 pips |  +2.522 avg | 54.3% WR
+   AUD_CAD: 1,608 trades |   +3,329.3 pips |  +2.070 avg | 55.3% WR
+   AUD_NZD: 1,588 trades |   +3,200.8 pips |  +2.016 avg | 53.5% WR
+   NZD_CAD: 1,568 trades |   +3,019.4 pips |  +1.926 avg | 56.6% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 12,655 trades |  +82,189.6 pips |  +6.495 avg | 60.4% WR | DD 1,221
+  Max  8 pos: 19,217 trades | +132,282.5 pips |  +6.884 avg | 60.1% WR | DD 1,315
+  Max 10 pos: 22,958 trades | +154,360.4 pips |  +6.724 avg | 60.0% WR | DD 1,753
+  Max 12 pos: 26,141 trades | +172,108.9 pips |  +6.584 avg | 60.1% WR | DD 2,602
+  Max 15 pos: 30,000 trades | +197,870.9 pips |  +6.596 avg | 60.1% WR | DD 1,936
+  Max 20 pos: 32,097 trades | +206,615.5 pips |  +6.437 avg | 60.0% WR | DD 2,672
+
+====================================================================================================
+00:56:49 |
+Total runtime: 947.7s (15.8min)
+[8/32] Baseline - Min hold 60 + Friday exit
+00:57:00 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+00:57:00 |   616 profitable slots from 625 total
+00:57:00 |   Thresholds: ET=0.4, XT=0.2
+00:57:00 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+00:57:00 |   616 slot configs loaded
+00:57:00 |
+Simulation config:
+00:57:00 |   Max positions: 15
+00:57:00 |   Slippage:      0.3 pips/side
+00:57:00 |   Entry delay:   0 bars (0min)
+00:57:00 |   Friday exit:   20:00 UTC
+00:57:00 |   Max spread:    5.0 pips
+00:57:00 |   Min hold:      60min (12 bars) before regime exit
+00:57:00 |   Windows:       48 (30-min UTC slots)
+00:57:00 |   Numba:         YES
+00:57:00 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+00:57:53 |   AUD_CAD: 4,357 trades (52.4s)
+00:58:56 |   AUD_JPY: 4,186 trades (62.7s)
+00:59:48 |   AUD_NZD: 4,070 trades (52.8s)
+01:00:30 |   AUD_USD: 4,359 trades (41.7s)
+01:01:23 |   CAD_JPY: 4,216 trades (53.2s)
+01:02:25 |   CHF_JPY: 4,080 trades (61.9s)
+01:03:17 |   EUR_AUD: 4,241 trades (52.1s)
+01:04:02 |   EUR_GBP: 4,598 trades (44.4s)
+01:04:54 |   EUR_JPY: 4,162 trades (52.1s)
+01:05:45 |   EUR_USD: 4,461 trades (51.5s)
+01:06:54 |   GBP_AUD: 3,737 trades (69.0s)
+01:07:58 |   GBP_JPY: 4,212 trades (63.5s)
+01:08:51 |   GBP_USD: 4,461 trades (52.8s)
+01:09:39 |   NZD_CAD: 4,224 trades (48.5s)
+01:10:37 |   NZD_JPY: 4,097 trades (57.8s)
+01:11:21 |   NZD_USD: 4,295 trades (44.0s)
+01:12:10 |   USD_CAD: 4,467 trades (49.2s)
+01:12:49 |   USD_CHF: 4,378 trades (38.8s)
+01:13:44 |   USD_JPY: 4,061 trades (55.2s)
+01:13:45 |
+Total trades generated: 80,662
+01:13:45 |
+Running portfolio simulation...
+01:13:46 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_friexit20_20260223_011346.csv (30,736 rows)
+01:13:47 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_friexit20_20260223_011346.csv (30,736 rows)
+01:13:47 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_friexit20_20260223_011346.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            30,736 (38.1%)
+  Rejected (margin):   5,981 (7.4%)
+  Rejected (pair busy):43,945 (54.5%)
+
+── PERFORMANCE ──
+  Total P&L:           +198,926.5 pips
+  Avg per trade:       +6.472 pips
+  Win rate:            60.0%
+  Profit factor:       1.642
+  Max drawdown:        2,035.3 pips
+  Avg win:             +27.6 pips
+  Avg loss:            -25.4 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.0
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        17,078 (55.6%) | +202,771.5 pips (+11.873 avg)
+  Timed exits:         12,212 (39.7%) | -6,245.1 pips (-0.511 avg)
+  Friday exits:        1,446 (4.7%) | +2,400.1 pips (+1.660 avg)
+
+── HOLD TIME ──
+  Mean:                121 bars (10.1h)
+  Median:              71 bars (5.9h)
+  P25:                 28 bars (2.3h)
+  P75:                 168 bars (14.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  4,179 trades |  +22,678.0 pips |  +5.427 avg | 60.9% WR | PF 1.817 | DD 436
+  2022:  6,604 trades |  +58,769.9 pips |  +8.899 avg | 61.9% WR | PF 1.813 | DD 1,334
+  2023:  6,791 trades |  +48,181.5 pips |  +7.095 avg | 60.5% WR | PF 1.666 | DD 1,047
+  2024:  6,382 trades |  +39,304.4 pips |  +6.159 avg | 59.4% WR | PF 1.605 | DD 1,456
+  2025:  6,458 trades |  +27,125.8 pips |  +4.200 avg | 57.7% WR | PF 1.389 | DD 2,181
+  2026:    322 trades |   +2,866.9 pips |  +8.903 avg | 60.9% WR | PF 2.027 | DD 306
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY: 1,558 trades |  +17,873.6 pips | +11.472 avg | 61.7% WR
+   EUR_AUD: 1,605 trades |  +17,539.1 pips | +10.928 avg | 63.9% WR
+   EUR_JPY: 1,594 trades |  +17,044.7 pips | +10.693 avg | 62.9% WR
+   CHF_JPY: 1,597 trades |  +15,519.0 pips |  +9.718 avg | 58.9% WR
+   CAD_JPY: 1,629 trades |  +13,482.8 pips |  +8.277 avg | 62.2% WR
+   GBP_AUD: 1,426 trades |  +13,443.5 pips |  +9.427 avg | 62.8% WR
+   USD_JPY: 1,546 trades |  +13,214.2 pips |  +8.547 avg | 61.2% WR
+   AUD_JPY: 1,675 trades |  +12,791.1 pips |  +7.636 avg | 63.3% WR
+   GBP_USD: 1,659 trades |  +12,161.7 pips |  +7.331 avg | 61.7% WR
+   NZD_JPY: 1,632 trades |  +11,791.9 pips |  +7.225 avg | 59.8% WR
+   AUD_USD: 1,680 trades |   +9,172.2 pips |  +5.460 avg | 63.1% WR
+   EUR_USD: 1,685 trades |   +8,865.4 pips |  +5.261 avg | 59.7% WR
+   USD_CHF: 1,617 trades |   +8,245.3 pips |  +5.099 avg | 60.4% WR
+   USD_CAD: 1,641 trades |   +7,941.0 pips |  +4.839 avg | 60.4% WR
+   NZD_USD: 1,611 trades |   +5,951.8 pips |  +3.694 avg | 58.8% WR
+   EUR_GBP: 1,674 trades |   +4,105.6 pips |  +2.453 avg | 54.7% WR
+   AUD_CAD: 1,677 trades |   +3,560.5 pips |  +2.123 avg | 56.0% WR
+   NZD_CAD: 1,616 trades |   +3,150.6 pips |  +1.950 avg | 56.1% WR
+   AUD_NZD: 1,614 trades |   +3,072.5 pips |  +1.904 avg | 53.5% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 12,924 trades |  +79,452.3 pips |  +6.148 avg | 59.9% WR | DD 1,129
+  Max  8 pos: 19,586 trades | +129,062.9 pips |  +6.590 avg | 59.8% WR | DD 1,569
+  Max 10 pos: 23,500 trades | +155,406.7 pips |  +6.613 avg | 60.0% WR | DD 1,854
+  Max 12 pos: 26,899 trades | +174,751.7 pips |  +6.497 avg | 60.0% WR | DD 2,646
+  Max 15 pos: 30,736 trades | +198,926.5 pips |  +6.472 avg | 60.0% WR | DD 2,181
+  Max 20 pos: 32,904 trades | +210,356.0 pips |  +6.393 avg | 60.0% WR | DD 2,616
+
+====================================================================================================
+01:13:48 |
+Total runtime: 1007.9s (16.8min)
+[9/32] Baseline - Min hold 120
+01:14:00 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+01:14:00 |   616 profitable slots from 625 total
+01:14:00 |   Thresholds: ET=0.4, XT=0.2
+01:14:00 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+01:14:00 |   616 slot configs loaded
+01:14:00 |
+Simulation config:
+01:14:00 |   Max positions: 15
+01:14:00 |   Slippage:      0.3 pips/side
+01:14:00 |   Entry delay:   0 bars (0min)
+01:14:00 |   Friday exit:   OFF
+01:14:00 |   Max spread:    5.0 pips
+01:14:00 |   Min hold:      120min (24 bars) before regime exit
+01:14:00 |   Windows:       48 (30-min UTC slots)
+01:14:00 |   Numba:         YES
+01:14:00 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+01:14:49 |   AUD_CAD: 4,357 trades (48.4s)
+01:15:48 |   AUD_JPY: 4,186 trades (59.7s)
+01:16:40 |   AUD_NZD: 4,070 trades (51.2s)
+01:17:20 |   AUD_USD: 4,359 trades (40.6s)
+01:18:13 |   CAD_JPY: 4,216 trades (52.3s)
+01:19:11 |   CHF_JPY: 4,080 trades (58.3s)
+01:20:02 |   EUR_AUD: 4,241 trades (51.2s)
+01:20:43 |   EUR_GBP: 4,598 trades (41.3s)
+01:21:32 |   EUR_JPY: 4,162 trades (49.0s)
+01:22:21 |   EUR_USD: 4,461 trades (48.3s)
+01:23:27 |   GBP_AUD: 3,737 trades (66.5s)
+01:24:13 |   GBP_JPY: 4,212 trades (46.1s)
+01:24:52 |   GBP_USD: 4,461 trades (39.0s)
+01:25:29 |   NZD_CAD: 4,224 trades (36.7s)
+01:26:17 |   NZD_JPY: 4,097 trades (48.4s)
+01:26:51 |   NZD_USD: 4,295 trades (33.4s)
+01:27:26 |   USD_CAD: 4,467 trades (35.7s)
+01:27:56 |   USD_CHF: 4,378 trades (29.6s)
+01:28:37 |   USD_JPY: 4,061 trades (40.9s)
+01:28:37 |
+Total trades generated: 80,662
+01:28:37 |
+Running portfolio simulation...
+01:28:38 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_20260223_012838.csv (23,680 rows)
+01:28:39 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_20260223_012838.csv (23,680 rows)
+01:28:39 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_20260223_012838.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            23,680 (29.4%)
+  Rejected (margin):   6,626 (8.2%)
+  Rejected (pair busy):50,356 (62.4%)
+
+── PERFORMANCE ──
+  Total P&L:           +136,950.5 pips
+  Avg per trade:       +5.783 pips
+  Win rate:            61.7%
+  Profit factor:       1.419
+  Max drawdown:        2,940.2 pips
+  Avg win:             +31.8 pips
+  Avg loss:            -36.2 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.3
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        8,807 (37.2%) | +168,780.4 pips (+19.164 avg)
+  Timed exits:         14,873 (62.8%) | -31,829.9 pips (-2.140 avg)
+
+── HOLD TIME ──
+  Mean:                168 bars (14.0h)
+  Median:              120 bars (10.0h)
+  P25:                 50 bars (4.2h)
+  P75:                 240 bars (20.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,724 trades |  +18,717.4 pips |  +5.026 avg | 62.4% WR | PF 1.572 | DD 613
+  2022:  5,204 trades |  +40,247.0 pips |  +7.734 avg | 62.2% WR | PF 1.509 | DD 1,261
+  2023:  5,082 trades |  +32,173.4 pips |  +6.331 avg | 61.8% WR | PF 1.421 | DD 1,793
+  2024:  4,673 trades |  +20,790.7 pips |  +4.449 avg | 60.6% WR | PF 1.305 | DD 1,620
+  2025:  4,717 trades |  +22,120.2 pips |  +4.689 avg | 61.0% WR | PF 1.327 | DD 2,836
+  2026:    280 trades |   +2,901.8 pips | +10.364 avg | 66.1% WR | PF 1.948 | DD 305
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY: 1,213 trades |  +13,569.4 pips | +11.187 avg | 61.7% WR
+   EUR_AUD: 1,288 trades |  +13,546.6 pips | +10.518 avg | 64.9% WR
+   GBP_AUD: 1,120 trades |  +11,804.0 pips | +10.539 avg | 63.6% WR
+   AUD_JPY: 1,259 trades |  +10,531.7 pips |  +8.365 avg | 64.2% WR
+   NZD_JPY: 1,255 trades |   +9,173.7 pips |  +7.310 avg | 63.5% WR
+   EUR_JPY: 1,254 trades |   +8,895.3 pips |  +7.094 avg | 61.0% WR
+   CHF_JPY: 1,222 trades |   +8,482.7 pips |  +6.942 avg | 59.0% WR
+   CAD_JPY: 1,259 trades |   +8,240.3 pips |  +6.545 avg | 63.1% WR
+   GBP_USD: 1,284 trades |   +7,737.1 pips |  +6.026 avg | 62.2% WR
+   USD_JPY: 1,246 trades |   +7,092.5 pips |  +5.692 avg | 61.7% WR
+   AUD_USD: 1,288 trades |   +6,532.1 pips |  +5.072 avg | 65.1% WR
+   EUR_USD: 1,281 trades |   +6,395.6 pips |  +4.993 avg | 62.7% WR
+   NZD_USD: 1,211 trades |   +5,109.1 pips |  +4.219 avg | 61.5% WR
+   USD_CAD: 1,244 trades |   +4,723.9 pips |  +3.797 avg | 61.7% WR
+   USD_CHF: 1,261 trades |   +4,285.0 pips |  +3.398 avg | 61.1% WR
+   EUR_GBP: 1,272 trades |   +2,945.0 pips |  +2.315 avg | 58.4% WR
+   AUD_CAD: 1,274 trades |   +2,854.4 pips |  +2.241 avg | 59.2% WR
+   NZD_CAD: 1,224 trades |   +2,663.5 pips |  +2.176 avg | 58.5% WR
+   AUD_NZD: 1,225 trades |   +2,368.6 pips |  +1.934 avg | 58.1% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  9,544 trades |  +57,432.8 pips |  +6.018 avg | 62.3% WR | DD 1,011
+  Max  8 pos: 14,803 trades |  +97,269.7 pips |  +6.571 avg | 62.4% WR | DD 1,309
+  Max 10 pos: 17,872 trades | +109,601.5 pips |  +6.133 avg | 61.7% WR | DD 1,805
+  Max 12 pos: 20,583 trades | +115,858.1 pips |  +5.629 avg | 61.7% WR | DD 2,374
+  Max 15 pos: 23,680 trades | +136,950.5 pips |  +5.783 avg | 61.7% WR | DD 2,836
+  Max 20 pos: 25,507 trades | +148,523.9 pips |  +5.823 avg | 61.5% WR | DD 2,199
+
+====================================================================================================
+01:28:40 |
+Total runtime: 879.6s (14.7min)
+[10/32] Baseline - Min hold 120 + Friday exit
+01:28:50 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+01:28:50 |   616 profitable slots from 625 total
+01:28:50 |   Thresholds: ET=0.4, XT=0.2
+01:28:50 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+01:28:50 |   616 slot configs loaded
+01:28:50 |
+Simulation config:
+01:28:50 |   Max positions: 15
+01:28:50 |   Slippage:      0.3 pips/side
+01:28:50 |   Entry delay:   0 bars (0min)
+01:28:50 |   Friday exit:   20:00 UTC
+01:28:50 |   Max spread:    5.0 pips
+01:28:50 |   Min hold:      120min (24 bars) before regime exit
+01:28:50 |   Windows:       48 (30-min UTC slots)
+01:28:50 |   Numba:         YES
+01:28:50 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+01:29:33 |   AUD_CAD: 4,357 trades (42.4s)
+01:30:24 |   AUD_JPY: 4,186 trades (51.2s)
+01:31:06 |   AUD_NZD: 4,070 trades (42.4s)
+01:31:41 |   AUD_USD: 4,359 trades (34.9s)
+01:32:25 |   CAD_JPY: 4,216 trades (43.4s)
+01:33:14 |   CHF_JPY: 4,080 trades (49.0s)
+01:34:00 |   EUR_AUD: 4,241 trades (46.7s)
+01:34:39 |   EUR_GBP: 4,598 trades (38.8s)
+01:35:22 |   EUR_JPY: 4,162 trades (43.4s)
+01:36:05 |   EUR_USD: 4,461 trades (42.1s)
+01:37:00 |   GBP_AUD: 3,737 trades (55.4s)
+01:37:53 |   GBP_JPY: 4,212 trades (52.7s)
+01:38:34 |   GBP_USD: 4,461 trades (41.7s)
+01:39:15 |   NZD_CAD: 4,224 trades (40.2s)
+01:40:02 |   NZD_JPY: 4,097 trades (46.9s)
+01:40:37 |   NZD_USD: 4,295 trades (35.6s)
+01:41:16 |   USD_CAD: 4,467 trades (38.8s)
+01:41:48 |   USD_CHF: 4,378 trades (32.1s)
+01:42:33 |   USD_JPY: 4,061 trades (44.9s)
+01:42:33 |
+Total trades generated: 80,662
+01:42:33 |
+Running portfolio simulation...
+01:42:34 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_friexit20_20260223_014234.csv (24,315 rows)
+01:42:35 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_friexit20_20260223_014234.csv (24,315 rows)
+01:42:35 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_friexit20_20260223_014234.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            24,315 (30.1%)
+  Rejected (margin):   6,604 (8.2%)
+  Rejected (pair busy):49,743 (61.7%)
+
+── PERFORMANCE ──
+  Total P&L:           +134,990.5 pips
+  Avg per trade:       +5.552 pips
+  Win rate:            61.6%
+  Profit factor:       1.408
+  Max drawdown:        2,845.7 pips
+  Avg win:             +31.1 pips
+  Avg loss:            -35.5 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.0
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        8,952 (36.8%) | +166,599.9 pips (+18.610 avg)
+  Timed exits:         13,843 (56.9%) | -31,247.2 pips (-2.257 avg)
+  Friday exits:        1,520 (6.3%) | -362.2 pips (-0.238 avg)
+
+── HOLD TIME ──
+  Mean:                160 bars (13.3h)
+  Median:              120 bars (10.0h)
+  P25:                 50 bars (4.2h)
+  P75:                 228 bars (19.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,738 trades |  +19,437.0 pips |  +5.200 avg | 62.5% WR | PF 1.598 | DD 613
+  2022:  5,308 trades |  +39,723.8 pips |  +7.484 avg | 62.2% WR | PF 1.501 | DD 1,243
+  2023:  5,250 trades |  +31,620.4 pips |  +6.023 avg | 61.3% WR | PF 1.410 | DD 1,525
+  2024:  4,860 trades |  +22,303.5 pips |  +4.589 avg | 61.3% WR | PF 1.324 | DD 1,483
+  2025:  4,879 trades |  +18,963.0 pips |  +3.887 avg | 60.4% WR | PF 1.270 | DD 2,849
+  2026:    280 trades |   +2,942.8 pips | +10.510 avg | 65.7% WR | PF 2.035 | DD 276
+  Losing years: 0
+
+── PER PAIR ──
+   EUR_AUD: 1,319 trades |  +14,729.0 pips | +11.167 avg | 64.3% WR
+   GBP_JPY: 1,245 trades |  +13,123.8 pips | +10.541 avg | 61.2% WR
+   GBP_AUD: 1,144 trades |  +10,872.7 pips |  +9.504 avg | 63.5% WR
+   EUR_JPY: 1,276 trades |  +10,228.5 pips |  +8.016 avg | 61.7% WR
+   AUD_JPY: 1,305 trades |   +9,639.5 pips |  +7.387 avg | 62.8% WR
+   CHF_JPY: 1,262 trades |   +9,384.2 pips |  +7.436 avg | 60.1% WR
+   NZD_JPY: 1,287 trades |   +8,953.1 pips |  +6.957 avg | 63.7% WR
+   CAD_JPY: 1,288 trades |   +8,246.9 pips |  +6.403 avg | 63.4% WR
+   GBP_USD: 1,305 trades |   +7,499.6 pips |  +5.747 avg | 62.1% WR
+   USD_JPY: 1,277 trades |   +7,309.9 pips |  +5.724 avg | 61.6% WR
+   EUR_USD: 1,318 trades |   +6,098.3 pips |  +4.627 avg | 62.2% WR
+   AUD_USD: 1,322 trades |   +5,858.3 pips |  +4.431 avg | 64.5% WR
+   NZD_USD: 1,256 trades |   +4,942.8 pips |  +3.935 avg | 62.2% WR
+   USD_CAD: 1,292 trades |   +4,512.8 pips |  +3.493 avg | 61.4% WR
+   USD_CHF: 1,267 trades |   +3,959.0 pips |  +3.125 avg | 60.9% WR
+   EUR_GBP: 1,316 trades |   +3,100.9 pips |  +2.356 avg | 59.2% WR
+   AUD_CAD: 1,312 trades |   +2,791.8 pips |  +2.128 avg | 59.1% WR
+   AUD_NZD: 1,260 trades |   +2,213.6 pips |  +1.757 avg | 58.2% WR
+   NZD_CAD: 1,264 trades |   +1,525.8 pips |  +1.207 avg | 57.4% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  9,822 trades |  +59,777.4 pips |  +6.086 avg | 62.5% WR | DD 1,165
+  Max  8 pos: 15,143 trades |  +94,463.7 pips |  +6.238 avg | 62.1% WR | DD 1,395
+  Max 10 pos: 18,347 trades | +113,779.8 pips |  +6.202 avg | 61.8% WR | DD 1,510
+  Max 12 pos: 21,169 trades | +122,086.4 pips |  +5.767 avg | 61.8% WR | DD 2,139
+  Max 15 pos: 24,315 trades | +134,990.5 pips |  +5.552 avg | 61.6% WR | DD 2,849
+  Max 20 pos: 26,176 trades | +148,087.6 pips |  +5.657 avg | 61.6% WR | DD 2,319
+
+====================================================================================================
+01:42:36 |
+Total runtime: 825.8s (13.8min)
+[11/32] Baseline - Window 10
+01:42:46 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+01:42:46 |   616 profitable slots from 625 total
+01:42:46 |   Thresholds: ET=0.4, XT=0.2
+01:42:46 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+01:42:46 |   616 slot configs loaded
+01:42:46 |
+Simulation config:
+01:42:46 |   Max positions: 15
+01:42:46 |   Slippage:      0.3 pips/side
+01:42:46 |   Entry delay:   0 bars (0min)
+01:42:46 |   Friday exit:   OFF
+01:42:46 |   Max spread:    5.0 pips
+01:42:46 |   Regime window: 10min (2 bars)
+01:42:46 |   Windows:       48 (30-min UTC slots)
+01:42:46 |   Numba:         YES
+01:42:46 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+01:43:26 |   AUD_CAD: 4,357 trades (40.6s)
+01:44:15 |   AUD_JPY: 4,186 trades (48.3s)
+01:44:54 |   AUD_NZD: 4,070 trades (39.6s)
+01:45:25 |   AUD_USD: 4,359 trades (31.2s)
+01:46:07 |   CAD_JPY: 4,216 trades (41.7s)
+01:46:53 |   CHF_JPY: 4,080 trades (45.4s)
+01:47:32 |   EUR_AUD: 4,241 trades (39.1s)
+01:48:04 |   EUR_GBP: 4,598 trades (32.6s)
+01:48:43 |   EUR_JPY: 4,162 trades (38.8s)
+01:49:23 |   EUR_USD: 4,461 trades (39.8s)
+01:50:15 |   GBP_AUD: 3,737 trades (52.6s)
+01:51:03 |   GBP_JPY: 4,212 trades (47.9s)
+01:51:41 |   GBP_USD: 4,461 trades (37.8s)
+01:52:18 |   NZD_CAD: 4,224 trades (36.3s)
+01:53:01 |   NZD_JPY: 4,097 trades (43.8s)
+01:53:34 |   NZD_USD: 4,295 trades (32.5s)
+01:54:09 |   USD_CAD: 4,467 trades (35.1s)
+01:54:38 |   USD_CHF: 4,378 trades (28.9s)
+01:55:19 |   USD_JPY: 4,061 trades (41.3s)
+01:55:19 |
+Total trades generated: 80,662
+01:55:19 |
+Running portfolio simulation...
+01:55:20 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_20260223_015520.csv (18,798 rows)
+01:55:21 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_20260223_015520.csv (18,798 rows)
+01:55:21 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_20260223_015520.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            18,798 (23.3%)
+  Rejected (margin):   7,339 (9.1%)
+  Rejected (pair busy):54,525 (67.6%)
+
+── PERFORMANCE ──
+  Total P&L:           +68,865.7 pips
+  Avg per trade:       +3.663 pips
+  Win rate:            50.0%
+  Profit factor:       1.209
+  Max drawdown:        3,825.0 pips
+  Avg win:             +42.3 pips
+  Avg loss:            -35.1 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.4
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        1,461 (7.8%) | -9,397.8 pips (-6.432 avg)
+  Timed exits:         17,337 (92.2%) | +78,263.5 pips (+4.514 avg)
+
+── HOLD TIME ──
+  Mean:                223 bars (18.6h)
+  Median:              192 bars (16.0h)
+  P25:                 108 bars (9.0h)
+  P75:                 336 bars (28.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,365 trades |  +15,051.3 pips |  +4.473 avg | 52.7% WR | PF 1.433 | DD 826
+  2022:  4,262 trades |  +25,760.7 pips |  +6.044 avg | 50.6% WR | PF 1.325 | DD 1,592
+  2023:  3,919 trades |   +8,043.1 pips |  +2.052 avg | 49.2% WR | PF 1.103 | DD 2,514
+  2024:  3,522 trades |  +14,566.5 pips |  +4.136 avg | 50.1% WR | PF 1.230 | DD 3,350
+  2025:  3,520 trades |   +5,048.6 pips |  +1.434 avg | 47.9% WR | PF 1.072 | DD 3,846
+  2026:    210 trades |     +395.5 pips |  +1.883 avg | 46.2% WR | PF 1.109 | DD 931
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY:   985 trades |  +12,496.2 pips | +12.686 avg | 52.7% WR
+   GBP_AUD:   925 trades |   +9,897.0 pips | +10.699 avg | 52.5% WR
+   AUD_JPY:   981 trades |   +6,402.2 pips |  +6.526 avg | 53.0% WR
+   EUR_JPY:   995 trades |   +5,684.9 pips |  +5.713 avg | 49.3% WR
+   NZD_JPY:   949 trades |   +4,776.5 pips |  +5.033 avg | 51.8% WR
+   GBP_USD: 1,021 trades |   +4,489.6 pips |  +4.397 avg | 49.6% WR
+   EUR_AUD: 1,022 trades |   +3,496.7 pips |  +3.421 avg | 48.9% WR
+   AUD_USD: 1,021 trades |   +3,399.6 pips |  +3.330 avg | 53.3% WR
+   CAD_JPY:   984 trades |   +3,264.8 pips |  +3.318 avg | 50.6% WR
+   USD_CHF:   995 trades |   +2,768.3 pips |  +2.782 avg | 47.8% WR
+   EUR_USD: 1,025 trades |   +2,760.3 pips |  +2.693 avg | 48.8% WR
+   USD_CAD: 1,021 trades |   +1,967.2 pips |  +1.927 avg | 49.9% WR
+   CHF_JPY:   983 trades |   +1,722.6 pips |  +1.752 avg | 49.4% WR
+   NZD_CAD:   958 trades |   +1,590.4 pips |  +1.660 avg | 49.8% WR
+   USD_JPY:   960 trades |   +1,451.0 pips |  +1.511 avg | 49.0% WR
+   NZD_USD:   979 trades |   +1,302.9 pips |  +1.331 avg | 50.5% WR
+   AUD_NZD:   970 trades |     +585.1 pips |  +0.603 avg | 49.0% WR
+   AUD_CAD:   999 trades |     +544.2 pips |  +0.545 avg | 46.8% WR
+   EUR_GBP: 1,025 trades |     +266.2 pips |  +0.260 avg | 48.0% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  7,219 trades |  +24,075.7 pips |  +3.335 avg | 49.9% WR | DD 3,062
+  Max  8 pos: 11,403 trades |  +44,450.4 pips |  +3.898 avg | 50.2% WR | DD 3,414
+  Max 10 pos: 13,817 trades |  +55,528.3 pips |  +4.019 avg | 50.1% WR | DD 4,469
+  Max 12 pos: 16,128 trades |  +57,866.1 pips |  +3.588 avg | 50.1% WR | DD 5,860
+  Max 15 pos: 18,798 trades |  +68,865.7 pips |  +3.663 avg | 50.0% WR | DD 3,846
+  Max 20 pos: 20,536 trades |  +84,462.8 pips |  +4.113 avg | 50.1% WR | DD 3,966
+
+====================================================================================================
+01:55:22 |
+Total runtime: 756.1s (12.6min)
+[12/32] Baseline - Window 10 + Friday exit
+01:55:33 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+01:55:33 |   616 profitable slots from 625 total
+01:55:33 |   Thresholds: ET=0.4, XT=0.2
+01:55:33 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+01:55:33 |   616 slot configs loaded
+01:55:33 |
+Simulation config:
+01:55:33 |   Max positions: 15
+01:55:33 |   Slippage:      0.3 pips/side
+01:55:33 |   Entry delay:   0 bars (0min)
+01:55:33 |   Friday exit:   20:00 UTC
+01:55:33 |   Max spread:    5.0 pips
+01:55:33 |   Regime window: 10min (2 bars)
+01:55:33 |   Windows:       48 (30-min UTC slots)
+01:55:33 |   Numba:         YES
+01:55:33 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+01:56:16 |   AUD_CAD: 4,357 trades (43.1s)
+01:57:09 |   AUD_JPY: 4,186 trades (52.6s)
+01:57:54 |   AUD_NZD: 4,070 trades (44.6s)
+01:58:30 |   AUD_USD: 4,359 trades (36.3s)
+01:59:15 |   CAD_JPY: 4,216 trades (45.2s)
+02:00:07 |   CHF_JPY: 4,080 trades (52.0s)
+02:00:57 |   EUR_AUD: 4,241 trades (49.8s)
+02:01:35 |   EUR_GBP: 4,598 trades (38.1s)
+02:02:18 |   EUR_JPY: 4,162 trades (43.0s)
+02:03:02 |   EUR_USD: 4,461 trades (44.1s)
+02:04:00 |   GBP_AUD: 3,737 trades (57.6s)
+02:04:53 |   GBP_JPY: 4,212 trades (52.8s)
+02:05:36 |   GBP_USD: 4,461 trades (43.1s)
+02:06:16 |   NZD_CAD: 4,224 trades (40.7s)
+02:07:05 |   NZD_JPY: 4,097 trades (48.2s)
+02:07:41 |   NZD_USD: 4,295 trades (36.8s)
+02:08:22 |   USD_CAD: 4,467 trades (40.4s)
+02:08:56 |   USD_CHF: 4,378 trades (34.0s)
+02:09:40 |   USD_JPY: 4,061 trades (44.6s)
+02:09:41 |
+Total trades generated: 80,662
+02:09:41 |
+Running portfolio simulation...
+02:09:42 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_friexit20_20260223_020942.csv (19,392 rows)
+02:09:43 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_friexit20_20260223_020942.csv (19,392 rows)
+02:09:43 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_friexit20_20260223_020942.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            19,392 (24.0%)
+  Rejected (margin):   7,305 (9.1%)
+  Rejected (pair busy):53,965 (66.9%)
+
+── PERFORMANCE ──
+  Total P&L:           +67,089.1 pips
+  Avg per trade:       +3.460 pips
+  Win rate:            50.1%
+  Profit factor:       1.203
+  Max drawdown:        4,784.4 pips
+  Avg win:             +40.9 pips
+  Avg loss:            -34.2 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.9
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        1,501 (7.7%) | -9,660.8 pips (-6.436 avg)
+  Timed exits:         16,265 (83.9%) | +68,575.8 pips (+4.216 avg)
+  Friday exits:        1,626 (8.4%) | +8,174.1 pips (+5.027 avg)
+
+── HOLD TIME ──
+  Mean:                210 bars (17.5h)
+  Median:              192 bars (16.0h)
+  P25:                 108 bars (9.0h)
+  P75:                 288 bars (24.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,377 trades |  +15,674.5 pips |  +4.642 avg | 52.9% WR | PF 1.457 | DD 987
+  2022:  4,369 trades |  +24,571.3 pips |  +5.624 avg | 51.1% WR | PF 1.307 | DD 1,714
+  2023:  4,063 trades |  +10,020.5 pips |  +2.466 avg | 49.0% WR | PF 1.129 | DD 2,403
+  2024:  3,715 trades |  +14,082.7 pips |  +3.791 avg | 49.7% WR | PF 1.218 | DD 2,334
+  2025:  3,651 trades |   +1,805.9 pips |  +0.495 avg | 48.2% WR | PF 1.026 | DD 4,859
+  2026:    217 trades |     +934.2 pips |  +4.305 avg | 47.5% WR | PF 1.281 | DD 929
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_AUD:   950 trades |  +10,809.6 pips | +11.379 avg | 53.6% WR
+   GBP_JPY: 1,016 trades |  +10,102.9 pips |  +9.944 avg | 52.8% WR
+   EUR_JPY: 1,015 trades |   +7,759.0 pips |  +7.644 avg | 51.6% WR
+   CAD_JPY: 1,017 trades |   +5,337.3 pips |  +5.248 avg | 51.6% WR
+   AUD_JPY: 1,032 trades |   +5,257.8 pips |  +5.095 avg | 51.8% WR
+   NZD_JPY:   995 trades |   +3,885.7 pips |  +3.905 avg | 51.5% WR
+   GBP_USD: 1,046 trades |   +3,832.3 pips |  +3.664 avg | 49.9% WR
+   EUR_AUD: 1,065 trades |   +3,784.1 pips |  +3.553 avg | 49.9% WR
+   CHF_JPY: 1,004 trades |   +3,087.2 pips |  +3.075 avg | 49.5% WR
+   EUR_USD: 1,068 trades |   +3,020.0 pips |  +2.828 avg | 49.5% WR
+   USD_CHF: 1,022 trades |   +2,361.7 pips |  +2.311 avg | 47.3% WR
+   AUD_USD: 1,052 trades |   +2,292.7 pips |  +2.179 avg | 52.2% WR
+   USD_CAD: 1,042 trades |   +1,843.6 pips |  +1.769 avg | 49.0% WR
+   EUR_GBP: 1,054 trades |   +1,220.9 pips |  +1.158 avg | 49.3% WR
+   NZD_USD: 1,020 trades |   +1,121.5 pips |  +1.100 avg | 50.5% WR
+   NZD_CAD: 1,010 trades |   +1,095.6 pips |  +1.085 avg | 48.5% WR
+   AUD_NZD:   984 trades |     +608.4 pips |  +0.618 avg | 48.7% WR
+   USD_JPY:   980 trades |      -76.7 pips |  -0.078 avg | 48.7% WR
+   AUD_CAD: 1,020 trades |     -254.5 pips |  -0.250 avg | 46.8% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  7,384 trades |  +21,350.9 pips |  +2.892 avg | 49.7% WR | DD 3,012
+  Max  8 pos: 11,685 trades |  +45,301.2 pips |  +3.877 avg | 50.0% WR | DD 2,834
+  Max 10 pos: 14,265 trades |  +53,392.9 pips |  +3.743 avg | 50.2% WR | DD 4,634
+  Max 12 pos: 16,638 trades |  +59,385.2 pips |  +3.569 avg | 50.2% WR | DD 6,574
+  Max 15 pos: 19,392 trades |  +67,089.1 pips |  +3.460 avg | 50.1% WR | DD 4,859
+  Max 20 pos: 21,169 trades |  +86,366.6 pips |  +4.080 avg | 50.3% WR | DD 3,474
+
+====================================================================================================
+02:09:44 |
+Total runtime: 850.7s (14.2min)
+[13/32] Baseline - Window 20
+02:09:56 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+02:09:56 |   616 profitable slots from 625 total
+02:09:56 |   Thresholds: ET=0.4, XT=0.2
+02:09:56 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+02:09:56 |   616 slot configs loaded
+02:09:56 |
+Simulation config:
+02:09:56 |   Max positions: 15
+02:09:56 |   Slippage:      0.3 pips/side
+02:09:56 |   Entry delay:   0 bars (0min)
+02:09:56 |   Friday exit:   OFF
+02:09:56 |   Max spread:    5.0 pips
+02:09:56 |   Regime window: 20min (4 bars)
+02:09:56 |   Windows:       48 (30-min UTC slots)
+02:09:56 |   Numba:         YES
+02:09:56 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+02:10:35 |   AUD_CAD: 4,357 trades (38.8s)
+02:11:20 |   AUD_JPY: 4,186 trades (45.4s)
+02:11:59 |   AUD_NZD: 4,070 trades (39.0s)
+02:12:30 |   AUD_USD: 4,359 trades (30.6s)
+02:13:10 |   CAD_JPY: 4,216 trades (40.5s)
+02:13:54 |   CHF_JPY: 4,080 trades (43.9s)
+02:14:33 |   EUR_AUD: 4,241 trades (39.1s)
+02:15:06 |   EUR_GBP: 4,598 trades (32.5s)
+02:15:44 |   EUR_JPY: 4,162 trades (37.6s)
+02:16:22 |   EUR_USD: 4,461 trades (38.1s)
+02:17:14 |   GBP_AUD: 3,737 trades (52.3s)
+02:17:59 |   GBP_JPY: 4,212 trades (45.5s)
+02:18:38 |   GBP_USD: 4,461 trades (38.8s)
+02:19:16 |   NZD_CAD: 4,224 trades (37.5s)
+02:20:04 |   NZD_JPY: 4,097 trades (48.3s)
+02:20:38 |   NZD_USD: 4,295 trades (33.5s)
+02:21:14 |   USD_CAD: 4,467 trades (36.3s)
+02:21:44 |   USD_CHF: 4,378 trades (29.7s)
+02:22:24 |   USD_JPY: 4,061 trades (40.4s)
+02:22:24 |
+Total trades generated: 80,662
+02:22:24 |
+Running portfolio simulation...
+02:22:25 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_20260223_022225.csv (20,946 rows)
+02:22:26 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_20260223_022225.csv (20,946 rows)
+02:22:26 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_20260223_022225.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            20,946 (26.0%)
+  Rejected (margin):   7,096 (8.8%)
+  Rejected (pair busy):52,620 (65.2%)
+
+── PERFORMANCE ──
+  Total P&L:           +69,146.4 pips
+  Avg per trade:       +3.301 pips
+  Win rate:            45.5%
+  Profit factor:       1.211
+  Max drawdown:        5,419.4 pips
+  Avg win:             +41.7 pips
+  Avg loss:            -28.8 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.4
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        3,974 (19.0%) | -25,047.5 pips (-6.303 avg)
+  Timed exits:         16,972 (81.0%) | +94,193.9 pips (+5.550 avg)
+
+── HOLD TIME ──
+  Mean:                197 bars (16.4h)
+  Median:              168 bars (14.0h)
+  P25:                 60 bars (5.0h)
+  P75:                 288 bars (24.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,604 trades |  +15,307.1 pips |  +4.247 avg | 48.3% WR | PF 1.450 | DD 949
+  2022:  4,756 trades |  +28,118.3 pips |  +5.912 avg | 46.4% WR | PF 1.356 | DD 1,644
+  2023:  4,416 trades |   +9,395.2 pips |  +2.128 avg | 45.0% WR | PF 1.121 | DD 2,914
+  2024:  3,972 trades |  +16,133.6 pips |  +4.062 avg | 45.4% WR | PF 1.262 | DD 2,735
+  2025:  3,978 trades |     +191.4 pips |  +0.048 avg | 42.5% WR | PF 1.003 | DD 5,348
+  2026:    220 trades |       +0.8 pips |  +0.004 avg | 43.2% WR | PF 1.000 | DD 937
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY: 1,102 trades |  +12,654.3 pips | +11.483 avg | 48.0% WR
+   GBP_AUD: 1,034 trades |   +8,707.3 pips |  +8.421 avg | 48.1% WR
+   AUD_JPY: 1,076 trades |   +8,278.7 pips |  +7.694 avg | 49.4% WR
+   EUR_JPY: 1,088 trades |   +5,924.6 pips |  +5.445 avg | 45.1% WR
+   GBP_USD: 1,133 trades |   +4,951.7 pips |  +4.370 avg | 45.8% WR
+   EUR_USD: 1,162 trades |   +4,735.7 pips |  +4.075 avg | 45.9% WR
+   CAD_JPY: 1,114 trades |   +4,131.6 pips |  +3.709 avg | 46.5% WR
+   NZD_JPY: 1,038 trades |   +3,907.1 pips |  +3.764 avg | 47.0% WR
+   EUR_AUD: 1,107 trades |   +3,331.8 pips |  +3.010 avg | 46.1% WR
+   USD_CAD: 1,145 trades |   +2,826.5 pips |  +2.469 avg | 45.8% WR
+   USD_CHF: 1,130 trades |   +2,183.0 pips |  +1.932 avg | 43.0% WR
+   AUD_USD: 1,145 trades |   +1,614.6 pips |  +1.410 avg | 46.1% WR
+   NZD_CAD: 1,053 trades |   +1,522.8 pips |  +1.446 avg | 45.5% WR
+   CHF_JPY: 1,129 trades |   +1,262.5 pips |  +1.118 avg | 43.8% WR
+   AUD_NZD: 1,048 trades |   +1,120.5 pips |  +1.069 avg | 45.5% WR
+   USD_JPY: 1,055 trades |     +729.4 pips |  +0.691 avg | 43.1% WR
+   AUD_CAD: 1,113 trades |     +706.6 pips |  +0.635 avg | 42.6% WR
+   NZD_USD: 1,102 trades |     +372.5 pips |  +0.338 avg | 45.1% WR
+   EUR_GBP: 1,172 trades |     +185.2 pips |  +0.158 avg | 42.1% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  8,151 trades |  +25,835.1 pips |  +3.170 avg | 45.6% WR | DD 2,226
+  Max  8 pos: 12,773 trades |  +36,645.1 pips |  +2.869 avg | 45.4% WR | DD 3,554
+  Max 10 pos: 15,614 trades |  +54,720.9 pips |  +3.505 avg | 45.7% WR | DD 3,798
+  Max 12 pos: 18,096 trades |  +57,286.1 pips |  +3.166 avg | 45.5% WR | DD 8,363
+  Max 15 pos: 20,946 trades |  +69,146.4 pips |  +3.301 avg | 45.5% WR | DD 5,348
+  Max 20 pos: 22,926 trades |  +85,208.4 pips |  +3.717 avg | 45.3% WR | DD 4,536
+
+====================================================================================================
+02:22:27 |
+Total runtime: 750.8s (12.5min)
+[14/32] Baseline - Window 20 + Friday exit
+02:22:38 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+02:22:38 |   616 profitable slots from 625 total
+02:22:38 |   Thresholds: ET=0.4, XT=0.2
+02:22:38 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+02:22:38 |   616 slot configs loaded
+02:22:38 |
+Simulation config:
+02:22:38 |   Max positions: 15
+02:22:38 |   Slippage:      0.3 pips/side
+02:22:38 |   Entry delay:   0 bars (0min)
+02:22:38 |   Friday exit:   20:00 UTC
+02:22:38 |   Max spread:    5.0 pips
+02:22:38 |   Regime window: 20min (4 bars)
+02:22:38 |   Windows:       48 (30-min UTC slots)
+02:22:38 |   Numba:         YES
+02:22:38 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+02:23:22 |   AUD_CAD: 4,357 trades (43.1s)
+02:24:12 |   AUD_JPY: 4,186 trades (50.2s)
+02:24:56 |   AUD_NZD: 4,070 trades (44.4s)
+02:25:31 |   AUD_USD: 4,359 trades (35.0s)
+02:26:16 |   CAD_JPY: 4,216 trades (44.8s)
+02:27:06 |   CHF_JPY: 4,080 trades (49.6s)
+02:27:50 |   EUR_AUD: 4,241 trades (44.1s)
+02:28:27 |   EUR_GBP: 4,598 trades (37.1s)
+02:29:10 |   EUR_JPY: 4,162 trades (42.8s)
+02:29:53 |   EUR_USD: 4,461 trades (43.0s)
+02:30:49 |   GBP_AUD: 3,737 trades (56.0s)
+02:31:42 |   GBP_JPY: 4,212 trades (53.7s)
+02:32:25 |   GBP_USD: 4,461 trades (42.6s)
+02:33:06 |   NZD_CAD: 4,224 trades (41.0s)
+02:33:54 |   NZD_JPY: 4,097 trades (47.9s)
+02:34:31 |   NZD_USD: 4,295 trades (37.2s)
+02:35:14 |   USD_CAD: 4,467 trades (42.9s)
+02:35:48 |   USD_CHF: 4,378 trades (33.6s)
+02:36:31 |   USD_JPY: 4,061 trades (42.9s)
+02:36:31 |
+Total trades generated: 80,662
+02:36:31 |
+Running portfolio simulation...
+02:36:32 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_friexit20_20260223_023631.csv (21,605 rows)
+02:36:32 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_friexit20_20260223_023631.csv (21,605 rows)
+02:36:32 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_friexit20_20260223_023631.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            21,605 (26.8%)
+  Rejected (margin):   7,031 (8.7%)
+  Rejected (pair busy):52,026 (64.5%)
+
+── PERFORMANCE ──
+  Total P&L:           +78,232.8 pips
+  Avg per trade:       +3.621 pips
+  Win rate:            45.7%
+  Profit factor:       1.241
+  Max drawdown:        3,758.1 pips
+  Avg win:             +40.8 pips
+  Avg loss:            -27.8 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.8
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        4,113 (19.0%) | -25,818.2 pips (-6.277 avg)
+  Timed exits:         15,896 (73.6%) | +90,495.6 pips (+5.693 avg)
+  Friday exits:        1,596 (7.4%) | +13,555.4 pips (+8.493 avg)
+
+── HOLD TIME ──
+  Mean:                186 bars (15.5h)
+  Median:              168 bars (14.0h)
+  P25:                 48 bars (4.0h)
+  P75:                 288 bars (24.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,625 trades |  +15,878.4 pips |  +4.380 avg | 48.6% WR | PF 1.470 | DD 1,080
+  2022:  4,858 trades |  +28,354.2 pips |  +5.837 avg | 47.0% WR | PF 1.360 | DD 1,630
+  2023:  4,537 trades |  +10,855.8 pips |  +2.393 avg | 44.9% WR | PF 1.141 | DD 2,475
+  2024:  4,218 trades |  +17,472.1 pips |  +4.142 avg | 44.6% WR | PF 1.278 | DD 2,470
+  2025:  4,145 trades |   +5,218.1 pips |  +1.259 avg | 43.9% WR | PF 1.075 | DD 3,834
+  2026:    222 trades |     +454.2 pips |  +2.046 avg | 45.0% WR | PF 1.140 | DD 930
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY: 1,126 trades |  +11,301.4 pips | +10.037 avg | 47.8% WR
+   GBP_AUD: 1,073 trades |   +8,746.0 pips |  +8.151 avg | 47.1% WR
+   AUD_JPY: 1,117 trades |   +7,469.8 pips |  +6.687 avg | 49.0% WR
+   EUR_JPY: 1,137 trades |   +6,316.6 pips |  +5.555 avg | 44.9% WR
+   CAD_JPY: 1,138 trades |   +6,230.0 pips |  +5.475 avg | 47.0% WR
+   GBP_USD: 1,161 trades |   +5,088.5 pips |  +4.383 avg | 47.1% WR
+   NZD_JPY: 1,100 trades |   +4,822.0 pips |  +4.384 avg | 47.7% WR
+   EUR_AUD: 1,154 trades |   +4,735.5 pips |  +4.104 avg | 46.7% WR
+   EUR_USD: 1,209 trades |   +3,778.6 pips |  +3.125 avg | 44.6% WR
+   CHF_JPY: 1,157 trades |   +3,435.1 pips |  +2.969 avg | 44.9% WR
+   USD_JPY: 1,096 trades |   +3,329.9 pips |  +3.038 avg | 44.5% WR
+   USD_CHF: 1,157 trades |   +2,900.0 pips |  +2.506 avg | 43.1% WR
+   USD_CAD: 1,146 trades |   +2,572.4 pips |  +2.245 avg | 45.9% WR
+   AUD_USD: 1,188 trades |   +2,044.1 pips |  +1.721 avg | 45.9% WR
+   AUD_NZD: 1,078 trades |   +1,632.8 pips |  +1.515 avg | 46.7% WR
+   NZD_CAD: 1,102 trades |   +1,511.0 pips |  +1.371 avg | 45.4% WR
+   NZD_USD: 1,130 trades |   +1,180.9 pips |  +1.045 avg | 45.7% WR
+   EUR_GBP: 1,191 trades |     +990.8 pips |  +0.832 avg | 43.5% WR
+   AUD_CAD: 1,145 trades |     +147.4 pips |  +0.129 avg | 42.3% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  8,361 trades |  +25,212.9 pips |  +3.016 avg | 45.9% WR | DD 1,448
+  Max  8 pos: 13,157 trades |  +44,082.9 pips |  +3.351 avg | 46.0% WR | DD 2,676
+  Max 10 pos: 16,065 trades |  +55,223.5 pips |  +3.438 avg | 46.1% WR | DD 4,457
+  Max 12 pos: 18,624 trades |  +58,943.7 pips |  +3.165 avg | 45.7% WR | DD 6,455
+  Max 15 pos: 21,605 trades |  +78,232.8 pips |  +3.621 avg | 45.7% WR | DD 3,834
+  Max 20 pos: 23,641 trades |  +93,734.0 pips |  +3.965 avg | 45.7% WR | DD 4,719
+
+====================================================================================================
+02:36:33 |
+Total runtime: 834.8s (13.9min)
+[15/32] Baseline - Window 30
+02:36:44 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+02:36:44 |   616 profitable slots from 625 total
+02:36:44 |   Thresholds: ET=0.4, XT=0.2
+02:36:44 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+02:36:44 |   616 slot configs loaded
+02:36:44 |
+Simulation config:
+02:36:44 |   Max positions: 15
+02:36:44 |   Slippage:      0.3 pips/side
+02:36:44 |   Entry delay:   0 bars (0min)
+02:36:44 |   Friday exit:   OFF
+02:36:44 |   Max spread:    5.0 pips
+02:36:44 |   Regime window: 30min (6 bars)
+02:36:44 |   Windows:       48 (30-min UTC slots)
+02:36:44 |   Numba:         YES
+02:36:44 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+02:37:23 |   AUD_CAD: 4,357 trades (38.9s)
+02:38:11 |   AUD_JPY: 4,186 trades (48.0s)
+02:38:52 |   AUD_NZD: 4,070 trades (40.8s)
+02:39:24 |   AUD_USD: 4,359 trades (31.7s)
+02:40:08 |   CAD_JPY: 4,216 trades (44.0s)
+02:40:51 |   CHF_JPY: 4,080 trades (42.9s)
+02:41:30 |   EUR_AUD: 4,241 trades (39.2s)
+02:42:02 |   EUR_GBP: 4,598 trades (32.2s)
+02:42:40 |   EUR_JPY: 4,162 trades (37.8s)
+02:43:20 |   EUR_USD: 4,461 trades (40.1s)
+02:44:13 |   GBP_AUD: 3,737 trades (53.2s)
+02:45:02 |   GBP_JPY: 4,212 trades (49.2s)
+02:45:42 |   GBP_USD: 4,461 trades (39.4s)
+02:46:18 |   NZD_CAD: 4,224 trades (36.5s)
+02:47:03 |   NZD_JPY: 4,097 trades (44.4s)
+02:47:35 |   NZD_USD: 4,295 trades (32.5s)
+02:48:10 |   USD_CAD: 4,467 trades (35.1s)
+02:48:39 |   USD_CHF: 4,378 trades (28.7s)
+02:49:21 |   USD_JPY: 4,061 trades (41.9s)
+02:49:21 |
+Total trades generated: 80,662
+02:49:21 |
+Running portfolio simulation...
+02:49:22 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_20260223_024922.csv (22,760 rows)
+02:49:23 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_20260223_024922.csv (22,760 rows)
+02:49:23 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_20260223_024922.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            22,760 (28.2%)
+  Rejected (margin):   6,959 (8.6%)
+  Rejected (pair busy):50,943 (63.2%)
+
+── PERFORMANCE ──
+  Total P&L:           +90,123.4 pips
+  Avg per trade:       +3.960 pips
+  Win rate:            42.9%
+  Profit factor:       1.283
+  Max drawdown:        3,010.3 pips
+  Avg win:             +41.9 pips
+  Avg loss:            -24.6 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.3
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        6,171 (27.1%) | -37,694.2 pips (-6.108 avg)
+  Timed exits:         16,589 (72.9%) | +127,817.6 pips (+7.705 avg)
+
+── HOLD TIME ──
+  Mean:                179 bars (14.9h)
+  Median:              144 bars (12.0h)
+  P25:                 6 bars (0.5h)
+  P75:                 288 bars (24.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,756 trades |  +15,395.4 pips |  +4.099 avg | 46.0% WR | PF 1.465 | DD 878
+  2022:  5,168 trades |  +31,420.4 pips |  +6.080 avg | 44.3% WR | PF 1.404 | DD 1,823
+  2023:  4,832 trades |  +12,987.5 pips |  +2.688 avg | 42.3% WR | PF 1.173 | DD 2,783
+  2024:  4,383 trades |  +17,494.1 pips |  +3.991 avg | 41.6% WR | PF 1.283 | DD 3,126
+  2025:  4,393 trades |  +12,704.5 pips |  +2.892 avg | 40.7% WR | PF 1.188 | DD 2,153
+  2026:    228 trades |     +121.5 pips |  +0.533 avg | 41.2% WR | PF 1.036 | DD 908
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY: 1,210 trades |  +15,846.1 pips | +13.096 avg | 45.0% WR
+   GBP_AUD: 1,155 trades |   +9,864.9 pips |  +8.541 avg | 45.2% WR
+   GBP_USD: 1,265 trades |   +6,714.9 pips |  +5.308 avg | 42.5% WR
+   AUD_JPY: 1,172 trades |   +6,262.5 pips |  +5.343 avg | 45.6% WR
+   USD_JPY: 1,156 trades |   +6,217.6 pips |  +5.379 avg | 43.4% WR
+   NZD_JPY: 1,130 trades |   +6,021.8 pips |  +5.329 avg | 44.8% WR
+   CAD_JPY: 1,214 trades |   +5,570.6 pips |  +4.589 avg | 42.8% WR
+   EUR_AUD: 1,192 trades |   +5,052.9 pips |  +4.239 avg | 42.3% WR
+   CHF_JPY: 1,209 trades |   +4,933.7 pips |  +4.081 avg | 42.8% WR
+   EUR_JPY: 1,198 trades |   +4,441.6 pips |  +3.708 avg | 40.7% WR
+   EUR_USD: 1,241 trades |   +4,368.3 pips |  +3.520 avg | 43.8% WR
+   USD_CAD: 1,222 trades |   +3,044.3 pips |  +2.491 avg | 43.9% WR
+   USD_CHF: 1,209 trades |   +2,598.9 pips |  +2.150 avg | 40.3% WR
+   NZD_CAD: 1,146 trades |   +2,512.4 pips |  +2.192 avg | 43.0% WR
+   AUD_USD: 1,226 trades |   +2,282.8 pips |  +1.862 avg | 43.7% WR
+   NZD_USD: 1,185 trades |   +2,263.6 pips |  +1.910 avg | 44.0% WR
+   AUD_NZD: 1,146 trades |   +1,329.6 pips |  +1.160 avg | 42.9% WR
+   AUD_CAD: 1,225 trades |     +902.9 pips |  +0.737 avg | 39.6% WR
+   EUR_GBP: 1,259 trades |     -106.0 pips |  -0.084 avg | 39.6% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  8,854 trades |  +33,307.1 pips |  +3.762 avg | 43.2% WR | DD 1,374
+  Max  8 pos: 13,963 trades |  +53,567.0 pips |  +3.836 avg | 43.1% WR | DD 2,662
+  Max 10 pos: 17,069 trades |  +65,732.2 pips |  +3.851 avg | 42.8% WR | DD 3,459
+  Max 12 pos: 19,627 trades |  +71,911.5 pips |  +3.664 avg | 42.7% WR | DD 2,803
+  Max 15 pos: 22,760 trades |  +90,123.4 pips |  +3.960 avg | 42.9% WR | DD 3,126
+  Max 20 pos: 24,896 trades | +111,396.7 pips |  +4.474 avg | 43.0% WR | DD 3,444
+
+====================================================================================================
+02:49:24 |
+Total runtime: 759.7s (12.7min)
+[16/32] Baseline - Window 30 + Friday exit
+02:49:35 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+02:49:35 |   616 profitable slots from 625 total
+02:49:35 |   Thresholds: ET=0.4, XT=0.2
+02:49:35 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+02:49:35 |   616 slot configs loaded
+02:49:35 |
+Simulation config:
+02:49:35 |   Max positions: 15
+02:49:35 |   Slippage:      0.3 pips/side
+02:49:35 |   Entry delay:   0 bars (0min)
+02:49:35 |   Friday exit:   20:00 UTC
+02:49:35 |   Max spread:    5.0 pips
+02:49:35 |   Regime window: 30min (6 bars)
+02:49:35 |   Windows:       48 (30-min UTC slots)
+02:49:35 |   Numba:         YES
+02:49:35 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+02:50:17 |   AUD_CAD: 4,357 trades (42.2s)
+02:51:07 |   AUD_JPY: 4,186 trades (49.5s)
+02:51:49 |   AUD_NZD: 4,070 trades (42.4s)
+02:52:23 |   AUD_USD: 4,359 trades (34.3s)
+02:53:07 |   CAD_JPY: 4,216 trades (43.3s)
+02:53:55 |   CHF_JPY: 4,080 trades (48.6s)
+02:54:38 |   EUR_AUD: 4,241 trades (43.1s)
+02:55:15 |   EUR_GBP: 4,598 trades (36.7s)
+02:55:56 |   EUR_JPY: 4,162 trades (41.0s)
+02:56:39 |   EUR_USD: 4,461 trades (42.8s)
+02:57:31 |   GBP_AUD: 3,737 trades (52.0s)
+02:58:22 |   GBP_JPY: 4,212 trades (51.3s)
+02:59:05 |   GBP_USD: 4,461 trades (42.7s)
+02:59:45 |   NZD_CAD: 4,224 trades (40.4s)
+03:00:34 |   NZD_JPY: 4,097 trades (48.8s)
+03:01:10 |   NZD_USD: 4,295 trades (36.0s)
+03:01:50 |   USD_CAD: 4,467 trades (39.5s)
+03:02:22 |   USD_CHF: 4,378 trades (32.1s)
+03:03:05 |   USD_JPY: 4,061 trades (43.2s)
+03:03:05 |
+Total trades generated: 80,662
+03:03:05 |
+Running portfolio simulation...
+03:03:06 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip0.3_friexit20_20260223_030306.csv (23,473 rows)
+03:03:07 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip0.3_friexit20_20260223_030306.csv (23,473 rows)
+03:03:07 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip0.3_friexit20_20260223_030306.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 0.3 pips/side | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       80,662
+  Executed:            23,473 (29.1%)
+  Rejected (margin):   6,902 (8.6%)
+  Rejected (pair busy):50,287 (62.3%)
+
+── PERFORMANCE ──
+  Total P&L:           +96,337.2 pips
+  Avg per trade:       +4.104 pips
+  Win rate:            43.1%
+  Profit factor:       1.304
+  Max drawdown:        3,008.7 pips
+  Avg win:             +40.8 pips
+  Avg loss:            -23.8 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.8
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        6,339 (27.0%) | -38,363.6 pips (-6.052 avg)
+  Timed exits:         15,548 (66.2%) | +117,344.1 pips (+7.547 avg)
+  Friday exits:        1,586 (6.8%) | +17,356.7 pips (+10.944 avg)
+
+── HOLD TIME ──
+  Mean:                169 bars (14.1h)
+  Median:              144 bars (12.0h)
+  P25:                 6 bars (0.5h)
+  P75:                 264 bars (22.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,776 trades |  +15,568.3 pips |  +4.123 avg | 46.0% WR | PF 1.473 | DD 878
+  2022:  5,301 trades |  +33,107.7 pips |  +6.246 avg | 44.8% WR | PF 1.430 | DD 1,838
+  2023:  5,021 trades |  +16,926.5 pips |  +3.371 avg | 42.2% WR | PF 1.228 | DD 2,192
+  2024:  4,608 trades |  +19,754.9 pips |  +4.287 avg | 41.8% WR | PF 1.317 | DD 2,379
+  2025:  4,539 trades |  +10,642.1 pips |  +2.345 avg | 41.2% WR | PF 1.158 | DD 3,355
+  2026:    228 trades |     +337.7 pips |  +1.481 avg | 42.1% WR | PF 1.105 | DD 905
+  Losing years: 0
+
+── PER PAIR ──
+   GBP_JPY: 1,244 trades |  +16,410.7 pips | +13.192 avg | 45.3% WR
+   GBP_AUD: 1,171 trades |   +9,865.2 pips |  +8.425 avg | 44.7% WR
+   GBP_USD: 1,294 trades |   +8,516.9 pips |  +6.582 avg | 44.7% WR
+   AUD_JPY: 1,223 trades |   +7,388.7 pips |  +6.041 avg | 46.0% WR
+   EUR_AUD: 1,244 trades |   +6,720.8 pips |  +5.403 avg | 43.4% WR
+   USD_JPY: 1,181 trades |   +6,517.3 pips |  +5.518 avg | 43.8% WR
+   EUR_JPY: 1,250 trades |   +5,938.2 pips |  +4.751 avg | 42.2% WR
+   NZD_JPY: 1,169 trades |   +5,236.8 pips |  +4.480 avg | 44.1% WR
+   CAD_JPY: 1,230 trades |   +5,002.1 pips |  +4.067 avg | 43.1% WR
+   CHF_JPY: 1,242 trades |   +4,442.9 pips |  +3.577 avg | 43.2% WR
+   EUR_USD: 1,315 trades |   +4,306.1 pips |  +3.275 avg | 42.9% WR
+   USD_CHF: 1,258 trades |   +3,435.7 pips |  +2.731 avg | 39.7% WR
+   USD_CAD: 1,258 trades |   +3,399.3 pips |  +2.702 avg | 43.8% WR
+   NZD_CAD: 1,188 trades |   +2,537.5 pips |  +2.136 avg | 42.8% WR
+   AUD_USD: 1,269 trades |   +2,485.9 pips |  +1.959 avg | 43.4% WR
+   NZD_USD: 1,211 trades |   +2,095.6 pips |  +1.730 avg | 43.7% WR
+   AUD_NZD: 1,172 trades |   +1,096.1 pips |  +0.935 avg | 43.2% WR
+   AUD_CAD: 1,256 trades |     +766.2 pips |  +0.610 avg | 40.0% WR
+   EUR_GBP: 1,298 trades |     +175.2 pips |  +0.135 avg | 39.8% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  9,236 trades |  +31,564.8 pips |  +3.418 avg | 43.7% WR | DD 1,487
+  Max  8 pos: 14,409 trades |  +50,357.7 pips |  +3.495 avg | 43.0% WR | DD 3,411
+  Max 10 pos: 17,494 trades |  +68,489.8 pips |  +3.915 avg | 43.1% WR | DD 3,670
+  Max 12 pos: 20,206 trades |  +76,403.0 pips |  +3.781 avg | 43.2% WR | DD 3,962
+  Max 15 pos: 23,473 trades |  +96,337.2 pips |  +4.104 avg | 43.1% WR | DD 3,356
+  Max 20 pos: 25,711 trades | +117,196.0 pips |  +4.558 avg | 43.2% WR | DD 3,309
+
+====================================================================================================
+03:03:08 |
+Total runtime: 812.8s (13.5min)
+============================================
+ ROUND 2: STRESS (3.0 slip, 10min delay)
+============================================
+[17/32] Stress - Timed only
+03:03:19 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+03:03:19 |   616 profitable slots from 625 total
+03:03:19 |   Thresholds: ET=0.4, XT=0.2
+03:03:19 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+03:03:19 |   616 slot configs loaded
+03:03:19 |
+Simulation config:
+03:03:19 |   Max positions: 15
+03:03:19 |   Slippage:      3.0 pips/side
+03:03:19 |   Entry delay:   2 bars (10min)
+03:03:19 |   Friday exit:   OFF
+03:03:19 |   Max spread:    5.0 pips
+03:03:19 |   Exit mode:     TIMED ONLY (regime exits disabled)
+03:03:19 |   Windows:       48 (30-min UTC slots)
+03:03:19 |   Numba:         YES
+03:03:19 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+03:03:58 |   AUD_CAD: 4,003 trades (38.5s)
+03:04:42 |   AUD_JPY: 3,843 trades (44.4s)
+03:05:21 |   AUD_NZD: 3,689 trades (38.4s)
+03:05:52 |   AUD_USD: 4,000 trades (31.2s)
+03:06:32 |   CAD_JPY: 3,845 trades (40.0s)
+03:07:17 |   CHF_JPY: 3,716 trades (44.9s)
+03:07:56 |   EUR_AUD: 3,860 trades (38.9s)
+03:08:27 |   EUR_GBP: 4,193 trades (31.4s)
+03:09:05 |   EUR_JPY: 3,830 trades (38.4s)
+03:09:44 |   EUR_USD: 4,100 trades (38.6s)
+03:10:38 |   GBP_AUD: 3,309 trades (54.0s)
+03:11:26 |   GBP_JPY: 3,800 trades (47.8s)
+03:12:07 |   GBP_USD: 4,089 trades (41.5s)
+03:12:43 |   NZD_CAD: 3,836 trades (36.0s)
+03:13:29 |   NZD_JPY: 3,721 trades (45.2s)
+03:14:02 |   NZD_USD: 3,958 trades (33.9s)
+03:14:40 |   USD_CAD: 4,114 trades (37.4s)
+03:15:09 |   USD_CHF: 4,016 trades (28.9s)
+03:15:49 |   USD_JPY: 3,757 trades (40.4s)
+03:15:49 |
+Total trades generated: 73,679
+03:15:49 |
+Running portfolio simulation...
+03:15:50 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_20260223_031550.csv (17,335 rows)
+03:15:51 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_20260223_031550.csv (17,335 rows)
+03:15:51 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_20260223_031550.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min)
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            17,335 (23.5%)
+  Rejected (margin):   6,507 (8.8%)
+  Rejected (pair busy):49,837 (67.6%)
+
+── PERFORMANCE ──
+  Total P&L:           -68,603.8 pips
+  Avg per trade:       -3.958 pips
+  Win rate:            45.3%
+  Profit factor:       0.825
+  Max drawdown:        68,768.8 pips
+  Avg win:             +41.2 pips
+  Avg loss:            -41.4 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.4
+
+── EXIT TYPE BREAKDOWN ──
+  Timed exits:         17,335 (100.0%) | -68,603.8 pips (-3.958 avg)
+
+── HOLD TIME ──
+  Mean:                241 bars (20.1h)
+  Median:              216 bars (18.0h)
+  P25:                 120 bars (10.0h)
+  P75:                 336 bars (28.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,134 trades |   -8,640.7 pips |  -2.757 avg | 45.4% WR | PF 0.809 | DD 9,145
+  2022:  3,926 trades |   -7,449.1 pips |  -1.897 avg | 46.9% WR | PF 0.921 | DD 9,151
+  2023:  3,607 trades |  -21,213.6 pips |  -5.881 avg | 44.4% WR | PF 0.772 | DD 21,758
+  2024:  3,240 trades |  -10,635.8 pips |  -3.283 avg | 45.5% WR | PF 0.857 | DD 12,639
+  2025:  3,237 trades |  -19,711.7 pips |  -6.089 avg | 44.0% WR | PF 0.754 | DD 20,559
+  2026:    191 trades |     -952.9 pips |  -4.989 avg | 43.5% WR | PF 0.778 | DD 1,247
+  Losing years: 6
+
+── PER PAIR ──
+   GBP_JPY:   891 trades |   +3,590.0 pips |  +4.029 avg | 51.6% WR
+   GBP_AUD:   837 trades |     +357.7 pips |  +0.427 avg | 48.9% WR
+   AUD_JPY:   912 trades |   -1,591.7 pips |  -1.745 avg | 48.2% WR
+   EUR_JPY:   917 trades |   -2,209.2 pips |  -2.409 avg | 47.2% WR
+   NZD_JPY:   869 trades |   -2,426.7 pips |  -2.793 avg | 46.8% WR
+   EUR_USD:   966 trades |   -3,052.4 pips |  -3.160 avg | 44.1% WR
+   USD_CHF:   921 trades |   -3,159.9 pips |  -3.431 avg | 41.7% WR
+   AUD_USD:   954 trades |   -3,622.4 pips |  -3.797 avg | 46.2% WR
+   GBP_USD:   945 trades |   -3,851.4 pips |  -4.076 avg | 47.3% WR
+   CAD_JPY:   906 trades |   -3,883.5 pips |  -4.286 avg | 47.7% WR
+   EUR_AUD:   937 trades |   -4,310.6 pips |  -4.600 avg | 47.6% WR
+   NZD_CAD:   890 trades |   -4,488.1 pips |  -5.043 avg | 44.3% WR
+   NZD_USD:   897 trades |   -4,962.9 pips |  -5.533 avg | 44.5% WR
+   AUD_NZD:   895 trades |   -5,398.5 pips |  -6.032 avg | 39.4% WR
+   USD_CAD:   943 trades |   -5,705.4 pips |  -6.050 avg | 44.1% WR
+   CHF_JPY:   912 trades |   -5,815.5 pips |  -6.377 avg | 46.4% WR
+   AUD_CAD:   926 trades |   -5,963.1 pips |  -6.440 avg | 40.8% WR
+   USD_JPY:   878 trades |   -5,975.9 pips |  -6.806 avg | 46.1% WR
+   EUR_GBP:   939 trades |   -6,134.3 pips |  -6.533 avg | 37.7% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  6,743 trades |  -24,260.2 pips |  -3.598 avg | 45.7% WR | DD 24,500
+  Max  8 pos: 10,606 trades |  -32,552.7 pips |  -3.069 avg | 45.6% WR | DD 32,734
+  Max 10 pos: 12,875 trades |  -40,358.2 pips |  -3.135 avg | 45.6% WR | DD 40,356
+  Max 12 pos: 14,935 trades |  -58,376.0 pips |  -3.909 avg | 45.1% WR | DD 58,734
+  Max 15 pos: 17,335 trades |  -68,603.8 pips |  -3.958 avg | 45.3% WR | DD 68,726
+  Max 20 pos: 18,859 trades |  -64,811.0 pips |  -3.437 avg | 45.4% WR | DD 64,999
+
+====================================================================================================
+03:15:51 |
+Total runtime: 752.2s (12.5min)
+[18/32] Stress - Timed only + Friday exit
+03:16:02 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+03:16:02 |   616 profitable slots from 625 total
+03:16:02 |   Thresholds: ET=0.4, XT=0.2
+03:16:02 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+03:16:02 |   616 slot configs loaded
+03:16:02 |
+Simulation config:
+03:16:02 |   Max positions: 15
+03:16:02 |   Slippage:      3.0 pips/side
+03:16:02 |   Entry delay:   2 bars (10min)
+03:16:02 |   Friday exit:   20:00 UTC
+03:16:02 |   Max spread:    5.0 pips
+03:16:02 |   Exit mode:     TIMED ONLY (regime exits disabled)
+03:16:02 |   Windows:       48 (30-min UTC slots)
+03:16:02 |   Numba:         YES
+03:16:02 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+03:16:45 |   AUD_CAD: 4,003 trades (43.5s)
+03:17:34 |   AUD_JPY: 3,843 trades (48.4s)
+03:18:17 |   AUD_NZD: 3,689 trades (42.9s)
+03:18:52 |   AUD_USD: 4,000 trades (35.5s)
+03:19:38 |   CAD_JPY: 3,845 trades (45.5s)
+03:20:27 |   CHF_JPY: 3,716 trades (49.6s)
+03:21:12 |   EUR_AUD: 3,860 trades (44.5s)
+03:21:49 |   EUR_GBP: 4,193 trades (36.9s)
+03:22:32 |   EUR_JPY: 3,830 trades (43.4s)
+03:23:15 |   EUR_USD: 4,100 trades (42.9s)
+03:24:12 |   GBP_AUD: 3,309 trades (56.8s)
+03:25:03 |   GBP_JPY: 3,800 trades (50.6s)
+03:25:46 |   GBP_USD: 4,089 trades (42.9s)
+03:26:28 |   NZD_CAD: 3,836 trades (42.4s)
+03:27:15 |   NZD_JPY: 3,721 trades (46.6s)
+03:27:52 |   NZD_USD: 3,958 trades (37.4s)
+03:28:33 |   USD_CAD: 4,114 trades (41.3s)
+03:29:07 |   USD_CHF: 4,016 trades (33.9s)
+03:29:52 |   USD_JPY: 3,757 trades (44.5s)
+03:29:52 |
+Total trades generated: 73,679
+03:29:52 |
+Running portfolio simulation...
+03:29:53 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_friexit20_20260223_032952.csv (17,864 rows)
+03:29:53 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_friexit20_20260223_032952.csv (17,864 rows)
+03:29:53 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_friexit20_20260223_032952.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min) | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            17,864 (24.2%)
+  Rejected (margin):   6,471 (8.8%)
+  Rejected (pair busy):49,344 (67.0%)
+
+── PERFORMANCE ──
+  Total P&L:           -70,583.1 pips
+  Avg per trade:       -3.951 pips
+  Win rate:            45.2%
+  Profit factor:       0.821
+  Max drawdown:        70,752.0 pips
+  Avg win:             +40.2 pips
+  Avg loss:            -40.4 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.9
+
+── EXIT TYPE BREAKDOWN ──
+  Timed exits:         16,068 (89.9%) | -64,325.2 pips (-4.003 avg)
+  Friday exits:        1,796 (10.1%) | -6,257.9 pips (-3.484 avg)
+
+── HOLD TIME ──
+  Mean:                227 bars (19.0h)
+  Median:              211 bars (17.6h)
+  P25:                 120 bars (10.0h)
+  P75:                 336 bars (28.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,148 trades |   -8,173.9 pips |  -2.597 avg | 45.6% WR | PF 0.818 | DD 8,637
+  2022:  4,010 trades |   -8,939.5 pips |  -2.229 avg | 47.0% WR | PF 0.906 | DD 10,947
+  2023:  3,748 trades |  -18,756.8 pips |  -5.004 avg | 44.3% WR | PF 0.795 | DD 19,490
+  2024:  3,394 trades |  -11,197.0 pips |  -3.299 avg | 45.0% WR | PF 0.854 | DD 12,883
+  2025:  3,369 trades |  -23,132.8 pips |  -6.866 avg | 43.8% WR | PF 0.719 | DD 24,055
+  2026:    195 trades |     -383.1 pips |  -1.965 avg | 43.1% WR | PF 0.903 | DD 1,194
+  Losing years: 6
+
+── PER PAIR ──
+   GBP_JPY:   921 trades |   +2,085.4 pips |  +2.264 avg | 51.1% WR
+   GBP_AUD:   854 trades |   +1,058.0 pips |  +1.239 avg | 48.6% WR
+   EUR_JPY:   930 trades |     -628.7 pips |  -0.676 avg | 48.2% WR
+   CAD_JPY:   929 trades |   -2,197.9 pips |  -2.366 avg | 48.7% WR
+   AUD_JPY:   962 trades |   -2,970.9 pips |  -3.088 avg | 46.7% WR
+   NZD_JPY:   918 trades |   -3,309.5 pips |  -3.605 avg | 46.1% WR
+   GBP_USD:   965 trades |   -3,580.7 pips |  -3.711 avg | 47.9% WR
+   USD_CHF:   942 trades |   -3,677.9 pips |  -3.904 avg | 42.7% WR
+   EUR_AUD:   971 trades |   -3,861.6 pips |  -3.977 avg | 47.2% WR
+   EUR_USD:   992 trades |   -4,181.6 pips |  -4.215 avg | 44.4% WR
+   CHF_JPY:   949 trades |   -4,294.6 pips |  -4.525 avg | 46.8% WR
+   AUD_USD:   976 trades |   -4,623.0 pips |  -4.737 avg | 45.7% WR
+   NZD_CAD:   931 trades |   -5,144.2 pips |  -5.525 avg | 43.0% WR
+   NZD_USD:   927 trades |   -5,229.1 pips |  -5.641 avg | 43.6% WR
+   USD_CAD:   963 trades |   -5,316.0 pips |  -5.520 avg | 44.3% WR
+   AUD_NZD:   911 trades |   -5,341.0 pips |  -5.863 avg | 39.6% WR
+   EUR_GBP:   969 trades |   -5,564.5 pips |  -5.743 avg | 38.8% WR
+   USD_JPY:   905 trades |   -6,714.6 pips |  -7.419 avg | 45.7% WR
+   AUD_CAD:   949 trades |   -7,090.7 pips |  -7.472 avg | 39.4% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  6,915 trades |  -28,851.9 pips |  -4.172 avg | 45.0% WR | DD 29,018
+  Max  8 pos: 10,885 trades |  -39,602.0 pips |  -3.638 avg | 45.2% WR | DD 39,768
+  Max 10 pos: 13,246 trades |  -48,490.7 pips |  -3.661 avg | 45.5% WR | DD 48,676
+  Max 12 pos: 15,378 trades |  -61,010.8 pips |  -3.967 avg | 45.0% WR | DD 61,470
+  Max 15 pos: 17,864 trades |  -70,583.1 pips |  -3.951 avg | 45.2% WR | DD 70,709
+  Max 20 pos: 19,423 trades |  -67,152.9 pips |  -3.457 avg | 45.5% WR | DD 67,419
+
+====================================================================================================
+03:29:54 |
+Total runtime: 832.2s (13.9min)
+[19/32] Stress - Min hold 15
+03:30:05 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+03:30:05 |   616 profitable slots from 625 total
+03:30:05 |   Thresholds: ET=0.4, XT=0.2
+03:30:05 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+03:30:05 |   616 slot configs loaded
+03:30:05 |
+Simulation config:
+03:30:05 |   Max positions: 15
+03:30:05 |   Slippage:      3.0 pips/side
+03:30:05 |   Entry delay:   2 bars (10min)
+03:30:05 |   Friday exit:   OFF
+03:30:05 |   Max spread:    5.0 pips
+03:30:05 |   Min hold:      15min (3 bars) before regime exit
+03:30:05 |   Windows:       48 (30-min UTC slots)
+03:30:05 |   Numba:         YES
+03:30:05 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+03:30:43 |   AUD_CAD: 4,003 trades (38.2s)
+03:31:30 |   AUD_JPY: 3,843 trades (47.1s)
+03:32:09 |   AUD_NZD: 3,689 trades (38.7s)
+03:32:39 |   AUD_USD: 4,000 trades (30.8s)
+03:33:19 |   CAD_JPY: 3,845 trades (39.3s)
+03:34:02 |   CHF_JPY: 3,716 trades (43.5s)
+03:34:42 |   EUR_AUD: 3,860 trades (39.9s)
+03:35:14 |   EUR_GBP: 4,193 trades (32.1s)
+03:35:54 |   EUR_JPY: 3,830 trades (39.4s)
+03:36:32 |   EUR_USD: 4,100 trades (38.5s)
+03:37:23 |   GBP_AUD: 3,309 trades (51.0s)
+03:38:10 |   GBP_JPY: 3,800 trades (47.0s)
+03:38:50 |   GBP_USD: 4,089 trades (40.0s)
+03:39:27 |   NZD_CAD: 3,836 trades (36.8s)
+03:40:10 |   NZD_JPY: 3,721 trades (42.7s)
+03:40:43 |   NZD_USD: 3,958 trades (32.9s)
+03:41:20 |   USD_CAD: 4,114 trades (37.3s)
+03:41:49 |   USD_CHF: 4,016 trades (28.6s)
+03:42:32 |   USD_JPY: 3,757 trades (42.9s)
+03:42:32 |
+Total trades generated: 73,679
+03:42:32 |
+Running portfolio simulation...
+03:42:33 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_20260223_034232.csv (48,887 rows)
+03:42:34 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_20260223_034232.csv (48,887 rows)
+03:42:34 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_20260223_034232.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min)
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            48,887 (66.4%)
+  Rejected (margin):   3,183 (4.3%)
+  Rejected (pair busy):21,609 (29.3%)
+
+── PERFORMANCE ──
+  Total P&L:           +2,134.5 pips
+  Avg per trade:       +0.044 pips
+  Win rate:            33.6%
+  Profit factor:       1.005
+  Max drawdown:        28,458.3 pips
+  Avg win:             +28.2 pips
+  Avg loss:            -14.3 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.3
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        40,583 (83.0%) | -24,781.6 pips (-0.611 avg)
+  Timed exits:         8,304 (17.0%) | +26,916.1 pips (+3.241 avg)
+
+── HOLD TIME ──
+  Mean:                65 bars (5.4h)
+  Median:              28 bars (2.3h)
+  P25:                 10 bars (0.8h)
+  P75:                 73 bars (6.1h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  4,735 trades |   -4,395.7 pips |  -0.928 avg | 35.1% WR | PF 0.879 | DD 4,586
+  2022:  9,891 trades |  +20,341.4 pips |  +2.057 avg | 37.5% WR | PF 1.210 | DD 1,875
+  2023: 11,369 trades |   +7,057.3 pips |  +0.621 avg | 34.1% WR | PF 1.066 | DD 6,167
+  2024: 11,210 trades |   -8,607.6 pips |  -0.768 avg | 31.3% WR | PF 0.920 | DD 14,771
+  2025: 11,338 trades |  -13,768.0 pips |  -1.214 avg | 31.3% WR | PF 0.876 | DD 17,143
+  2026:    344 trades |   +1,507.1 pips |  +4.381 avg | 41.3% WR | PF 1.556 | DD 228
+  Losing years: 3
+
+── PER PAIR ──
+   EUR_JPY: 2,548 trades |  +10,923.0 pips |  +4.287 avg | 39.6% WR
+   GBP_AUD: 2,171 trades |  +10,806.2 pips |  +4.978 avg | 41.3% WR
+   GBP_JPY: 2,431 trades |  +10,141.0 pips |  +4.172 avg | 39.7% WR
+   USD_JPY: 2,512 trades |   +8,970.2 pips |  +3.571 avg | 38.3% WR
+   EUR_AUD: 2,513 trades |   +7,151.4 pips |  +2.846 avg | 40.3% WR
+   CHF_JPY: 2,443 trades |   +5,575.0 pips |  +2.282 avg | 37.3% WR
+   AUD_JPY: 2,642 trades |   +5,027.7 pips |  +1.903 avg | 36.3% WR
+   GBP_USD: 2,757 trades |   +4,019.7 pips |  +1.458 avg | 36.1% WR
+   CAD_JPY: 2,587 trades |     +538.5 pips |  +0.208 avg | 36.3% WR
+   EUR_USD: 2,631 trades |   -2,359.0 pips |  -0.897 avg | 33.4% WR
+   NZD_JPY: 2,484 trades |   -2,685.1 pips |  -1.081 avg | 34.3% WR
+   AUD_USD: 2,668 trades |   -3,343.6 pips |  -1.253 avg | 32.2% WR
+   USD_CAD: 2,653 trades |   -3,881.2 pips |  -1.463 avg | 32.3% WR
+   USD_CHF: 2,670 trades |   -4,085.0 pips |  -1.530 avg | 29.7% WR
+   NZD_USD: 2,590 trades |   -5,731.9 pips |  -2.213 avg | 29.8% WR
+   AUD_CAD: 2,738 trades |   -8,785.9 pips |  -3.209 avg | 28.4% WR
+   NZD_CAD: 2,594 trades |   -8,909.3 pips |  -3.435 avg | 28.3% WR
+   EUR_GBP: 2,777 trades |   -9,723.9 pips |  -3.502 avg | 24.2% WR
+   AUD_NZD: 2,478 trades |  -11,513.3 pips |  -4.646 avg | 24.1% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 21,740 trades |   -2,395.7 pips |  -0.110 avg | 33.2% WR | DD 13,863
+  Max  8 pos: 32,395 trades |   +6,987.6 pips |  +0.216 avg | 33.7% WR | DD 13,800
+  Max 10 pos: 38,721 trades |   +6,638.3 pips |  +0.171 avg | 33.6% WR | DD 16,008
+  Max 12 pos: 43,760 trades |   +2,578.5 pips |  +0.059 avg | 33.6% WR | DD 23,171
+  Max 15 pos: 48,887 trades |   +2,134.5 pips |  +0.044 avg | 33.6% WR | DD 28,650
+  Max 20 pos: 50,925 trades |   -2,809.4 pips |  -0.055 avg | 33.6% WR | DD 32,628
+
+====================================================================================================
+03:42:35 |
+Total runtime: 750.6s (12.5min)
+[20/32] Stress - Min hold 15 + Friday exit
+03:42:44 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+03:42:44 |   616 profitable slots from 625 total
+03:42:44 |   Thresholds: ET=0.4, XT=0.2
+03:42:44 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+03:42:44 |   616 slot configs loaded
+03:42:44 |
+Simulation config:
+03:42:44 |   Max positions: 15
+03:42:44 |   Slippage:      3.0 pips/side
+03:42:44 |   Entry delay:   2 bars (10min)
+03:42:44 |   Friday exit:   20:00 UTC
+03:42:44 |   Max spread:    5.0 pips
+03:42:44 |   Min hold:      15min (3 bars) before regime exit
+03:42:44 |   Windows:       48 (30-min UTC slots)
+03:42:44 |   Numba:         YES
+03:42:44 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+03:43:26 |   AUD_CAD: 4,003 trades (41.8s)
+03:44:15 |   AUD_JPY: 3,843 trades (49.0s)
+03:44:56 |   AUD_NZD: 3,689 trades (41.3s)
+03:45:29 |   AUD_USD: 4,000 trades (32.5s)
+03:46:12 |   CAD_JPY: 3,845 trades (43.5s)
+03:46:57 |   CHF_JPY: 3,716 trades (45.4s)
+03:47:38 |   EUR_AUD: 3,860 trades (40.3s)
+03:48:10 |   EUR_GBP: 4,193 trades (32.5s)
+03:48:51 |   EUR_JPY: 3,830 trades (40.7s)
+03:49:34 |   EUR_USD: 4,100 trades (43.1s)
+03:50:26 |   GBP_AUD: 3,309 trades (51.7s)
+03:51:15 |   GBP_JPY: 3,800 trades (49.7s)
+03:51:56 |   GBP_USD: 4,089 trades (40.1s)
+03:52:33 |   NZD_CAD: 3,836 trades (37.6s)
+03:53:16 |   NZD_JPY: 3,721 trades (42.7s)
+03:53:49 |   NZD_USD: 3,958 trades (33.6s)
+03:54:27 |   USD_CAD: 4,114 trades (37.6s)
+03:54:57 |   USD_CHF: 4,016 trades (29.8s)
+03:55:38 |   USD_JPY: 3,757 trades (40.8s)
+03:55:38 |
+Total trades generated: 73,679
+03:55:38 |
+Running portfolio simulation...
+03:55:39 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_friexit20_20260223_035539.csv (49,635 rows)
+03:55:40 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_friexit20_20260223_035539.csv (49,635 rows)
+03:55:40 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_friexit20_20260223_035539.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min) | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            49,635 (67.4%)
+  Rejected (margin):   3,133 (4.3%)
+  Rejected (pair busy):20,911 (28.4%)
+
+── PERFORMANCE ──
+  Total P&L:           -293.7 pips
+  Avg per trade:       -0.006 pips
+  Win rate:            33.6%
+  Profit factor:       0.999
+  Max drawdown:        31,171.9 pips
+  Avg win:             +27.9 pips
+  Avg loss:            -14.2 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.2
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        40,848 (82.3%) | -39,016.7 pips (-0.955 avg)
+  Timed exits:         7,591 (15.3%) | +22,727.4 pips (+2.994 avg)
+  Friday exits:        1,196 (2.4%) | +15,995.6 pips (+13.374 avg)
+
+── HOLD TIME ──
+  Mean:                63 bars (5.2h)
+  Median:              28 bars (2.3h)
+  P25:                 10 bars (0.8h)
+  P75:                 72 bars (6.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  4,747 trades |   -4,232.1 pips |  -0.892 avg | 35.2% WR | PF 0.883 | DD 4,428
+  2022: 10,005 trades |  +20,434.5 pips |  +2.042 avg | 37.5% WR | PF 1.211 | DD 1,750
+  2023: 11,555 trades |   +7,793.7 pips |  +0.674 avg | 34.1% WR | PF 1.072 | DD 5,560
+  2024: 11,416 trades |   -9,543.6 pips |  -0.836 avg | 31.2% WR | PF 0.912 | DD 14,767
+  2025: 11,568 trades |  -16,043.9 pips |  -1.387 avg | 31.2% WR | PF 0.858 | DD 17,997
+  2026:    344 trades |   +1,297.7 pips |  +3.772 avg | 41.3% WR | PF 1.480 | DD 228
+  Losing years: 3
+
+── PER PAIR ──
+   EUR_JPY: 2,595 trades |  +10,798.7 pips |  +4.161 avg | 39.8% WR
+   GBP_JPY: 2,490 trades |  +10,249.1 pips |  +4.116 avg | 39.7% WR
+   GBP_AUD: 2,194 trades |   +9,936.3 pips |  +4.529 avg | 40.9% WR
+   USD_JPY: 2,566 trades |   +9,365.1 pips |  +3.650 avg | 38.4% WR
+   EUR_AUD: 2,533 trades |   +7,679.1 pips |  +3.032 avg | 40.3% WR
+   CHF_JPY: 2,468 trades |   +5,484.1 pips |  +2.222 avg | 37.4% WR
+   GBP_USD: 2,827 trades |   +4,427.0 pips |  +1.566 avg | 36.2% WR
+   AUD_JPY: 2,677 trades |   +4,426.1 pips |  +1.653 avg | 36.0% WR
+   CAD_JPY: 2,618 trades |     +345.3 pips |  +0.132 avg | 36.2% WR
+   NZD_JPY: 2,498 trades |   -2,164.7 pips |  -0.867 avg | 34.3% WR
+   EUR_USD: 2,673 trades |   -2,675.5 pips |  -1.001 avg | 33.2% WR
+   AUD_USD: 2,721 trades |   -3,524.2 pips |  -1.295 avg | 32.0% WR
+   USD_CHF: 2,711 trades |   -4,440.0 pips |  -1.638 avg | 29.7% WR
+   USD_CAD: 2,705 trades |   -4,592.9 pips |  -1.698 avg | 31.9% WR
+   NZD_USD: 2,606 trades |   -5,954.2 pips |  -2.285 avg | 29.7% WR
+   AUD_CAD: 2,791 trades |   -9,034.4 pips |  -3.237 avg | 28.5% WR
+   NZD_CAD: 2,643 trades |   -9,174.5 pips |  -3.471 avg | 28.3% WR
+   EUR_GBP: 2,802 trades |   -9,569.1 pips |  -3.415 avg | 24.4% WR
+   AUD_NZD: 2,517 trades |  -11,875.0 pips |  -4.718 avg | 24.0% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 22,253 trades |   -4,681.7 pips |  -0.210 avg | 33.1% WR | DD 15,087
+  Max  8 pos: 32,963 trades |   +3,691.3 pips |  +0.112 avg | 33.6% WR | DD 16,991
+  Max 10 pos: 39,264 trades |   +1,928.2 pips |  +0.049 avg | 33.6% WR | DD 22,169
+  Max 12 pos: 44,356 trades |   +1,721.7 pips |  +0.039 avg | 33.5% WR | DD 24,364
+  Max 15 pos: 49,635 trades |     -293.7 pips |  -0.006 avg | 33.6% WR | DD 31,217
+  Max 20 pos: 51,671 trades |   -4,964.0 pips |  -0.096 avg | 33.6% WR | DD 34,476
+
+====================================================================================================
+03:55:41 |
+Total runtime: 777.6s (13.0min)
+[21/32] Stress - Min hold 30
+03:55:52 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+03:55:52 |   616 profitable slots from 625 total
+03:55:52 |   Thresholds: ET=0.4, XT=0.2
+03:55:52 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+03:55:53 |   616 slot configs loaded
+03:55:53 |
+Simulation config:
+03:55:53 |   Max positions: 15
+03:55:53 |   Slippage:      3.0 pips/side
+03:55:53 |   Entry delay:   2 bars (10min)
+03:55:53 |   Friday exit:   OFF
+03:55:53 |   Max spread:    5.0 pips
+03:55:53 |   Min hold:      30min (6 bars) before regime exit
+03:55:53 |   Windows:       48 (30-min UTC slots)
+03:55:53 |   Numba:         YES
+03:55:53 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+03:56:31 |   AUD_CAD: 4,003 trades (38.7s)
+03:57:18 |   AUD_JPY: 3,843 trades (47.2s)
+03:57:58 |   AUD_NZD: 3,689 trades (39.7s)
+03:58:30 |   AUD_USD: 4,000 trades (31.4s)
+03:59:13 |   CAD_JPY: 3,845 trades (43.6s)
+03:59:59 |   CHF_JPY: 3,716 trades (46.1s)
+04:00:39 |   EUR_AUD: 3,860 trades (39.5s)
+04:01:10 |   EUR_GBP: 4,193 trades (31.4s)
+04:01:50 |   EUR_JPY: 3,830 trades (39.6s)
+04:02:28 |   EUR_USD: 4,100 trades (38.2s)
+04:03:19 |   GBP_AUD: 3,309 trades (51.3s)
+04:04:07 |   GBP_JPY: 3,800 trades (47.3s)
+04:04:46 |   GBP_USD: 4,089 trades (38.8s)
+04:05:22 |   NZD_CAD: 3,836 trades (36.4s)
+04:06:05 |   NZD_JPY: 3,721 trades (42.6s)
+04:06:37 |   NZD_USD: 3,958 trades (32.9s)
+04:07:14 |   USD_CAD: 4,114 trades (36.1s)
+04:07:42 |   USD_CHF: 4,016 trades (28.5s)
+04:08:23 |   USD_JPY: 3,757 trades (41.3s)
+04:08:24 |
+Total trades generated: 73,679
+04:08:24 |
+Running portfolio simulation...
+04:08:25 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_20260223_040824.csv (37,400 rows)
+04:08:25 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_20260223_040824.csv (37,400 rows)
+04:08:26 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_20260223_040824.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min)
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            37,400 (50.8%)
+  Rejected (margin):   4,187 (5.7%)
+  Rejected (pair busy):32,092 (43.6%)
+
+── PERFORMANCE ──
+  Total P&L:           -4,760.8 pips
+  Avg per trade:       -0.127 pips
+  Win rate:            37.8%
+  Profit factor:       0.989
+  Max drawdown:        22,639.2 pips
+  Avg win:             +29.4 pips
+  Avg loss:            -18.1 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.8
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        26,581 (71.1%) | +34,843.1 pips (+1.311 avg)
+  Timed exits:         10,819 (28.9%) | -39,603.9 pips (-3.661 avg)
+
+── HOLD TIME ──
+  Mean:                93 bars (7.8h)
+  Median:              42 bars (3.5h)
+  P25:                 16 bars (1.3h)
+  P75:                 120 bars (10.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  4,404 trades |   -4,140.5 pips |  -0.940 avg | 37.9% WR | PF 0.889 | DD 4,496
+  2022:  7,908 trades |  +12,015.3 pips |  +1.519 avg | 41.6% WR | PF 1.127 | DD 2,419
+  2023:  8,565 trades |   +3,615.0 pips |  +0.422 avg | 37.8% WR | PF 1.037 | DD 4,819
+  2024:  8,002 trades |   -9,643.5 pips |  -1.205 avg | 35.5% WR | PF 0.898 | DD 14,310
+  2025:  8,194 trades |   -8,090.9 pips |  -0.987 avg | 35.7% WR | PF 0.913 | DD 12,459
+  2026:    327 trades |   +1,483.8 pips |  +4.538 avg | 44.6% WR | PF 1.526 | DD 263
+  Losing years: 3
+
+── PER PAIR ──
+   GBP_JPY: 1,821 trades |   +9,144.7 pips |  +5.022 avg | 44.8% WR
+   GBP_AUD: 1,647 trades |   +9,021.0 pips |  +5.477 avg | 46.8% WR
+   EUR_JPY: 1,947 trades |   +7,055.4 pips |  +3.624 avg | 43.0% WR
+   EUR_AUD: 1,926 trades |   +6,387.5 pips |  +3.316 avg | 45.6% WR
+   AUD_JPY: 2,016 trades |   +4,900.0 pips |  +2.431 avg | 40.8% WR
+   CHF_JPY: 1,947 trades |   +4,071.1 pips |  +2.091 avg | 40.9% WR
+   USD_JPY: 1,866 trades |   +2,777.4 pips |  +1.488 avg | 42.3% WR
+   GBP_USD: 2,064 trades |   +1,994.3 pips |  +0.966 avg | 40.7% WR
+   CAD_JPY: 1,987 trades |     -532.4 pips |  -0.268 avg | 40.5% WR
+   NZD_JPY: 1,947 trades |     -840.1 pips |  -0.431 avg | 38.4% WR
+   AUD_USD: 1,990 trades |   -2,415.9 pips |  -1.214 avg | 36.7% WR
+   EUR_USD: 2,008 trades |   -2,641.2 pips |  -1.315 avg | 37.8% WR
+   USD_CAD: 2,037 trades |   -2,899.1 pips |  -1.423 avg | 36.1% WR
+   USD_CHF: 2,025 trades |   -4,136.1 pips |  -2.043 avg | 33.0% WR
+   NZD_USD: 2,038 trades |   -5,257.7 pips |  -2.580 avg | 33.6% WR
+   EUR_GBP: 2,113 trades |   -6,474.2 pips |  -3.064 avg | 28.4% WR
+   AUD_CAD: 2,118 trades |   -8,005.3 pips |  -3.780 avg | 31.8% WR
+   NZD_CAD: 1,977 trades |   -8,350.5 pips |  -4.224 avg | 32.1% WR
+   AUD_NZD: 1,926 trades |   -8,559.7 pips |  -4.444 avg | 27.3% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 16,039 trades |     -423.3 pips |  -0.026 avg | 37.8% WR | DD 7,476
+  Max  8 pos: 24,471 trades |   -4,207.8 pips |  -0.172 avg | 37.5% WR | DD 12,897
+  Max 10 pos: 29,123 trades |   -4,558.8 pips |  -0.157 avg | 37.5% WR | DD 13,787
+  Max 12 pos: 33,059 trades |   -5,886.9 pips |  -0.178 avg | 37.5% WR | DD 19,649
+  Max 15 pos: 37,400 trades |   -4,760.8 pips |  -0.127 avg | 37.8% WR | DD 22,752
+  Max 20 pos: 39,436 trades |   -8,191.4 pips |  -0.208 avg | 37.8% WR | DD 27,136
+
+====================================================================================================
+04:08:26 |
+Total runtime: 754.0s (12.6min)
+[22/32] Stress - Min hold 30 + Friday exit
+04:08:37 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+04:08:37 |   616 profitable slots from 625 total
+04:08:37 |   Thresholds: ET=0.4, XT=0.2
+04:08:37 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+04:08:37 |   616 slot configs loaded
+04:08:37 |
+Simulation config:
+04:08:37 |   Max positions: 15
+04:08:37 |   Slippage:      3.0 pips/side
+04:08:37 |   Entry delay:   2 bars (10min)
+04:08:37 |   Friday exit:   20:00 UTC
+04:08:37 |   Max spread:    5.0 pips
+04:08:37 |   Min hold:      30min (6 bars) before regime exit
+04:08:37 |   Windows:       48 (30-min UTC slots)
+04:08:37 |   Numba:         YES
+04:08:37 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+04:09:17 |   AUD_CAD: 4,003 trades (39.9s)
+04:10:04 |   AUD_JPY: 3,843 trades (46.8s)
+04:10:45 |   AUD_NZD: 3,689 trades (41.5s)
+04:11:18 |   AUD_USD: 4,000 trades (32.7s)
+04:11:59 |   CAD_JPY: 3,845 trades (40.9s)
+04:12:45 |   CHF_JPY: 3,716 trades (46.1s)
+04:13:26 |   EUR_AUD: 3,860 trades (40.8s)
+04:14:00 |   EUR_GBP: 4,193 trades (33.5s)
+04:14:41 |   EUR_JPY: 3,830 trades (41.6s)
+04:15:22 |   EUR_USD: 4,100 trades (40.6s)
+04:16:16 |   GBP_AUD: 3,309 trades (53.8s)
+04:17:02 |   GBP_JPY: 3,800 trades (46.4s)
+04:17:42 |   GBP_USD: 4,089 trades (39.9s)
+04:18:21 |   NZD_CAD: 3,836 trades (38.6s)
+04:19:05 |   NZD_JPY: 3,721 trades (44.3s)
+04:19:39 |   NZD_USD: 3,958 trades (34.4s)
+04:20:17 |   USD_CAD: 4,114 trades (38.2s)
+04:20:48 |   USD_CHF: 4,016 trades (30.5s)
+04:21:33 |   USD_JPY: 3,757 trades (45.3s)
+04:21:34 |
+Total trades generated: 73,679
+04:21:34 |
+Running portfolio simulation...
+04:21:35 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_friexit20_20260223_042134.csv (38,249 rows)
+04:21:35 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_friexit20_20260223_042134.csv (38,249 rows)
+04:21:36 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_friexit20_20260223_042134.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min) | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            38,249 (51.9%)
+  Rejected (margin):   4,169 (5.7%)
+  Rejected (pair busy):31,261 (42.4%)
+
+── PERFORMANCE ──
+  Total P&L:           -4,080.6 pips
+  Avg per trade:       -0.107 pips
+  Win rate:            37.7%
+  Profit factor:       0.990
+  Max drawdown:        22,161.8 pips
+  Avg win:             +29.1 pips
+  Avg loss:            -17.9 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.6
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        26,986 (70.6%) | +27,615.8 pips (+1.023 avg)
+  Timed exits:         9,883 (25.8%) | -34,485.7 pips (-3.489 avg)
+  Friday exits:        1,380 (3.6%) | +2,789.3 pips (+2.021 avg)
+
+── HOLD TIME ──
+  Mean:                89 bars (7.4h)
+  Median:              42 bars (3.5h)
+  P25:                 16 bars (1.3h)
+  P75:                 115 bars (9.6h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  4,422 trades |   -3,921.3 pips |  -0.887 avg | 38.0% WR | PF 0.895 | DD 4,282
+  2022:  8,058 trades |  +12,410.4 pips |  +1.540 avg | 41.6% WR | PF 1.131 | DD 2,376
+  2023:  8,797 trades |   +3,338.0 pips |  +0.379 avg | 37.8% WR | PF 1.034 | DD 5,000
+  2024:  8,206 trades |   -8,895.7 pips |  -1.084 avg | 35.6% WR | PF 0.907 | DD 14,194
+  2025:  8,438 trades |   -8,218.1 pips |  -0.974 avg | 35.6% WR | PF 0.913 | DD 13,027
+  2026:    328 trades |   +1,206.1 pips |  +3.677 avg | 43.6% WR | PF 1.422 | DD 292
+  Losing years: 3
+
+── PER PAIR ──
+   GBP_AUD: 1,686 trades |   +9,322.6 pips |  +5.529 avg | 46.3% WR
+   GBP_JPY: 1,872 trades |   +8,755.5 pips |  +4.677 avg | 45.0% WR
+   EUR_JPY: 2,004 trades |   +7,749.1 pips |  +3.867 avg | 43.9% WR
+   EUR_AUD: 1,959 trades |   +6,886.1 pips |  +3.515 avg | 45.5% WR
+   AUD_JPY: 2,056 trades |   +5,041.5 pips |  +2.452 avg | 40.9% WR
+   CHF_JPY: 1,962 trades |   +4,524.0 pips |  +2.306 avg | 40.9% WR
+   USD_JPY: 1,895 trades |   +2,963.4 pips |  +1.564 avg | 42.2% WR
+   GBP_USD: 2,119 trades |   +1,040.8 pips |  +0.491 avg | 40.2% WR
+   CAD_JPY: 2,034 trades |     -537.4 pips |  -0.264 avg | 40.5% WR
+   NZD_JPY: 1,975 trades |     -814.0 pips |  -0.412 avg | 38.3% WR
+   EUR_USD: 2,042 trades |   -2,314.6 pips |  -1.133 avg | 37.8% WR
+   AUD_USD: 2,086 trades |   -2,451.8 pips |  -1.175 avg | 36.4% WR
+   USD_CAD: 2,088 trades |   -2,629.6 pips |  -1.259 avg | 35.7% WR
+   USD_CHF: 2,060 trades |   -3,891.7 pips |  -1.889 avg | 33.3% WR
+   NZD_USD: 2,085 trades |   -5,606.5 pips |  -2.689 avg | 33.4% WR
+   EUR_GBP: 2,149 trades |   -6,524.9 pips |  -3.036 avg | 28.7% WR
+   NZD_CAD: 2,037 trades |   -8,072.3 pips |  -3.963 avg | 32.1% WR
+   AUD_CAD: 2,166 trades |   -8,402.1 pips |  -3.879 avg | 31.9% WR
+   AUD_NZD: 1,974 trades |   -9,118.7 pips |  -4.619 avg | 27.0% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 16,527 trades |     +853.8 pips |  +0.052 avg | 37.7% WR | DD 7,264
+  Max  8 pos: 25,096 trades |   -4,321.1 pips |  -0.172 avg | 37.5% WR | DD 14,276
+  Max 10 pos: 29,840 trades |   -4,367.8 pips |  -0.146 avg | 37.4% WR | DD 15,337
+  Max 12 pos: 33,738 trades |   -2,095.4 pips |  -0.062 avg | 37.6% WR | DD 16,830
+  Max 15 pos: 38,249 trades |   -4,080.6 pips |  -0.107 avg | 37.7% WR | DD 22,274
+  Max 20 pos: 40,284 trades |  -11,664.8 pips |  -0.290 avg | 37.7% WR | DD 29,624
+
+====================================================================================================
+04:21:37 |
+Total runtime: 779.4s (13.0min)
+[23/32] Stress - Min hold 60
+04:21:47 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+04:21:47 |   616 profitable slots from 625 total
+04:21:47 |   Thresholds: ET=0.4, XT=0.2
+04:21:47 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+04:21:47 |   616 slot configs loaded
+04:21:47 |
+Simulation config:
+04:21:47 |   Max positions: 15
+04:21:47 |   Slippage:      3.0 pips/side
+04:21:47 |   Entry delay:   2 bars (10min)
+04:21:47 |   Friday exit:   OFF
+04:21:47 |   Max spread:    5.0 pips
+04:21:47 |   Min hold:      60min (12 bars) before regime exit
+04:21:47 |   Windows:       48 (30-min UTC slots)
+04:21:47 |   Numba:         YES
+04:21:47 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+04:22:26 |   AUD_CAD: 4,003 trades (39.1s)
+04:23:13 |   AUD_JPY: 3,843 trades (46.9s)
+04:23:51 |   AUD_NZD: 3,689 trades (38.7s)
+04:24:22 |   AUD_USD: 4,000 trades (31.0s)
+04:25:03 |   CAD_JPY: 3,845 trades (41.0s)
+04:25:49 |   CHF_JPY: 3,716 trades (45.2s)
+04:26:28 |   EUR_AUD: 3,860 trades (39.5s)
+04:27:00 |   EUR_GBP: 4,193 trades (31.4s)
+04:27:38 |   EUR_JPY: 3,830 trades (38.1s)
+04:28:17 |   EUR_USD: 4,100 trades (38.9s)
+04:29:10 |   GBP_AUD: 3,309 trades (53.5s)
+04:29:55 |   GBP_JPY: 3,800 trades (45.0s)
+04:30:34 |   GBP_USD: 4,089 trades (39.1s)
+04:31:11 |   NZD_CAD: 3,836 trades (36.6s)
+04:31:58 |   NZD_JPY: 3,721 trades (46.7s)
+04:32:31 |   NZD_USD: 3,958 trades (33.3s)
+04:33:08 |   USD_CAD: 4,114 trades (37.2s)
+04:33:37 |   USD_CHF: 4,016 trades (29.0s)
+04:34:18 |   USD_JPY: 3,757 trades (40.6s)
+04:34:18 |
+Total trades generated: 73,679
+04:34:18 |
+Running portfolio simulation...
+04:34:19 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_20260223_043418.csv (28,609 rows)
+04:34:19 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_20260223_043418.csv (28,609 rows)
+04:34:19 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_20260223_043418.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min)
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            28,609 (38.8%)
+  Rejected (margin):   5,018 (6.8%)
+  Rejected (pair busy):40,052 (54.4%)
+
+── PERFORMANCE ──
+  Total P&L:           -24,438.3 pips
+  Avg per trade:       -0.854 pips
+  Win rate:            42.9%
+  Profit factor:       0.939
+  Max drawdown:        25,661.7 pips
+  Avg win:             +30.9 pips
+  Avg loss:            -24.8 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.1
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        15,636 (54.7%) | +77,984.5 pips (+4.987 avg)
+  Timed exits:         12,973 (45.3%) | -102,422.8 pips (-7.895 avg)
+
+── HOLD TIME ──
+  Mean:                131 bars (10.9h)
+  Median:              75 bars (6.2h)
+  P25:                 31 bars (2.6h)
+  P75:                 192 bars (16.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,969 trades |   -7,500.6 pips |  -1.890 avg | 42.3% WR | PF 0.817 | DD 7,499
+  2022:  6,206 trades |   +4,216.4 pips |  +0.679 avg | 46.4% WR | PF 1.045 | DD 4,540
+  2023:  6,302 trades |   -3,357.7 pips |  -0.533 avg | 43.5% WR | PF 0.964 | DD 6,233
+  2024:  5,849 trades |   -7,922.8 pips |  -1.355 avg | 40.8% WR | PF 0.907 | DD 14,353
+  2025:  5,983 trades |  -10,844.6 pips |  -1.813 avg | 41.0% WR | PF 0.874 | DD 12,108
+  2026:    300 trades |     +971.0 pips |  +3.237 avg | 46.3% WR | PF 1.292 | DD 1,012
+  Losing years: 4
+
+── PER PAIR ──
+   GBP_JPY: 1,451 trades |   +8,005.2 pips |  +5.517 avg | 50.7% WR
+   GBP_AUD: 1,306 trades |   +5,920.5 pips |  +4.533 avg | 51.4% WR
+   EUR_AUD: 1,520 trades |   +3,507.6 pips |  +2.308 avg | 49.9% WR
+   CHF_JPY: 1,456 trades |   +1,941.2 pips |  +1.333 avg | 46.6% WR
+   AUD_JPY: 1,532 trades |   +1,663.4 pips |  +1.086 avg | 45.6% WR
+   EUR_JPY: 1,498 trades |      +82.2 pips |  +0.055 avg | 46.3% WR
+   GBP_USD: 1,593 trades |     -282.6 pips |  -0.177 avg | 45.1% WR
+   NZD_JPY: 1,540 trades |     -783.0 pips |  -0.508 avg | 44.4% WR
+   USD_JPY: 1,439 trades |     -849.1 pips |  -0.590 avg | 47.0% WR
+   CAD_JPY: 1,519 trades |   -2,329.8 pips |  -1.534 avg | 45.4% WR
+   EUR_USD: 1,556 trades |   -2,879.1 pips |  -1.850 avg | 42.5% WR
+   AUD_USD: 1,539 trades |   -3,062.2 pips |  -1.990 avg | 43.9% WR
+   USD_CAD: 1,529 trades |   -3,593.3 pips |  -2.350 avg | 41.3% WR
+   USD_CHF: 1,509 trades |   -3,787.2 pips |  -2.510 avg | 38.6% WR
+   NZD_USD: 1,491 trades |   -3,935.9 pips |  -2.640 avg | 39.6% WR
+   EUR_GBP: 1,550 trades |   -5,485.7 pips |  -3.539 avg | 33.2% WR
+   AUD_CAD: 1,581 trades |   -5,868.4 pips |  -3.712 avg | 37.2% WR
+   AUD_NZD: 1,472 trades |   -6,341.7 pips |  -4.308 avg | 31.5% WR
+   NZD_CAD: 1,528 trades |   -6,360.4 pips |  -4.163 avg | 37.0% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 12,025 trades |  -15,496.5 pips |  -1.289 avg | 42.4% WR | DD 16,607
+  Max  8 pos: 18,323 trades |  -15,231.1 pips |  -0.831 avg | 42.8% WR | DD 17,105
+  Max 10 pos: 21,791 trades |  -21,928.1 pips |  -1.006 avg | 43.0% WR | DD 22,973
+  Max 12 pos: 25,052 trades |  -24,253.1 pips |  -0.968 avg | 42.9% WR | DD 25,453
+  Max 15 pos: 28,609 trades |  -24,438.3 pips |  -0.854 avg | 42.9% WR | DD 25,648
+  Max 20 pos: 30,498 trades |  -27,733.6 pips |  -0.909 avg | 42.9% WR | DD 29,033
+
+====================================================================================================
+04:34:20 |
+Total runtime: 753.8s (12.6min)
+[24/32] Stress - Min hold 60 + Friday exit
+04:34:32 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+04:34:32 |   616 profitable slots from 625 total
+04:34:32 |   Thresholds: ET=0.4, XT=0.2
+04:34:32 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+04:34:32 |   616 slot configs loaded
+04:34:32 |
+Simulation config:
+04:34:32 |   Max positions: 15
+04:34:32 |   Slippage:      3.0 pips/side
+04:34:32 |   Entry delay:   2 bars (10min)
+04:34:32 |   Friday exit:   20:00 UTC
+04:34:32 |   Max spread:    5.0 pips
+04:34:32 |   Min hold:      60min (12 bars) before regime exit
+04:34:32 |   Windows:       48 (30-min UTC slots)
+04:34:32 |   Numba:         YES
+04:34:32 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+04:35:13 |   AUD_CAD: 4,003 trades (40.8s)
+04:36:02 |   AUD_JPY: 3,843 trades (48.8s)
+04:36:43 |   AUD_NZD: 3,689 trades (41.2s)
+04:37:16 |   AUD_USD: 4,000 trades (33.3s)
+04:37:58 |   CAD_JPY: 3,845 trades (42.2s)
+04:38:45 |   CHF_JPY: 3,716 trades (46.4s)
+04:39:27 |   EUR_AUD: 3,860 trades (42.5s)
+04:40:01 |   EUR_GBP: 4,193 trades (33.8s)
+04:40:42 |   EUR_JPY: 3,830 trades (41.0s)
+04:41:23 |   EUR_USD: 4,100 trades (40.5s)
+04:42:16 |   GBP_AUD: 3,309 trades (52.9s)
+04:43:08 |   GBP_JPY: 3,800 trades (52.0s)
+04:43:50 |   GBP_USD: 4,089 trades (42.1s)
+04:44:29 |   NZD_CAD: 3,836 trades (39.3s)
+04:45:14 |   NZD_JPY: 3,721 trades (45.0s)
+04:45:49 |   NZD_USD: 3,958 trades (35.3s)
+04:46:30 |   USD_CAD: 4,114 trades (40.5s)
+04:47:02 |   USD_CHF: 4,016 trades (32.1s)
+04:47:45 |   USD_JPY: 3,757 trades (42.8s)
+04:47:45 |
+Total trades generated: 73,679
+04:47:45 |
+Running portfolio simulation...
+04:47:46 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_friexit20_20260223_044745.csv (29,279 rows)
+04:47:47 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_friexit20_20260223_044745.csv (29,279 rows)
+04:47:47 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_friexit20_20260223_044745.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min) | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            29,279 (39.7%)
+  Rejected (margin):   4,982 (6.8%)
+  Rejected (pair busy):39,418 (53.5%)
+
+── PERFORMANCE ──
+  Total P&L:           -29,247.6 pips
+  Avg per trade:       -0.999 pips
+  Win rate:            42.7%
+  Profit factor:       0.928
+  Max drawdown:        30,318.8 pips
+  Avg win:             +30.3 pips
+  Avg loss:            -24.4 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.8
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        15,860 (54.2%) | +71,642.0 pips (+4.517 avg)
+  Timed exits:         11,894 (40.6%) | -94,926.6 pips (-7.981 avg)
+  Friday exits:        1,525 (5.2%) | -5,963.0 pips (-3.910 avg)
+
+── HOLD TIME ──
+  Mean:                125 bars (10.4h)
+  Median:              73 bars (6.1h)
+  P25:                 31 bars (2.6h)
+  P75:                 176 bars (14.7h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,981 trades |   -7,206.9 pips |  -1.810 avg | 42.3% WR | PF 0.824 | DD 7,205
+  2022:  6,326 trades |   +3,957.9 pips |  +0.626 avg | 46.4% WR | PF 1.042 | DD 4,573
+  2023:  6,477 trades |   -4,553.8 pips |  -0.703 avg | 43.1% WR | PF 0.952 | DD 6,419
+  2024:  6,032 trades |   -9,481.7 pips |  -1.572 avg | 40.7% WR | PF 0.891 | DD 14,654
+  2025:  6,161 trades |  -12,756.9 pips |  -2.071 avg | 40.6% WR | PF 0.854 | DD 13,588
+  2026:    302 trades |     +793.8 pips |  +2.628 avg | 45.0% WR | PF 1.244 | DD 963
+  Losing years: 4
+
+── PER PAIR ──
+   GBP_JPY: 1,476 trades |   +6,906.9 pips |  +4.679 avg | 50.6% WR
+   GBP_AUD: 1,323 trades |   +4,427.7 pips |  +3.347 avg | 50.0% WR
+   EUR_AUD: 1,573 trades |   +3,901.9 pips |  +2.481 avg | 49.5% WR
+   CHF_JPY: 1,500 trades |   +2,039.5 pips |  +1.360 avg | 46.7% WR
+   EUR_JPY: 1,524 trades |   +1,108.1 pips |  +0.727 avg | 46.5% WR
+   AUD_JPY: 1,572 trades |     +950.0 pips |  +0.604 avg | 44.8% WR
+   GBP_USD: 1,621 trades |     -420.3 pips |  -0.259 avg | 45.8% WR
+   USD_JPY: 1,489 trades |     -833.8 pips |  -0.560 avg | 46.9% WR
+   NZD_JPY: 1,568 trades |     -995.2 pips |  -0.635 avg | 44.1% WR
+   CAD_JPY: 1,549 trades |   -2,112.2 pips |  -1.364 avg | 45.6% WR
+   AUD_USD: 1,567 trades |   -2,897.5 pips |  -1.849 avg | 43.3% WR
+   USD_CAD: 1,568 trades |   -3,125.6 pips |  -1.993 avg | 41.3% WR
+   EUR_USD: 1,604 trades |   -3,960.9 pips |  -2.469 avg | 42.0% WR
+   NZD_USD: 1,523 trades |   -4,164.3 pips |  -2.734 avg | 39.2% WR
+   USD_CHF: 1,554 trades |   -4,242.8 pips |  -2.730 avg | 37.8% WR
+   EUR_GBP: 1,579 trades |   -5,043.1 pips |  -3.194 avg | 34.1% WR
+   NZD_CAD: 1,567 trades |   -6,830.3 pips |  -4.359 avg | 36.8% WR
+   AUD_NZD: 1,508 trades |   -6,846.1 pips |  -4.540 avg | 31.2% WR
+   AUD_CAD: 1,614 trades |   -7,109.6 pips |  -4.405 avg | 36.6% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos: 12,385 trades |  -11,474.1 pips |  -0.926 avg | 42.4% WR | DD 12,387
+  Max  8 pos: 18,672 trades |  -22,887.3 pips |  -1.226 avg | 42.5% WR | DD 24,265
+  Max 10 pos: 22,382 trades |  -21,319.1 pips |  -0.953 avg | 42.7% WR | DD 22,343
+  Max 12 pos: 25,630 trades |  -24,427.9 pips |  -0.953 avg | 42.7% WR | DD 25,452
+  Max 15 pos: 29,279 trades |  -29,247.6 pips |  -0.999 avg | 42.7% WR | DD 30,268
+  Max 20 pos: 31,243 trades |  -31,602.4 pips |  -1.012 avg | 42.8% WR | DD 32,713
+
+====================================================================================================
+04:47:48 |
+Total runtime: 795.8s (13.3min)
+[25/32] Stress - Min hold 120
+04:47:58 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+04:47:58 |   616 profitable slots from 625 total
+04:47:58 |   Thresholds: ET=0.4, XT=0.2
+04:47:58 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+04:47:58 |   616 slot configs loaded
+04:47:58 |
+Simulation config:
+04:47:58 |   Max positions: 15
+04:47:58 |   Slippage:      3.0 pips/side
+04:47:58 |   Entry delay:   2 bars (10min)
+04:47:58 |   Friday exit:   OFF
+04:47:58 |   Max spread:    5.0 pips
+04:47:58 |   Min hold:      120min (24 bars) before regime exit
+04:47:58 |   Windows:       48 (30-min UTC slots)
+04:47:58 |   Numba:         YES
+04:47:58 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+04:48:37 |   AUD_CAD: 4,003 trades (38.5s)
+04:49:26 |   AUD_JPY: 3,843 trades (48.8s)
+04:50:05 |   AUD_NZD: 3,689 trades (39.3s)
+04:50:36 |   AUD_USD: 4,000 trades (31.2s)
+04:51:20 |   CAD_JPY: 3,845 trades (43.3s)
+04:52:06 |   CHF_JPY: 3,716 trades (46.2s)
+04:52:45 |   EUR_AUD: 3,860 trades (39.7s)
+04:53:17 |   EUR_GBP: 4,193 trades (31.4s)
+04:53:58 |   EUR_JPY: 3,830 trades (40.9s)
+04:54:39 |   EUR_USD: 4,100 trades (41.6s)
+04:55:36 |   GBP_AUD: 3,309 trades (56.9s)
+04:56:25 |   GBP_JPY: 3,800 trades (48.9s)
+04:57:05 |   GBP_USD: 4,089 trades (40.1s)
+04:57:42 |   NZD_CAD: 3,836 trades (36.8s)
+04:58:23 |   NZD_JPY: 3,721 trades (40.9s)
+04:58:56 |   NZD_USD: 3,958 trades (32.9s)
+04:59:33 |   USD_CAD: 4,114 trades (36.8s)
+05:00:02 |   USD_CHF: 4,016 trades (29.1s)
+05:00:42 |   USD_JPY: 3,757 trades (40.7s)
+05:00:43 |
+Total trades generated: 73,679
+05:00:43 |
+Running portfolio simulation...
+05:00:43 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_20260223_050043.csv (23,275 rows)
+05:00:44 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_20260223_050043.csv (23,275 rows)
+05:00:44 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_20260223_050043.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min)
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            23,275 (31.6%)
+  Rejected (margin):   5,693 (7.7%)
+  Rejected (pair busy):44,711 (60.7%)
+
+── PERFORMANCE ──
+  Total P&L:           -33,056.7 pips
+  Avg per trade:       -1.420 pips
+  Win rate:            47.7%
+  Profit factor:       0.916
+  Max drawdown:        34,257.4 pips
+  Avg win:             +32.6 pips
+  Avg loss:            -32.5 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.2
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        8,723 (37.5%) | +97,802.3 pips (+11.212 avg)
+  Timed exits:         14,552 (62.5%) | -130,859.0 pips (-8.993 avg)
+
+── HOLD TIME ──
+  Mean:                169 bars (14.0h)
+  Median:              120 bars (10.0h)
+  P25:                 51 bars (4.2h)
+  P75:                 240 bars (20.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,616 trades |   -6,814.5 pips |  -1.885 avg | 46.7% WR | PF 0.838 | DD 6,912
+  2022:  5,105 trades |   -3,000.1 pips |  -0.588 avg | 50.0% WR | PF 0.969 | DD 7,102
+  2023:  4,978 trades |   -6,589.4 pips |  -1.324 avg | 48.4% WR | PF 0.928 | DD 8,855
+  2024:  4,677 trades |  -11,037.7 pips |  -2.360 avg | 46.0% WR | PF 0.865 | DD 14,669
+  2025:  4,635 trades |   -6,283.3 pips |  -1.356 avg | 46.6% WR | PF 0.921 | DD 10,185
+  2026:    264 trades |     +668.3 pips |  +2.531 avg | 52.3% WR | PF 1.173 | DD 698
+  Losing years: 5
+
+── PER PAIR ──
+   GBP_JPY: 1,208 trades |   +5,017.1 pips |  +4.153 avg | 53.7% WR
+   EUR_AUD: 1,263 trades |   +2,835.4 pips |  +2.245 avg | 54.9% WR
+   GBP_AUD: 1,063 trades |   +2,634.2 pips |  +2.478 avg | 52.9% WR
+   AUD_JPY: 1,253 trades |   +2,161.6 pips |  +1.725 avg | 51.2% WR
+   CHF_JPY: 1,156 trades |     -184.0 pips |  -0.159 avg | 50.3% WR
+   NZD_JPY: 1,244 trades |     -753.0 pips |  -0.605 avg | 51.5% WR
+   EUR_JPY: 1,204 trades |     -840.8 pips |  -0.698 avg | 49.6% WR
+   GBP_USD: 1,291 trades |     -999.5 pips |  -0.774 avg | 51.4% WR
+   NZD_USD: 1,217 trades |   -1,545.0 pips |  -1.270 avg | 46.3% WR
+   CAD_JPY: 1,229 trades |   -2,255.0 pips |  -1.835 avg | 50.7% WR
+   EUR_USD: 1,268 trades |   -2,506.3 pips |  -1.977 avg | 46.6% WR
+   AUD_USD: 1,264 trades |   -2,849.0 pips |  -2.254 avg | 48.6% WR
+   USD_CAD: 1,258 trades |   -3,037.0 pips |  -2.414 avg | 47.9% WR
+   USD_CHF: 1,245 trades |   -3,863.7 pips |  -3.103 avg | 43.3% WR
+   EUR_GBP: 1,269 trades |   -4,527.7 pips |  -3.568 avg | 37.4% WR
+   USD_JPY: 1,172 trades |   -4,797.2 pips |  -4.093 avg | 48.6% WR
+   NZD_CAD: 1,214 trades |   -5,383.3 pips |  -4.434 avg | 43.6% WR
+   AUD_NZD: 1,204 trades |   -5,625.1 pips |  -4.672 avg | 37.1% WR
+   AUD_CAD: 1,253 trades |   -6,538.4 pips |  -5.218 avg | 40.9% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  9,418 trades |  -17,384.5 pips |  -1.846 avg | 47.2% WR | DD 18,102
+  Max  8 pos: 14,608 trades |  -19,898.5 pips |  -1.362 avg | 47.4% WR | DD 21,318
+  Max 10 pos: 17,623 trades |  -24,115.5 pips |  -1.368 avg | 47.8% WR | DD 25,174
+  Max 12 pos: 20,145 trades |  -29,831.5 pips |  -1.481 avg | 47.7% WR | DD 31,066
+  Max 15 pos: 23,275 trades |  -33,056.7 pips |  -1.420 avg | 47.7% WR | DD 34,247
+  Max 20 pos: 24,961 trades |  -39,899.9 pips |  -1.598 avg | 47.5% WR | DD 41,086
+
+====================================================================================================
+05:00:45 |
+Total runtime: 766.6s (12.8min)
+[26/32] Stress - Min hold 120 + Friday exit
+05:00:55 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+05:00:55 |   616 profitable slots from 625 total
+05:00:55 |   Thresholds: ET=0.4, XT=0.2
+05:00:55 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+05:00:55 |   616 slot configs loaded
+05:00:55 |
+Simulation config:
+05:00:55 |   Max positions: 15
+05:00:55 |   Slippage:      3.0 pips/side
+05:00:55 |   Entry delay:   2 bars (10min)
+05:00:55 |   Friday exit:   20:00 UTC
+05:00:55 |   Max spread:    5.0 pips
+05:00:55 |   Min hold:      120min (24 bars) before regime exit
+05:00:55 |   Windows:       48 (30-min UTC slots)
+05:00:55 |   Numba:         YES
+05:00:55 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+05:01:37 |   AUD_CAD: 4,003 trades (41.8s)
+05:02:24 |   AUD_JPY: 3,843 trades (47.3s)
+05:03:08 |   AUD_NZD: 3,689 trades (43.6s)
+05:03:43 |   AUD_USD: 4,000 trades (34.9s)
+05:04:26 |   CAD_JPY: 3,845 trades (43.5s)
+05:05:12 |   CHF_JPY: 3,716 trades (45.4s)
+05:05:55 |   EUR_AUD: 3,860 trades (42.8s)
+05:06:29 |   EUR_GBP: 4,193 trades (34.4s)
+05:07:13 |   EUR_JPY: 3,830 trades (43.5s)
+05:07:53 |   EUR_USD: 4,100 trades (40.8s)
+05:08:49 |   GBP_AUD: 3,309 trades (55.3s)
+05:09:40 |   GBP_JPY: 3,800 trades (51.3s)
+05:10:22 |   GBP_USD: 4,089 trades (42.1s)
+05:11:02 |   NZD_CAD: 3,836 trades (39.5s)
+05:11:47 |   NZD_JPY: 3,721 trades (45.1s)
+05:12:22 |   NZD_USD: 3,958 trades (35.4s)
+05:13:02 |   USD_CAD: 4,114 trades (39.6s)
+05:13:34 |   USD_CHF: 4,016 trades (31.8s)
+05:14:17 |   USD_JPY: 3,757 trades (43.2s)
+05:14:17 |
+Total trades generated: 73,679
+05:14:17 |
+Running portfolio simulation...
+05:14:18 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_friexit20_20260223_051417.csv (23,788 rows)
+05:14:18 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_friexit20_20260223_051417.csv (23,788 rows)
+05:14:18 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_friexit20_20260223_051417.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min) | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            23,788 (32.3%)
+  Rejected (margin):   5,636 (7.6%)
+  Rejected (pair busy):44,255 (60.1%)
+
+── PERFORMANCE ──
+  Total P&L:           -36,465.4 pips
+  Avg per trade:       -1.533 pips
+  Win rate:            47.4%
+  Profit factor:       0.908
+  Max drawdown:        37,777.9 pips
+  Avg win:             +32.0 pips
+  Avg loss:            -31.9 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.9
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        8,771 (36.9%) | +95,726.4 pips (+10.914 avg)
+  Timed exits:         13,406 (56.4%) | -121,922.5 pips (-9.095 avg)
+  Friday exits:        1,611 (6.8%) | -10,269.3 pips (-6.374 avg)
+
+── HOLD TIME ──
+  Mean:                161 bars (13.4h)
+  Median:              120 bars (10.0h)
+  P25:                 51 bars (4.2h)
+  P75:                 228 bars (19.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,630 trades |   -6,216.9 pips |  -1.713 avg | 46.7% WR | PF 0.851 | DD 6,284
+  2022:  5,208 trades |   -1,641.7 pips |  -0.315 avg | 50.0% WR | PF 0.983 | DD 6,540
+  2023:  5,089 trades |   -7,938.0 pips |  -1.560 avg | 47.7% WR | PF 0.913 | DD 9,781
+  2024:  4,813 trades |   -8,836.4 pips |  -1.836 avg | 46.5% WR | PF 0.892 | DD 13,100
+  2025:  4,783 trades |  -12,522.0 pips |  -2.618 avg | 45.7% WR | PF 0.849 | DD 14,364
+  2026:    265 trades |     +689.6 pips |  +2.602 avg | 51.3% WR | PF 1.191 | DD 660
+  Losing years: 5
+
+── PER PAIR ──
+   GBP_JPY: 1,225 trades |   +3,968.1 pips |  +3.239 avg | 53.3% WR
+   EUR_AUD: 1,309 trades |   +3,455.4 pips |  +2.640 avg | 54.5% WR
+   GBP_AUD: 1,070 trades |   +2,697.7 pips |  +2.521 avg | 52.8% WR
+   AUD_JPY: 1,272 trades |   +1,182.4 pips |  +0.930 avg | 50.8% WR
+   EUR_JPY: 1,257 trades |     +692.7 pips |  +0.551 avg | 50.7% WR
+   CHF_JPY: 1,192 trades |     -447.4 pips |  -0.375 avg | 50.0% WR
+   NZD_JPY: 1,248 trades |     -833.8 pips |  -0.668 avg | 50.8% WR
+   CAD_JPY: 1,254 trades |   -1,989.7 pips |  -1.587 avg | 51.1% WR
+   NZD_USD: 1,254 trades |   -2,397.8 pips |  -1.912 avg | 44.9% WR
+   USD_CAD: 1,283 trades |   -2,541.0 pips |  -1.981 avg | 48.3% WR
+   GBP_USD: 1,305 trades |   -2,615.2 pips |  -2.004 avg | 50.6% WR
+   EUR_USD: 1,285 trades |   -3,040.0 pips |  -2.366 avg | 46.6% WR
+   AUD_USD: 1,286 trades |   -3,101.9 pips |  -2.412 avg | 48.1% WR
+   USD_JPY: 1,214 trades |   -3,137.9 pips |  -2.585 avg | 49.3% WR
+   EUR_GBP: 1,294 trades |   -4,300.1 pips |  -3.323 avg | 38.0% WR
+   USD_CHF: 1,265 trades |   -4,543.6 pips |  -3.592 avg | 42.2% WR
+   AUD_NZD: 1,229 trades |   -5,769.2 pips |  -4.694 avg | 37.3% WR
+   NZD_CAD: 1,261 trades |   -6,290.3 pips |  -4.988 avg | 43.1% WR
+   AUD_CAD: 1,285 trades |   -7,453.8 pips |  -5.801 avg | 40.2% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  9,671 trades |  -14,637.1 pips |  -1.514 avg | 47.4% WR | DD 15,311
+  Max  8 pos: 14,998 trades |  -19,691.9 pips |  -1.313 avg | 47.4% WR | DD 20,872
+  Max 10 pos: 17,965 trades |  -27,336.1 pips |  -1.522 avg | 47.4% WR | DD 28,221
+  Max 12 pos: 20,714 trades |  -33,394.8 pips |  -1.612 avg | 47.5% WR | DD 34,489
+  Max 15 pos: 23,788 trades |  -36,465.4 pips |  -1.533 avg | 47.4% WR | DD 37,763
+  Max 20 pos: 25,592 trades |  -44,495.0 pips |  -1.739 avg | 47.4% WR | DD 45,588
+
+====================================================================================================
+05:14:19 |
+Total runtime: 804.1s (13.4min)
+[27/32] Stress - Window 10
+05:14:28 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+05:14:28 |   616 profitable slots from 625 total
+05:14:28 |   Thresholds: ET=0.4, XT=0.2
+05:14:28 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+05:14:28 |   616 slot configs loaded
+05:14:28 |
+Simulation config:
+05:14:28 |   Max positions: 15
+05:14:28 |   Slippage:      3.0 pips/side
+05:14:28 |   Entry delay:   2 bars (10min)
+05:14:28 |   Friday exit:   OFF
+05:14:28 |   Max spread:    5.0 pips
+05:14:28 |   Regime window: 10min (2 bars)
+05:14:28 |   Windows:       48 (30-min UTC slots)
+05:14:28 |   Numba:         YES
+05:14:28 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+05:15:07 |   AUD_CAD: 4,003 trades (38.2s)
+05:15:54 |   AUD_JPY: 3,843 trades (47.9s)
+05:16:34 |   AUD_NZD: 3,689 trades (40.0s)
+05:17:06 |   AUD_USD: 4,000 trades (31.5s)
+05:17:46 |   CAD_JPY: 3,845 trades (40.5s)
+05:18:29 |   CHF_JPY: 3,716 trades (42.7s)
+05:19:09 |   EUR_AUD: 3,860 trades (39.6s)
+05:19:41 |   EUR_GBP: 4,193 trades (32.9s)
+05:20:20 |   EUR_JPY: 3,830 trades (38.2s)
+05:20:59 |   EUR_USD: 4,100 trades (39.2s)
+05:21:51 |   GBP_AUD: 3,309 trades (52.4s)
+05:22:38 |   GBP_JPY: 3,800 trades (46.6s)
+05:23:16 |   GBP_USD: 4,089 trades (38.4s)
+05:23:53 |   NZD_CAD: 3,836 trades (36.9s)
+05:24:36 |   NZD_JPY: 3,721 trades (42.8s)
+05:25:09 |   NZD_USD: 3,958 trades (32.6s)
+05:25:45 |   USD_CAD: 4,114 trades (36.4s)
+05:26:14 |   USD_CHF: 4,016 trades (28.6s)
+05:26:55 |   USD_JPY: 3,757 trades (41.2s)
+05:26:55 |
+Total trades generated: 73,679
+05:26:55 |
+Running portfolio simulation...
+05:26:56 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_20260223_052656.csv (19,295 rows)
+05:26:56 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_20260223_052656.csv (19,295 rows)
+05:26:56 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_20260223_052656.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min)
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            19,295 (26.2%)
+  Rejected (margin):   6,258 (8.5%)
+  Rejected (pair busy):48,126 (65.3%)
+
+── PERFORMANCE ──
+  Total P&L:           -75,332.4 pips
+  Avg per trade:       -3.904 pips
+  Win rate:            40.6%
+  Profit factor:       0.812
+  Max drawdown:        75,497.4 pips
+  Avg win:             +41.5 pips
+  Avg loss:            -35.1 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.3
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        2,350 (12.2%) | -28,180.6 pips (-11.992 avg)
+  Timed exits:         16,945 (87.8%) | -47,151.8 pips (-2.783 avg)
+
+── HOLD TIME ──
+  Mean:                213 bars (17.7h)
+  Median:              192 bars (16.0h)
+  P25:                 96 bars (8.0h)
+  P75:                 336 bars (28.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,349 trades |   -9,965.9 pips |  -2.976 avg | 41.1% WR | PF 0.784 | DD 10,163
+  2022:  4,381 trades |   -7,517.5 pips |  -1.716 avg | 42.4% WR | PF 0.922 | DD 8,943
+  2023:  4,057 trades |  -22,860.6 pips |  -5.635 avg | 39.9% WR | PF 0.758 | DD 23,913
+  2024:  3,641 trades |  -10,102.0 pips |  -2.775 avg | 40.5% WR | PF 0.866 | DD 13,357
+  2025:  3,667 trades |  -23,459.8 pips |  -6.398 avg | 39.2% WR | PF 0.721 | DD 24,092
+  2026:    200 trades |   -1,426.6 pips |  -7.133 avg | 38.0% WR | PF 0.676 | DD 1,584
+  Losing years: 6
+
+── PER PAIR ──
+   GBP_JPY: 1,000 trades |   +3,148.0 pips |  +3.148 avg | 45.2% WR
+   GBP_AUD:   936 trades |      +97.6 pips |  +0.104 avg | 43.6% WR
+   AUD_JPY:   993 trades |   -1,059.7 pips |  -1.067 avg | 44.7% WR
+   EUR_JPY: 1,005 trades |   -1,975.5 pips |  -1.966 avg | 42.2% WR
+   EUR_USD: 1,075 trades |   -2,423.4 pips |  -2.254 avg | 40.3% WR
+   NZD_JPY:   971 trades |   -2,452.1 pips |  -2.525 avg | 42.4% WR
+   CAD_JPY: 1,015 trades |   -3,333.1 pips |  -3.284 avg | 43.2% WR
+   GBP_USD: 1,053 trades |   -3,410.1 pips |  -3.238 avg | 43.5% WR
+   USD_CAD: 1,053 trades |   -4,571.5 pips |  -4.341 avg | 40.6% WR
+   USD_CHF: 1,045 trades |   -4,621.9 pips |  -4.423 avg | 38.1% WR
+   NZD_CAD:   975 trades |   -5,109.7 pips |  -5.241 avg | 40.5% WR
+   AUD_USD: 1,046 trades |   -5,115.3 pips |  -4.890 avg | 40.7% WR
+   AUD_NZD:   969 trades |   -5,395.6 pips |  -5.568 avg | 37.6% WR
+   EUR_AUD: 1,024 trades |   -5,658.9 pips |  -5.526 avg | 41.3% WR
+   CHF_JPY: 1,042 trades |   -6,058.2 pips |  -5.814 avg | 40.7% WR
+   NZD_USD: 1,026 trades |   -6,149.7 pips |  -5.994 avg | 38.7% WR
+   EUR_GBP: 1,071 trades |   -7,003.7 pips |  -6.539 avg | 33.7% WR
+   USD_JPY:   976 trades |   -7,057.1 pips |  -7.231 avg | 39.2% WR
+   AUD_CAD: 1,020 trades |   -7,182.5 pips |  -7.042 avg | 36.8% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  7,603 trades |  -27,759.2 pips |  -3.651 avg | 41.2% WR | DD 27,782
+  Max  8 pos: 11,878 trades |  -44,152.1 pips |  -3.717 avg | 40.8% WR | DD 44,272
+  Max 10 pos: 14,438 trades |  -60,241.2 pips |  -4.172 avg | 40.7% WR | DD 60,349
+  Max 12 pos: 16,775 trades |  -68,321.5 pips |  -4.073 avg | 40.5% WR | DD 68,408
+  Max 15 pos: 19,295 trades |  -75,332.4 pips |  -3.904 avg | 40.6% WR | DD 75,491
+  Max 20 pos: 21,018 trades |  -79,856.9 pips |  -3.799 avg | 40.6% WR | DD 79,890
+
+====================================================================================================
+05:26:57 |
+Total runtime: 749.1s (12.5min)
+[28/32] Stress - Window 10 + Friday exit
+05:27:08 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+05:27:08 |   616 profitable slots from 625 total
+05:27:08 |   Thresholds: ET=0.4, XT=0.2
+05:27:08 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+05:27:08 |   616 slot configs loaded
+05:27:08 |
+Simulation config:
+05:27:08 |   Max positions: 15
+05:27:08 |   Slippage:      3.0 pips/side
+05:27:08 |   Entry delay:   2 bars (10min)
+05:27:08 |   Friday exit:   20:00 UTC
+05:27:08 |   Max spread:    5.0 pips
+05:27:08 |   Regime window: 10min (2 bars)
+05:27:08 |   Windows:       48 (30-min UTC slots)
+05:27:08 |   Numba:         YES
+05:27:08 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+05:27:50 |   AUD_CAD: 4,003 trades (42.8s)
+05:28:40 |   AUD_JPY: 3,843 trades (49.8s)
+05:29:25 |   AUD_NZD: 3,689 trades (44.4s)
+05:30:01 |   AUD_USD: 4,000 trades (36.7s)
+05:30:45 |   CAD_JPY: 3,845 trades (43.8s)
+05:31:34 |   CHF_JPY: 3,716 trades (48.8s)
+05:32:20 |   EUR_AUD: 3,860 trades (45.9s)
+05:32:56 |   EUR_GBP: 4,193 trades (35.7s)
+05:33:39 |   EUR_JPY: 3,830 trades (43.2s)
+05:34:21 |   EUR_USD: 4,100 trades (42.6s)
+05:35:17 |   GBP_AUD: 3,309 trades (55.3s)
+05:36:06 |   GBP_JPY: 3,800 trades (49.5s)
+05:36:49 |   GBP_USD: 4,089 trades (42.4s)
+05:37:29 |   NZD_CAD: 3,836 trades (40.5s)
+05:38:14 |   NZD_JPY: 3,721 trades (45.1s)
+05:38:51 |   NZD_USD: 3,958 trades (36.8s)
+05:39:32 |   USD_CAD: 4,114 trades (41.3s)
+05:40:05 |   USD_CHF: 4,016 trades (32.9s)
+05:40:50 |   USD_JPY: 3,757 trades (44.8s)
+05:40:50 |
+Total trades generated: 73,679
+05:40:50 |
+Running portfolio simulation...
+05:40:51 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_friexit20_20260223_054051.csv (19,889 rows)
+05:40:52 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_friexit20_20260223_054051.csv (19,889 rows)
+05:40:52 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_friexit20_20260223_054051.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min) | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            19,889 (27.0%)
+  Rejected (margin):   6,229 (8.5%)
+  Rejected (pair busy):47,561 (64.6%)
+
+── PERFORMANCE ──
+  Total P&L:           -76,496.9 pips
+  Avg per trade:       -3.846 pips
+  Win rate:            40.7%
+  Profit factor:       0.810
+  Max drawdown:        76,639.1 pips
+  Avg win:             +40.3 pips
+  Avg loss:            -34.2 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.8
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        2,433 (12.2%) | -29,296.4 pips (-12.041 avg)
+  Timed exits:         15,684 (78.9%) | -45,512.2 pips (-2.902 avg)
+  Friday exits:        1,772 (8.9%) | -1,688.3 pips (-0.953 avg)
+
+── HOLD TIME ──
+  Mean:                201 bars (16.7h)
+  Median:              192 bars (16.0h)
+  P25:                 96 bars (8.0h)
+  P75:                 288 bars (24.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,370 trades |   -9,508.3 pips |  -2.821 avg | 41.2% WR | PF 0.793 | DD 9,689
+  2022:  4,461 trades |   -9,296.0 pips |  -2.084 avg | 42.5% WR | PF 0.904 | DD 11,076
+  2023:  4,204 trades |  -22,622.4 pips |  -5.381 avg | 39.8% WR | PF 0.761 | DD 23,415
+  2024:  3,850 trades |  -10,405.6 pips |  -2.703 avg | 39.8% WR | PF 0.865 | DD 14,750
+  2025:  3,804 trades |  -23,721.0 pips |  -6.236 avg | 40.0% WR | PF 0.716 | DD 24,470
+  2026:    200 trades |     -943.6 pips |  -4.718 avg | 39.0% WR | PF 0.763 | DD 1,234
+  Losing years: 6
+
+── PER PAIR ──
+   GBP_JPY: 1,026 trades |   +2,000.2 pips |  +1.950 avg | 45.2% WR
+   GBP_AUD:   974 trades |      -12.6 pips |  -0.013 avg | 42.9% WR
+   AUD_JPY: 1,043 trades |   -1,038.9 pips |  -0.996 avg | 44.1% WR
+   CAD_JPY: 1,032 trades |   -2,144.2 pips |  -2.078 avg | 43.8% WR
+   NZD_JPY: 1,022 trades |   -2,970.4 pips |  -2.906 avg | 42.6% WR
+   EUR_JPY: 1,044 trades |   -3,588.4 pips |  -3.437 avg | 42.0% WR
+   GBP_USD: 1,076 trades |   -4,071.9 pips |  -3.784 avg | 44.0% WR
+   EUR_AUD: 1,059 trades |   -4,106.9 pips |  -3.878 avg | 42.8% WR
+   USD_JPY: 1,011 trades |   -4,457.7 pips |  -4.409 avg | 41.0% WR
+   USD_CHF: 1,059 trades |   -4,571.9 pips |  -4.317 avg | 38.6% WR
+   EUR_USD: 1,122 trades |   -4,976.7 pips |  -4.436 avg | 38.5% WR
+   AUD_NZD:   987 trades |   -5,033.4 pips |  -5.100 avg | 37.9% WR
+   NZD_USD: 1,044 trades |   -5,169.4 pips |  -4.952 avg | 40.0% WR
+   USD_CAD: 1,065 trades |   -5,255.7 pips |  -4.935 avg | 40.8% WR
+   NZD_CAD: 1,007 trades |   -5,656.2 pips |  -5.617 avg | 39.7% WR
+   CHF_JPY: 1,078 trades |   -5,838.3 pips |  -5.416 avg | 40.4% WR
+   AUD_USD: 1,095 trades |   -6,037.0 pips |  -5.513 avg | 39.5% WR
+   EUR_GBP: 1,090 trades |   -6,339.1 pips |  -5.816 avg | 33.9% WR
+   AUD_CAD: 1,055 trades |   -7,228.4 pips |  -6.852 avg | 35.6% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  7,845 trades |  -31,765.5 pips |  -4.049 avg | 40.7% WR | DD 31,829
+  Max  8 pos: 12,260 trades |  -46,820.7 pips |  -3.819 avg | 40.7% WR | DD 46,902
+  Max 10 pos: 14,921 trades |  -59,623.2 pips |  -3.996 avg | 40.7% WR | DD 59,717
+  Max 12 pos: 17,258 trades |  -74,182.9 pips |  -4.298 avg | 40.4% WR | DD 74,240
+  Max 15 pos: 19,889 trades |  -76,496.9 pips |  -3.846 avg | 40.7% WR | DD 76,643
+  Max 20 pos: 21,651 trades |  -76,825.8 pips |  -3.548 avg | 40.9% WR | DD 76,875
+
+====================================================================================================
+05:40:53 |
+Total runtime: 825.1s (13.8min)
+[29/32] Stress - Window 20
+05:41:04 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+05:41:04 |   616 profitable slots from 625 total
+05:41:04 |   Thresholds: ET=0.4, XT=0.2
+05:41:04 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+05:41:04 |   616 slot configs loaded
+05:41:04 |
+Simulation config:
+05:41:04 |   Max positions: 15
+05:41:04 |   Slippage:      3.0 pips/side
+05:41:04 |   Entry delay:   2 bars (10min)
+05:41:04 |   Friday exit:   OFF
+05:41:04 |   Max spread:    5.0 pips
+05:41:04 |   Regime window: 20min (4 bars)
+05:41:04 |   Windows:       48 (30-min UTC slots)
+05:41:04 |   Numba:         YES
+05:41:04 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+05:41:42 |   AUD_CAD: 4,003 trades (37.9s)
+05:42:29 |   AUD_JPY: 3,843 trades (46.5s)
+05:43:09 |   AUD_NZD: 3,689 trades (39.7s)
+05:43:41 |   AUD_USD: 4,000 trades (32.0s)
+05:44:22 |   CAD_JPY: 3,845 trades (41.0s)
+05:45:09 |   CHF_JPY: 3,716 trades (47.2s)
+05:45:48 |   EUR_AUD: 3,860 trades (39.6s)
+05:46:20 |   EUR_GBP: 4,193 trades (31.8s)
+05:47:01 |   EUR_JPY: 3,830 trades (41.1s)
+05:47:41 |   EUR_USD: 4,100 trades (39.8s)
+05:48:33 |   GBP_AUD: 3,309 trades (51.5s)
+05:49:20 |   GBP_JPY: 3,800 trades (46.9s)
+05:49:58 |   GBP_USD: 4,089 trades (38.3s)
+05:50:34 |   NZD_CAD: 3,836 trades (36.5s)
+05:51:17 |   NZD_JPY: 3,721 trades (42.9s)
+05:51:50 |   NZD_USD: 3,958 trades (33.0s)
+05:52:26 |   USD_CAD: 4,114 trades (35.9s)
+05:52:55 |   USD_CHF: 4,016 trades (28.8s)
+05:53:35 |   USD_JPY: 3,757 trades (40.6s)
+05:53:36 |
+Total trades generated: 73,679
+05:53:36 |
+Running portfolio simulation...
+05:53:37 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_20260223_055336.csv (20,965 rows)
+05:53:37 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_20260223_055336.csv (20,965 rows)
+05:53:37 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_20260223_055336.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min)
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            20,965 (28.5%)
+  Rejected (margin):   6,043 (8.2%)
+  Rejected (pair busy):46,671 (63.3%)
+
+── PERFORMANCE ──
+  Total P&L:           -74,557.0 pips
+  Avg per trade:       -3.556 pips
+  Win rate:            37.8%
+  Profit factor:       0.816
+  Max drawdown:        74,722.0 pips
+  Avg win:             +41.7 pips
+  Avg loss:            -31.1 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.2
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        4,405 (21.0%) | -54,660.3 pips (-12.409 avg)
+  Timed exits:         16,560 (79.0%) | -19,896.7 pips (-1.201 avg)
+
+── HOLD TIME ──
+  Mean:                193 bars (16.1h)
+  Median:              168 bars (14.0h)
+  P25:                 48 bars (4.0h)
+  P75:                 288 bars (24.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,484 trades |  -10,780.0 pips |  -3.094 avg | 38.7% WR | PF 0.767 | DD 11,165
+  2022:  4,777 trades |   -8,135.8 pips |  -1.703 avg | 39.6% WR | PF 0.917 | DD 9,736
+  2023:  4,468 trades |  -26,271.7 pips |  -5.880 avg | 36.6% WR | PF 0.729 | DD 27,816
+  2024:  4,014 trades |  -11,197.0 pips |  -2.789 avg | 36.8% WR | PF 0.855 | DD 14,681
+  2025:  4,017 trades |  -16,871.8 pips |  -4.200 avg | 37.4% WR | PF 0.795 | DD 17,443
+  2026:    205 trades |   -1,300.7 pips |  -6.345 avg | 36.1% WR | PF 0.695 | DD 1,548
+  Losing years: 6
+
+── PER PAIR ──
+   GBP_JPY: 1,112 trades |   +4,150.6 pips |  +3.733 avg | 41.7% WR
+   GBP_AUD: 1,033 trades |     +822.6 pips |  +0.796 avg | 40.2% WR
+   NZD_JPY: 1,072 trades |   -1,219.0 pips |  -1.137 avg | 39.9% WR
+   GBP_USD: 1,148 trades |   -1,864.3 pips |  -1.624 avg | 39.3% WR
+   AUD_JPY: 1,096 trades |   -2,792.1 pips |  -2.548 avg | 41.4% WR
+   EUR_AUD: 1,106 trades |   -3,245.2 pips |  -2.934 avg | 39.4% WR
+   CAD_JPY: 1,096 trades |   -3,612.9 pips |  -3.296 avg | 39.2% WR
+   EUR_JPY: 1,108 trades |   -4,373.0 pips |  -3.947 avg | 37.3% WR
+   NZD_CAD: 1,063 trades |   -4,650.1 pips |  -4.375 avg | 37.6% WR
+   EUR_USD: 1,162 trades |   -4,990.5 pips |  -4.295 avg | 37.2% WR
+   USD_CHF: 1,127 trades |   -5,256.8 pips |  -4.664 avg | 33.8% WR
+   AUD_USD: 1,123 trades |   -5,310.2 pips |  -4.729 avg | 38.7% WR
+   AUD_NZD: 1,046 trades |   -5,427.3 pips |  -5.189 avg | 35.7% WR
+   USD_CAD: 1,124 trades |   -5,446.3 pips |  -4.845 avg | 38.0% WR
+   CHF_JPY: 1,114 trades |   -5,512.3 pips |  -4.948 avg | 39.0% WR
+   USD_JPY: 1,072 trades |   -5,663.4 pips |  -5.283 avg | 37.3% WR
+   NZD_USD: 1,088 trades |   -6,250.8 pips |  -5.745 avg | 36.6% WR
+   AUD_CAD: 1,119 trades |   -6,723.1 pips |  -6.008 avg | 34.3% WR
+   EUR_GBP: 1,156 trades |   -7,192.9 pips |  -6.222 avg | 32.3% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  8,323 trades |  -24,759.9 pips |  -2.975 avg | 38.7% WR | DD 24,787
+  Max  8 pos: 13,025 trades |  -52,415.1 pips |  -4.024 avg | 37.5% WR | DD 52,472
+  Max 10 pos: 15,824 trades |  -62,102.1 pips |  -3.925 avg | 37.5% WR | DD 62,119
+  Max 12 pos: 18,252 trades |  -67,981.8 pips |  -3.725 avg | 37.7% WR | DD 68,092
+  Max 15 pos: 20,965 trades |  -74,557.0 pips |  -3.556 avg | 37.8% WR | DD 74,731
+  Max 20 pos: 22,793 trades |  -66,838.7 pips |  -2.932 avg | 38.0% WR | DD 66,901
+
+====================================================================================================
+05:53:38 |
+Total runtime: 753.8s (12.6min)
+[30/32] Stress - Window 20 + Friday exit
+05:53:49 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+05:53:49 |   616 profitable slots from 625 total
+05:53:49 |   Thresholds: ET=0.4, XT=0.2
+05:53:49 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+05:53:49 |   616 slot configs loaded
+05:53:49 |
+Simulation config:
+05:53:49 |   Max positions: 15
+05:53:49 |   Slippage:      3.0 pips/side
+05:53:49 |   Entry delay:   2 bars (10min)
+05:53:49 |   Friday exit:   20:00 UTC
+05:53:49 |   Max spread:    5.0 pips
+05:53:49 |   Regime window: 20min (4 bars)
+05:53:49 |   Windows:       48 (30-min UTC slots)
+05:53:49 |   Numba:         YES
+05:53:49 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+05:54:32 |   AUD_CAD: 4,003 trades (42.7s)
+05:55:20 |   AUD_JPY: 3,843 trades (48.5s)
+05:56:02 |   AUD_NZD: 3,689 trades (41.9s)
+05:56:37 |   AUD_USD: 4,000 trades (34.7s)
+05:57:22 |   CAD_JPY: 3,845 trades (45.4s)
+05:58:12 |   CHF_JPY: 3,716 trades (49.7s)
+05:58:55 |   EUR_AUD: 3,860 trades (43.5s)
+05:59:31 |   EUR_GBP: 4,193 trades (35.9s)
+06:00:15 |   EUR_JPY: 3,830 trades (44.0s)
+06:00:57 |   EUR_USD: 4,100 trades (41.5s)
+06:01:52 |   GBP_AUD: 3,309 trades (55.0s)
+06:02:42 |   GBP_JPY: 3,800 trades (50.2s)
+06:03:25 |   GBP_USD: 4,089 trades (42.5s)
+06:04:05 |   NZD_CAD: 3,836 trades (40.2s)
+06:04:50 |   NZD_JPY: 3,721 trades (45.7s)
+06:05:27 |   NZD_USD: 3,958 trades (36.6s)
+06:06:08 |   USD_CAD: 4,114 trades (41.3s)
+06:06:41 |   USD_CHF: 4,016 trades (32.3s)
+06:07:24 |   USD_JPY: 3,757 trades (43.8s)
+06:07:25 |
+Total trades generated: 73,679
+06:07:25 |
+Running portfolio simulation...
+06:07:25 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_friexit20_20260223_060725.csv (21,648 rows)
+06:07:26 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_friexit20_20260223_060725.csv (21,648 rows)
+06:07:26 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_friexit20_20260223_060725.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min) | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            21,648 (29.4%)
+  Rejected (margin):   6,053 (8.2%)
+  Rejected (pair busy):45,978 (62.4%)
+
+── PERFORMANCE ──
+  Total P&L:           -73,957.1 pips
+  Avg per trade:       -3.416 pips
+  Win rate:            37.9%
+  Profit factor:       0.818
+  Max drawdown:        74,099.3 pips
+  Avg win:             +40.5 pips
+  Avg loss:            -30.3 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.7
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        4,527 (20.9%) | -56,079.5 pips (-12.388 avg)
+  Timed exits:         15,349 (70.9%) | -19,568.4 pips (-1.275 avg)
+  Friday exits:        1,772 (8.2%) | +1,690.8 pips (+0.954 avg)
+
+── HOLD TIME ──
+  Mean:                182 bars (15.2h)
+  Median:              168 bars (14.0h)
+  P25:                 48 bars (4.0h)
+  P75:                 288 bars (24.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,502 trades |  -10,745.1 pips |  -3.068 avg | 38.7% WR | PF 0.767 | DD 11,004
+  2022:  4,891 trades |   -8,386.6 pips |  -1.715 avg | 40.0% WR | PF 0.914 | DD 10,458
+  2023:  4,636 trades |  -21,271.8 pips |  -4.588 avg | 36.8% WR | PF 0.778 | DD 22,633
+  2024:  4,225 trades |  -11,935.1 pips |  -2.825 avg | 37.0% WR | PF 0.849 | DD 15,276
+  2025:  4,189 trades |  -20,514.1 pips |  -4.897 avg | 36.8% WR | PF 0.754 | DD 21,071
+  2026:    205 trades |   -1,104.4 pips |  -5.387 avg | 36.6% WR | PF 0.724 | DD 1,249
+  Losing years: 6
+
+── PER PAIR ──
+   GBP_JPY: 1,134 trades |   +4,825.8 pips |  +4.256 avg | 42.8% WR
+   GBP_AUD: 1,060 trades |      +42.2 pips |  +0.040 avg | 39.4% WR
+   GBP_USD: 1,183 trades |   -1,361.4 pips |  -1.151 avg | 41.3% WR
+   AUD_JPY: 1,143 trades |   -1,444.5 pips |  -1.264 avg | 41.5% WR
+   USD_JPY: 1,101 trades |   -2,541.7 pips |  -2.309 avg | 38.8% WR
+   EUR_AUD: 1,151 trades |   -3,044.4 pips |  -2.645 avg | 39.4% WR
+   NZD_JPY: 1,100 trades |   -3,336.8 pips |  -3.033 avg | 39.1% WR
+   CAD_JPY: 1,123 trades |   -3,342.7 pips |  -2.977 avg | 40.2% WR
+   EUR_JPY: 1,161 trades |   -4,748.7 pips |  -4.090 avg | 37.9% WR
+   NZD_CAD: 1,095 trades |   -5,065.8 pips |  -4.626 avg | 37.9% WR
+   USD_CHF: 1,162 trades |   -5,238.2 pips |  -4.508 avg | 34.5% WR
+   EUR_USD: 1,212 trades |   -5,265.1 pips |  -4.344 avg | 36.9% WR
+   USD_CAD: 1,163 trades |   -5,365.3 pips |  -4.613 avg | 37.7% WR
+   CHF_JPY: 1,158 trades |   -5,499.9 pips |  -4.749 avg | 38.8% WR
+   AUD_USD: 1,170 trades |   -5,531.2 pips |  -4.728 avg | 37.4% WR
+   NZD_USD: 1,104 trades |   -5,871.0 pips |  -5.318 avg | 36.6% WR
+   AUD_NZD: 1,070 trades |   -5,937.1 pips |  -5.549 avg | 35.0% WR
+   EUR_GBP: 1,198 trades |   -7,571.8 pips |  -6.320 avg | 31.6% WR
+   AUD_CAD: 1,160 trades |   -7,659.5 pips |  -6.603 avg | 33.2% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  8,661 trades |  -33,923.6 pips |  -3.917 avg | 37.9% WR | DD 33,963
+  Max  8 pos: 13,442 trades |  -48,159.9 pips |  -3.583 avg | 37.9% WR | DD 48,218
+  Max 10 pos: 16,291 trades |  -55,528.3 pips |  -3.409 avg | 37.9% WR | DD 55,548
+  Max 12 pos: 18,752 trades |  -64,918.8 pips |  -3.462 avg | 37.9% WR | DD 64,976
+  Max 15 pos: 21,648 trades |  -73,957.1 pips |  -3.416 avg | 37.9% WR | DD 74,103
+  Max 20 pos: 23,508 trades |  -67,178.6 pips |  -2.858 avg | 38.2% WR | DD 67,244
+
+====================================================================================================
+06:07:27 |
+Total runtime: 818.1s (13.6min)
+[31/32] Stress - Window 30
+06:07:37 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+06:07:37 |   616 profitable slots from 625 total
+06:07:37 |   Thresholds: ET=0.4, XT=0.2
+06:07:37 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+06:07:37 |   616 slot configs loaded
+06:07:37 |
+Simulation config:
+06:07:37 |   Max positions: 15
+06:07:37 |   Slippage:      3.0 pips/side
+06:07:37 |   Entry delay:   2 bars (10min)
+06:07:37 |   Friday exit:   OFF
+06:07:37 |   Max spread:    5.0 pips
+06:07:37 |   Regime window: 30min (6 bars)
+06:07:37 |   Windows:       48 (30-min UTC slots)
+06:07:37 |   Numba:         YES
+06:07:37 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+06:08:16 |   AUD_CAD: 4,003 trades (38.7s)
+06:09:00 |   AUD_JPY: 3,843 trades (44.5s)
+06:09:40 |   AUD_NZD: 3,689 trades (39.3s)
+06:10:10 |   AUD_USD: 4,000 trades (30.7s)
+06:10:52 |   CAD_JPY: 3,845 trades (41.3s)
+06:11:37 |   CHF_JPY: 3,716 trades (45.3s)
+06:12:17 |   EUR_AUD: 3,860 trades (39.6s)
+06:12:49 |   EUR_GBP: 4,193 trades (32.6s)
+06:13:28 |   EUR_JPY: 3,830 trades (39.0s)
+06:14:07 |   EUR_USD: 4,100 trades (38.9s)
+06:15:00 |   GBP_AUD: 3,309 trades (53.0s)
+06:15:46 |   GBP_JPY: 3,800 trades (46.1s)
+06:16:25 |   GBP_USD: 4,089 trades (38.9s)
+06:17:02 |   NZD_CAD: 3,836 trades (36.6s)
+06:17:43 |   NZD_JPY: 3,721 trades (41.5s)
+06:18:16 |   NZD_USD: 3,958 trades (32.4s)
+06:18:54 |   USD_CAD: 4,114 trades (38.5s)
+06:19:23 |   USD_CHF: 4,016 trades (28.9s)
+06:20:04 |   USD_JPY: 3,757 trades (41.2s)
+06:20:05 |
+Total trades generated: 73,679
+06:20:05 |
+Running portfolio simulation...
+06:20:05 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_20260223_062005.csv (22,125 rows)
+06:20:06 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_20260223_062005.csv (22,125 rows)
+06:20:06 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_20260223_062005.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min)
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            22,125 (30.0%)
+  Rejected (margin):   5,842 (7.9%)
+  Rejected (pair busy):45,712 (62.0%)
+
+── PERFORMANCE ──
+  Total P&L:           -78,840.0 pips
+  Avg per trade:       -3.563 pips
+  Win rate:            35.8%
+  Profit factor:       0.808
+  Max drawdown:        79,005.0 pips
+  Avg win:             +41.9 pips
+  Avg loss:            -28.9 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      11.2
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        5,792 (26.2%) | -71,635.5 pips (-12.368 avg)
+  Timed exits:         16,333 (73.8%) | -7,204.5 pips (-0.441 avg)
+
+── HOLD TIME ──
+  Mean:                182 bars (15.1h)
+  Median:              144 bars (12.0h)
+  P25:                 6 bars (0.5h)
+  P75:                 288 bars (24.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,567 trades |   -9,861.3 pips |  -2.765 avg | 37.5% WR | PF 0.784 | DD 10,394
+  2022:  5,067 trades |  -11,492.9 pips |  -2.268 avg | 37.2% WR | PF 0.885 | DD 13,005
+  2023:  4,741 trades |  -22,079.4 pips |  -4.657 avg | 35.3% WR | PF 0.770 | DD 23,376
+  2024:  4,280 trades |  -16,648.5 pips |  -3.890 avg | 34.1% WR | PF 0.794 | DD 18,113
+  2025:  4,267 trades |  -17,477.7 pips |  -4.096 avg | 35.0% WR | PF 0.792 | DD 18,021
+  2026:    203 trades |   -1,280.2 pips |  -6.306 avg | 34.0% WR | PF 0.693 | DD 1,438
+  Losing years: 6
+
+── PER PAIR ──
+   GBP_JPY: 1,166 trades |   +5,020.9 pips |  +4.306 avg | 40.6% WR
+   GBP_AUD: 1,084 trades |   -1,243.2 pips |  -1.147 avg | 37.3% WR
+   USD_JPY: 1,137 trades |   -1,515.2 pips |  -1.333 avg | 37.3% WR
+   GBP_USD: 1,233 trades |   -2,879.2 pips |  -2.335 avg | 37.0% WR
+   CAD_JPY: 1,157 trades |   -3,021.0 pips |  -2.611 avg | 38.2% WR
+   NZD_JPY: 1,112 trades |   -3,118.3 pips |  -2.804 avg | 36.7% WR
+   EUR_AUD: 1,142 trades |   -3,321.8 pips |  -2.909 avg | 37.9% WR
+   AUD_JPY: 1,153 trades |   -4,053.7 pips |  -3.516 avg | 38.5% WR
+   EUR_JPY: 1,176 trades |   -4,262.8 pips |  -3.625 avg | 36.2% WR
+   AUD_USD: 1,191 trades |   -4,270.7 pips |  -3.586 avg | 36.2% WR
+   USD_CHF: 1,189 trades |   -5,024.4 pips |  -4.226 avg | 32.5% WR
+   EUR_USD: 1,246 trades |   -5,327.0 pips |  -4.275 avg | 34.9% WR
+   USD_CAD: 1,184 trades |   -5,468.3 pips |  -4.618 avg | 35.8% WR
+   NZD_USD: 1,154 trades |   -5,759.9 pips |  -4.991 avg | 34.5% WR
+   AUD_NZD: 1,097 trades |   -6,314.3 pips |  -5.756 avg | 33.4% WR
+   CHF_JPY: 1,193 trades |   -6,800.3 pips |  -5.700 avg | 35.6% WR
+   NZD_CAD: 1,120 trades |   -6,913.3 pips |  -6.173 avg | 33.4% WR
+   AUD_CAD: 1,177 trades |   -6,996.0 pips |  -5.944 avg | 33.0% WR
+   EUR_GBP: 1,214 trades |   -7,571.5 pips |  -6.237 avg | 31.2% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  8,829 trades |  -27,637.1 pips |  -3.130 avg | 36.8% WR | DD 27,874
+  Max  8 pos: 13,720 trades |  -49,011.3 pips |  -3.572 avg | 36.1% WR | DD 49,032
+  Max 10 pos: 16,667 trades |  -56,027.5 pips |  -3.362 avg | 36.2% WR | DD 56,044
+  Max 12 pos: 19,177 trades |  -68,144.0 pips |  -3.553 avg | 36.2% WR | DD 68,230
+  Max 15 pos: 22,125 trades |  -78,840.0 pips |  -3.563 avg | 35.8% WR | DD 79,000
+  Max 20 pos: 24,042 trades |  -70,163.0 pips |  -2.918 avg | 36.1% WR | DD 70,225
+
+====================================================================================================
+06:20:07 |
+Total runtime: 749.8s (12.5min)
+[32/32] Stress - Window 30 + Friday exit
+06:20:18 | Loading slot configs: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_v2_slots_20260222_202854.csv
+06:20:18 |   616 profitable slots from 625 total
+06:20:18 |   Thresholds: ET=0.4, XT=0.2
+06:20:18 |   Test years: [np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024), np.int64(2025), np.int64(2026)]
+06:20:18 |   616 slot configs loaded
+06:20:18 |
+Simulation config:
+06:20:18 |   Max positions: 15
+06:20:18 |   Slippage:      3.0 pips/side
+06:20:18 |   Entry delay:   2 bars (10min)
+06:20:18 |   Friday exit:   20:00 UTC
+06:20:18 |   Max spread:    5.0 pips
+06:20:18 |   Regime window: 30min (6 bars)
+06:20:18 |   Windows:       48 (30-min UTC slots)
+06:20:18 |   Numba:         YES
+06:20:18 |   Pairs: 19 — AUD_CAD, AUD_JPY, AUD_NZD, AUD_USD, CAD_JPY, CHF_JPY, EUR_AUD, EUR_GBP, EUR_JPY, EUR_USD, GBP_AUD, GBP_JPY, GBP_USD, NZD_CAD, NZD_JPY, NZD_USD, USD_CAD, USD_CHF, USD_JPY
+06:21:00 |   AUD_CAD: 4,003 trades (41.9s)
+06:21:50 |   AUD_JPY: 3,843 trades (50.0s)
+06:22:32 |   AUD_NZD: 3,689 trades (42.2s)
+06:23:07 |   AUD_USD: 4,000 trades (34.7s)
+06:23:50 |   CAD_JPY: 3,845 trades (43.6s)
+06:24:37 |   CHF_JPY: 3,716 trades (46.7s)
+06:25:20 |   EUR_AUD: 3,860 trades (42.9s)
+06:25:55 |   EUR_GBP: 4,193 trades (34.6s)
+06:26:38 |   EUR_JPY: 3,830 trades (43.8s)
+06:27:20 |   EUR_USD: 4,100 trades (41.4s)
+06:28:15 |   GBP_AUD: 3,309 trades (55.2s)
+06:29:07 |   GBP_JPY: 3,800 trades (52.2s)
+06:29:50 |   GBP_USD: 4,089 trades (42.3s)
+06:30:30 |   NZD_CAD: 3,836 trades (40.1s)
+06:31:16 |   NZD_JPY: 3,721 trades (46.7s)
+06:31:52 |   NZD_USD: 3,958 trades (35.9s)
+06:32:35 |   USD_CAD: 4,114 trades (42.7s)
+06:33:07 |   USD_CHF: 4,016 trades (31.9s)
+06:33:50 |   USD_JPY: 3,757 trades (43.7s)
+06:33:51 |
+Total trades generated: 73,679
+06:33:51 |
+Running portfolio simulation...
+06:33:52 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_equity_maxpos15_slip3.0_delay2_friexit20_20260223_063351.csv (22,854 rows)
+06:33:52 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_trades_maxpos15_slip3.0_delay2_friexit20_20260223_063351.csv (22,854 rows)
+06:33:52 | Saved: C:\Forex_Projects\Forex_bot_original\Testing\claude_code_version\regime_sim_yearly_maxpos15_slip3.0_delay2_friexit20_20260223_063351.csv
+
+====================================================================================================
+REGIME v2 — LIVE SIMULATION RESULTS
+Max positions: 15 | Slippage: 3.0 pips/side | Entry delay: 2 bars (10min) | Friday exit: 20:00 UTC
+====================================================================================================
+
+── EXECUTION ──
+  Total signals:       73,679
+  Executed:            22,854 (31.0%)
+  Rejected (margin):   5,884 (8.0%)
+  Rejected (pair busy):44,941 (61.0%)
+
+── PERFORMANCE ──
+  Total P&L:           -75,497.0 pips
+  Avg per trade:       -3.303 pips
+  Win rate:            35.9%
+  Profit factor:       0.817
+  Max drawdown:        75,639.2 pips
+  Avg win:             +41.0 pips
+  Avg loss:            -28.1 pips
+
+── CONCURRENT POSITIONS ──
+  Peak concurrent:     15
+  Avg concurrent:      10.7
+
+── EXIT TYPE BREAKDOWN ──
+  Regime exits:        5,973 (26.1%) | -73,863.8 pips (-12.366 avg)
+  Timed exits:         15,155 (66.3%) | -5,015.3 pips (-0.331 avg)
+  Friday exits:        1,726 (7.6%) | +3,382.1 pips (+1.960 avg)
+
+── HOLD TIME ──
+  Mean:                171 bars (14.3h)
+  Median:              144 bars (12.0h)
+  P25:                 6 bars (0.5h)
+  P75:                 264 bars (22.0h)
+  Max:                 720 bars (60.0h)
+
+── PER YEAR ──
+  2021:  3,589 trades |   -9,904.5 pips |  -2.760 avg | 37.4% WR | PF 0.782 | DD 10,296
+  2022:  5,181 trades |  -10,490.7 pips |  -2.025 avg | 37.6% WR | PF 0.895 | DD 12,329
+  2023:  4,879 trades |  -20,909.6 pips |  -4.286 avg | 35.3% WR | PF 0.783 | DD 21,848
+  2024:  4,500 trades |  -12,161.7 pips |  -2.703 avg | 34.9% WR | PF 0.849 | DD 14,928
+  2025:  4,498 trades |  -21,078.6 pips |  -4.686 avg | 34.3% WR | PF 0.754 | DD 21,537
+  2026:    207 trades |     -951.9 pips |  -4.599 avg | 34.8% WR | PF 0.753 | DD 1,177
+  Losing years: 6
+
+── PER PAIR ──
+   GBP_JPY: 1,200 trades |   +5,371.8 pips |  +4.476 avg | 41.5% WR
+   USD_JPY: 1,166 trades |       -4.3 pips |  -0.004 avg | 38.2% WR
+   GBP_AUD: 1,126 trades |     -267.2 pips |  -0.237 avg | 37.0% WR
+   AUD_JPY: 1,202 trades |   -2,505.8 pips |  -2.085 avg | 38.9% WR
+   GBP_USD: 1,253 trades |   -2,881.9 pips |  -2.300 avg | 37.8% WR
+   NZD_JPY: 1,143 trades |   -2,931.5 pips |  -2.565 avg | 36.6% WR
+   EUR_AUD: 1,199 trades |   -3,168.7 pips |  -2.643 avg | 38.2% WR
+   CAD_JPY: 1,191 trades |   -3,226.9 pips |  -2.709 avg | 38.1% WR
+   EUR_JPY: 1,225 trades |   -4,556.6 pips |  -3.720 avg | 36.2% WR
+   USD_CHF: 1,216 trades |   -4,830.7 pips |  -3.973 avg | 33.0% WR
+   AUD_USD: 1,243 trades |   -4,999.9 pips |  -4.022 avg | 35.4% WR
+   USD_CAD: 1,234 trades |   -5,223.6 pips |  -4.233 avg | 35.6% WR
+   NZD_USD: 1,168 trades |   -5,442.1 pips |  -4.659 avg | 35.1% WR
+   EUR_USD: 1,291 trades |   -5,769.4 pips |  -4.469 avg | 34.9% WR
+   NZD_CAD: 1,172 trades |   -5,970.7 pips |  -5.094 avg | 34.6% WR
+   AUD_NZD: 1,146 trades |   -6,097.7 pips |  -5.321 avg | 32.9% WR
+   CHF_JPY: 1,214 trades |   -6,498.0 pips |  -5.353 avg | 36.1% WR
+   EUR_GBP: 1,248 trades |   -8,128.5 pips |  -6.513 avg | 29.9% WR
+   AUD_CAD: 1,217 trades |   -8,365.3 pips |  -6.874 avg | 31.8% WR
+
+── POSITION LIMIT SENSITIVITY ──
+  Max  5 pos:  9,220 trades |  -36,883.2 pips |  -4.000 avg | 36.0% WR | DD 37,298
+  Max  8 pos: 14,223 trades |  -51,492.1 pips |  -3.620 avg | 36.1% WR | DD 51,597
+  Max 10 pos: 17,231 trades |  -61,187.2 pips |  -3.551 avg | 36.1% WR | DD 61,373
+  Max 12 pos: 19,812 trades |  -71,098.4 pips |  -3.589 avg | 36.0% WR | DD 71,158
+  Max 15 pos: 22,854 trades |  -75,497.0 pips |  -3.303 avg | 35.9% WR | DD 75,643
+  Max 20 pos: 24,764 trades |  -69,559.1 pips |  -2.809 avg | 36.3% WR | DD 69,625
+
+====================================================================================================
+06:33:53 |
+Total runtime: 815.1s (13.6min)
+============================================
+ ALL 32 RUNS COMPLETE
+============================================
